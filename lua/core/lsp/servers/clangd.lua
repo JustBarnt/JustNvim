@@ -1,3 +1,4 @@
+-- Read this for setup of compile_commands.json: https://www.reddit.com/r/neovim/comments/17rhvtl/guide_how_to_use_clangd_cc_lsp_in_any_project/
 return {
     root_dir = function(fname)
         return require("lspconfig.util").root_pattern(
