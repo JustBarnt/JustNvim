@@ -11,8 +11,8 @@ return {
             "justbarnt/telescope-cmdline.nvim",
             "nvim-tree/nvim-web-devicons"
         },
-        keys = {
+        --[[ keys = {
             { ":", "<cmd>Telescope cmdline<cr>", desc = "Cmdline" }
-        },
+        }, ]]
     },
 }
