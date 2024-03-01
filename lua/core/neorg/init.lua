@@ -8,7 +8,7 @@ neorg.setup({
         -- ["core.ui.calendar"] = {},
         ["core.concealer"] = {
             config = {
-                icon_preset = "varied",
+                icon_preset = "diamond",
                 icons = {
                     code_block = {
                         conceal = true,

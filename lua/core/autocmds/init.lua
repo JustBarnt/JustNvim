@@ -49,7 +49,7 @@ if enabled(cmds, "help_in_float") then
 
             if file_path:match "/doc/" ~= nil then
                 -- Only run if the filetype is a help file
-                if filetype == "help" or filetype == "markdown" then
+                if filetype == "help" or filetype == "markdown" or filetype == 'norg' then
                     -- Get the newly opened help window
                     -- and attempt to open a Detour() float
                     local help_win = vim.api.nvim_get_current_win()

@@ -205,6 +205,7 @@ M.telescope = {
         },
         cmdline = {
             picker = {
+                initial_mode = "normal",
                 layout_config = {
                     width = 60,
                     height = 10,
