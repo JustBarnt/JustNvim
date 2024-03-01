@@ -7,7 +7,6 @@ local config = exists and type(user_config) == "table" and user_config.telescope
 telescope.setup(config)
 telescope.load_extension "ui-select"
 telescope.load_extension "cmdline"
-telescope.load_extension "themes"
 
 --Basic Telescope builtin
 --see :h Telescope.builtin
