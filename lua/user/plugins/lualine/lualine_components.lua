@@ -16,12 +16,24 @@ M.harpoon_component = function()
 
     for i = 1, total_harpoons do
         if basename(items[i].value) == basename(buf) then
-            current_mark = tostring(i);
-            break;
+            current_mark = tostring(i)
+            break
         end
     end
 
     return string.format("󱡅 %s/%d", current_mark, total_harpoons)
+end
+
+M.pomodoro_component = function()
+    local pomodoro = require('pomo')
+
+    local timer = pomodoro.get_first_to_finish()
+
+    if timer == nil then
+        return "󰺗 - N/A"
+    end
+
+    return "󰄉 " .. tostring(timer)
 end
 
 return M

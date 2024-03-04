@@ -12,6 +12,9 @@ M.config = {
     sections = {
         lualine_a = {
             {
+                components.pomodoro_component
+            },
+            {
                 "filename",
                 file_statue = true,
                 path = 1,
