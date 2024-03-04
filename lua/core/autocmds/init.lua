@@ -7,20 +7,20 @@ local exist, config = pcall(require, "user.config")
 local cmds = exist and type(config) == "table" and config.autocmds or {}
 local clear = { clear = true }
 
-if enabled(cmds, "dashboard_start") then
-    cmd('VimEnter', {
-        pattern = "*",
-        desc = "Toggles Dashboard",
-        group = augroup("dashboard_start", clear),
-        callback = function()
-            if vim.o.filetype == 'oil' then
-                require('oil').close()
-            end
-            
-            vim.cmd[[:Dashboard]]
-        end,
-    })
-end 
+-- if enabled(cmds, "dashboard_start") then
+--     cmd('VimEnter', {
+--         pattern = "*",
+--         desc = "Toggles Dashboard",
+--         group = augroup("dashboard_start", clear),
+--         callback = function()
+--             if vim.o.filetype == 'oil' then
+--                 require('oil').close()
+--             end
+--             
+--             vim.cmd[[:Dashboard]]
+--         end,
+--     })
+-- end 
 
 if enabled(cmds, "disable_auto_comment") then
     cmd("BufEnter", {
