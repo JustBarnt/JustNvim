@@ -1,10 +1,11 @@
 return {
     {
-        "uga-rosa/ccc.nvim",
+        "brenoprata10/nvim-highlight-colors",
         event = "BufReadPre",
-        config = function()
-            local config = require("user.plugins.color-code").config
-            require("ccc").setup(config)
-        end,
+        opts = {
+            render = 'virtual',
+            enabled_named_colors = true,
+            enabled_tailwind = true,
+        }
     },
 }
