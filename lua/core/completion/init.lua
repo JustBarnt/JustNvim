@@ -37,14 +37,18 @@ local config = {
         ["Down>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
     }),
     sources = cmp.config.sources({
-        { name = "nvim_lsp", priority = 1000 },
-        { name = "nvim_lua", priority = 1000 },
-        { name = "luasnip", priority = 750 },
-        { name = "nerdfont", priority = 500 },
-        { name = "path", priority = 250 },
+        {
+            { name = "nvim_lsp", priority = 1000 },
+            { name = "nvim_lua", priority = 1000 },
+            { name = "luasnip", priority = 750 },
+            { name = "nerdfont", priority = 500 },
+        },
         {
             { name = "neorg", priority = 1000 },
         },
+        {
+            { name = "path", priority = 250 },
+        }
     }),
     experimental = {
         ghost_text = true,
@@ -76,6 +80,7 @@ cmp.setup.cmdline({ "/", "?" }, {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
         { name = "buffer" },
+        { name = "path" },
     }),
 })
 
@@ -84,6 +89,8 @@ cmp.setup.cmdline(":", {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
         { name = "cmdline" },
+        { name = "path" },
+        { name = "buffer" },
     }),
 })
 
