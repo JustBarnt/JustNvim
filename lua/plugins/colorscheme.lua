@@ -5,4 +5,9 @@ return {
         priority = 10000,
         lazy = false,
     },
+    {
+        "folke/tokyonight.nvim",
+        priority = 10000,
+        lazy = false
+    }
 }

@@ -21,7 +21,7 @@ return {
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-cmdline",
             "chrisgrieser/cmp-nerdfont",
-            -- "onsails/lspkind-nvim",
+            "onsails/lspkind-nvim",
         },
     },
 }
