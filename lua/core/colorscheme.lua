@@ -4,9 +4,16 @@ local pallets = require "user.theme-colors"
 rose_pine.setup({
     -- dim_inactive_windows = true,
     bold_vert_split = true,
+    extend_background_behind_borders = false,
     disable_background = true,
+    enable = {
+        terminal = true,
+        legacy_highlights = true,
+        migrations = true,
+    },
     highlight_groups = {
         ColorColumn = { bg = "rose", blend = 15 },
+        FloatBorder = { bg = "none" },
 
         -- Gitsigns
         GitsignsAdd = { fg = pallets.main.iris },

@@ -30,7 +30,7 @@ M.pomodoro_component = function()
     local timer = pomodoro.get_first_to_finish()
 
     if timer == nil then
-        return "󰺗 - N/A"
+        return "󰄉"
     end
 
     return "󰄉 " .. tostring(timer)
