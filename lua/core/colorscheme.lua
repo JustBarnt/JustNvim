@@ -42,8 +42,26 @@ rose_pine.setup({
         -- Colors the Prompt window for Telescope
         TelescopePromptNormal = { fg = "text", bg = "surface" },
         TelescopePromptBorder = { fg = "surface", bg = "surface" },
+
+        CmpItemAbbrDeprecated = { bg = "NONE", gui="strikethrough", fg="#6e6a86"},
+        CmpItemAbbrMatch = { bg = "NONE", gui="strikethrough", fg="#31748f"},
+        CmpItemAbbrMatchFuzzy = { link ="CmpItemAbbrMatch" },
     },
 })
+
+vim.cmd[[
+    highlight CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#6e6a86
+    highlight CmpItemAbbrMatch guibg=NONE guifg=#31748f
+    highlight link CmpItemAbbrMatchFuzzy CmpItemAbbrMatch
+    highlight CmpItemKindVariable guibg=NONE guifg=#c4a7e7
+    highlight link CmpItemKindInterface CmpItemKindVariable
+    highlight link CmpItemKindText CmpItemKindVariable
+    highlight CmpItemKindFunction guibg=NONE guifg=#ebbcba
+    highlight link CmpItemKindMethod CmpItemKindFunction
+    highlight CmpItemKindKeyword guibg=NONE guifg=#eb6f92
+    highlight link CmpItemKindProperty CmpItemKindKeyword
+    highlight link CmpItemKindUnit CmpItemKindKeyword
+]]
 
 vim.cmd.colorscheme "rose-pine-moon"
 vim.cmd.hi 'Comment gui=none'
