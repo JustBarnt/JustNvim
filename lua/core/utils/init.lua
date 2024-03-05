@@ -32,14 +32,19 @@ function M.select_find_command()
             "/",
         },
     }
+
     local fd_command = {
         initial_mode = "insert",
         find_command = vim.fn.executable == 1 and { "fd", "--strip-cwd-prefix", "--type", "f" } or nil,
     }
 
-    if vim.fn.glob(vim.fn.getcwd() .. "/.svelte-kit"):match('%.svelte%-kit') then
+    vim.notify = require("notify")
+
+    if vim.fn.glob(vim.fn.getcwd() .. "/.svelte-kit"):match('%.svelte%-kit') ~= nil then
+        vim.notify("Loading Ripgrep", vim.log.levels.WARN)
         return rg_command
     else
+        vim.notify("Loading FD", vim.log.levels.WARN)
         return fd_command
     end
 end

@@ -82,15 +82,15 @@ if enabled(cmds, "cursor_line") then
     })
 end
 
-if enabled(cmds, "trailing_whitespace") then
-    print "We triming whitespace boisss"
-    cmd({ "BufWritePre" }, {
-        desc = "Clears trailing whitespace on save",
-        group = augroup("trailing_whitespace", clear),
-        pattern = "*",
-        command = [[%s/\s\+$//e]],
-    })
-end
+-- if enabled(cmds, "trailing_whitespace") then
+--     print "We triming whitespace boisss"
+--     cmd({ "BufWritePre" }, {
+--         desc = "Clears trailing whitespace on save",
+--         group = augroup("trailing_whitespace", clear),
+--         pattern = "*",
+--         command = [[%s/\s\+$//e]],
+--     })
+-- end
 
 if enabled(cmds, "cursor_line_control") then
     vim.opt.cursorline = true
