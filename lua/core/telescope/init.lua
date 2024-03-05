@@ -5,7 +5,7 @@ local exists, user_config = pcall(require, "user.config")
 local config = exists and type(user_config) == "table" and user_config.telescope or {}
 
 telescope.setup(config)
-telescope.load_extension "ui-select"
+-- telescope.load_extension "ui-select"
 telescope.load_extension "cmdline"
 
 --Basic Telescope builtin

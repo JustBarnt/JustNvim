@@ -200,9 +200,9 @@ M.telescope = {
         initial_mode = "insert",
     },
     extensions = {
-        ["ui-select"] = {
-            require("telescope.themes").get_cursor({ initial_mode = "normal" }),
-        },
+        -- ["ui-select"] = {
+        --     require("telescope.themes").get_cursor({ initial_mode = "normal" }),
+        -- },
         cmdline = {
             picker = {
                 initial_mode = "normal",
