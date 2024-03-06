@@ -37,18 +37,15 @@ local config = {
         ["Down>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
     }),
     sources = cmp.config.sources({
-        {
-            { name = "nvim_lsp", priority = 1000 },
-            { name = "nvim_lua", priority = 1000 },
-            { name = "luasnip", priority = 750 },
-            { name = "nerdfont", priority = 500 },
-        },
-        {
-            { name = "neorg", priority = 1000 },
-        },
-        {
-            { name = "path", priority = 250 },
-        }
+        { name = "nvim_lsp", priority = 1000 },
+        { name = "nvim_lua", priority = 750},
+        { name = "path", priority = 500, keyword_pattern = "/" },
+        { name = "buffer", keyword_length = 5, priority = 250 },
+    }, {
+        { name = "luasnip", priority = 1000 },
+        { name = "nerdfont", priority = 750, keyword_pattern = ":nf" },
+    }, {
+        { name = "neorg" },
     }),
     experimental = {
         ghost_text = true,
@@ -80,7 +77,6 @@ cmp.setup.cmdline({ "/", "?" }, {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
         { name = "buffer" },
-        { name = "path" },
     }),
 })
 
@@ -89,8 +85,6 @@ cmp.setup.cmdline(":", {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
         { name = "cmdline" },
-        { name = "path" },
-        { name = "buffer" },
     }),
 })
 
@@ -135,4 +129,3 @@ vim.api.nvim_set_hl(0, "CmpItemKindEnumMember", { fg = "#DDE5F5", bg = "#6C8ED4"
 vim.api.nvim_set_hl(0, "CmpItemKindInterface", { fg = "#D8EEEB", bg = "#58B5A8" })
 vim.api.nvim_set_hl(0, "CmpItemKindColor", { fg = "#D8EEEB", bg = "#58B5A8" })
 vim.api.nvim_set_hl(0, "CmpItemKindTypeParameter", { fg = "#D8EEEB", bg = "#58B5A8" })
-
