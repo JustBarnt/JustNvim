@@ -7,15 +7,7 @@ return {
         local dbee = require "dbee"
         local layout = require("dbee.layouts").Default
         dbee.setup({
-            sources = {
-                sources.MemorySource:new({
-                    {
-                        name = "CommSys",
-                        type = "sqlserver",
-                        url = "sqlserver://sa:admin@localhost?database=CommSys&TrustServerCertificate=true",
-                    },
-                }),
-            },
+            
         })
     end,
 }
