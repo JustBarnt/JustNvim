@@ -41,10 +41,8 @@ function M.select_find_command()
     vim.notify = require("notify")
 
     if vim.fn.glob(vim.fn.getcwd() .. "/.svelte-kit"):match('%.svelte%-kit') ~= nil then
-        vim.notify("Loading Ripgrep", vim.log.levels.WARN)
         return rg_command
     else
-        vim.notify("Loading FD", vim.log.levels.WARN)
         return fd_command
     end
 end
