@@ -12,7 +12,7 @@ vim.filetype.add({
 vim.opt.shortmess = {
     a = true,
     c = true, -- Do not show completion messages
-    F = true, -- Do not show file info when editing 
+    F = true, -- Do not show file info when editing
     W = true, -- Do not show "written" -> when saving file
     I = true, -- do not show intro message
 }
@@ -48,10 +48,10 @@ vim_opts({
         autoindent = true,
         cindent = true,
         wrap = false,
-        tabstop = 4,
+        tabstop = 8,
         shiftwidth = 4,
         softtabstop = 4,
-        expandtab = true,
+        expandtab = false,
         breakindent = true,
         belloff = "all",
         clipboard = "unnamedplus",
@@ -60,7 +60,7 @@ vim_opts({
         mouse = "a",
         joinspaces = false,
         list = true,
-        listchars = { tab = '» ', trail = '·', nbsp = '␣' },
+        listchars = { tab = "» ", trail = "·", nbsp = "␣" },
         undodir = vim.fn.stdpath "state" .. "\\undotree\\",
         undofile = true,
         signcolumn = "yes",
