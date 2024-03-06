@@ -94,12 +94,7 @@ function M.Start_LSP()
         },
     })
 
-    require("typescript-tools").setup({
-        settings = {
-            code_lens = "all",
-        },
-    })
-
+    require("typescript-tools").setup({ })
     require("conform").setup({
         notify_on_error = false,
         formatters_by_ft = {
