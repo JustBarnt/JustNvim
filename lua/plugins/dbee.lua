@@ -5,9 +5,10 @@ return {
     config = function()
         local sources = require "dbee.sources"
         local dbee = require "dbee"
-        local layout = require("dbee.layouts").Default
         dbee.setup({
-            
+            sources = {
+                require('dbee.sources').FileSource:new(vim.fn.stdpath('cache') .. "/dbee/persistance.json")
+            }
         })
     end,
 }

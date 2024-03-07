@@ -5,7 +5,7 @@ local moon = require("user.theme-colors").moon
 M.config = {
     options = {
         --- @usage 'rose-pine' | 'rose-pine-alt'
-        theme = "rose-pine",
+        theme = vim.g.colors_name,
         globalstatus = true,
         -- section_separators = { left = '', right = ''},
     },

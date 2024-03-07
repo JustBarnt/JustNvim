@@ -5,7 +5,7 @@ local exists, user_config = pcall(require, "user.config")
 local config = exists and type(user_config) == "table" and user_config.telescope or {}
 
 telescope.setup(config)
--- telescope.load_extension "ui-select"
+telescope.load_extension "themes"
 telescope.load_extension "cmdline"
 
 --Basic Telescope builtin
@@ -19,6 +19,7 @@ map("n", "<leader>fg", builtin.live_grep, { desc = "Find by Grep" })
 map("n", "<leader>fd", builtin.diagnostics, { desc = "Find Diagnostics" })
 map("n", "<leader>fr", builtin.resume, { desc = "Find Resume last Telescope Session" })
 map("n", "<leader>fo", builtin.oldfiles, { desc = "Find Oldfiles" })
+map("n", "<leader>ft", "<CMD>Telescope themes<CR>", { desc = "Find Themes"})
 map("n", "<leader><leader>", builtin.buffers, { desc = "Find Buffers" })
 
 -- Advanced Telescope mappings

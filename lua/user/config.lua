@@ -202,9 +202,19 @@ M.telescope = {
         initial_mode = "insert",
     },
     extensions = {
-        -- ["ui-select"] = {
-        --     require("telescope.themes").get_cursor({ initial_mode = "normal" }),
-        -- },
+        themes = {
+            require("telescope.themes").get_dropdown({
+                layout_config = {
+                    width = 120,
+                    height = 60,
+                },
+            }),
+            enable_live_preview = true,
+            persist = {
+                enabled = true,
+                path = vim.fn.stdpath("config") .. "/lua/core/colorscheme.lua"
+            }
+        },
         cmdline = {
             picker = {
                 initial_mode = "normal",
