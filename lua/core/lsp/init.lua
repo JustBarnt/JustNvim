@@ -67,6 +67,10 @@ function M.Start_LSP()
                     callback = vim.lsp.buf.clear_references,
                 })
             end
+
+            if client.name == "sqls" then
+                require("sqls").on_attach(client, event.buf)
+            end
         end,
     })
 

@@ -29,4 +29,5 @@ return {
     },
     "b0o/schemastore.nvim",
     "stevearc/conform.nvim",
+    "nanotee/sqls.nvim"
 }

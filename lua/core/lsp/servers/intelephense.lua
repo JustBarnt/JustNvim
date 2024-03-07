@@ -1,6 +1,6 @@
 return {
     filetypes = { "php", "ctp" },
-    setings = {
+    settings = {
         environment = {
             includePaths = {
                 "C:\\PHP\\includes"

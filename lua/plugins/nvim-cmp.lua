@@ -7,11 +7,11 @@ return {
                 "L3MON4D3/LuaSnip",
                 tag = "v2.2.0",
                 build = function()
-                    if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
+                    if vim.fn.has "win32" == 1 or vim.fn.executable "make" == 0 then
                         return
                     end
 
-                    return 'make install_jsregexp'
+                    return "make install_jsregexp"
                 end,
             },
             "saadparwaiz1/cmp_luasnip",
@@ -22,6 +22,7 @@ return {
             "hrsh7th/cmp-cmdline",
             "chrisgrieser/cmp-nerdfont",
             "onsails/lspkind-nvim",
+            { "MattiasMTS/cmp-dbee", ft = "sql" },
         },
     },
 }

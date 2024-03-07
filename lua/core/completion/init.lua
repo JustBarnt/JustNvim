@@ -38,7 +38,8 @@ local config = {
     }),
     sources = cmp.config.sources({
         { name = "nvim_lsp", priority = 1000 },
-        { name = "nvim_lua", priority = 750},
+        { name = "nvim_lua", priority = 750 },
+        { name = "cmp-dbee", priority = 750 },
         { name = "path", priority = 500, keyword_pattern = "/" },
         { name = "buffer", keyword_length = 5, priority = 250 },
     }, {
