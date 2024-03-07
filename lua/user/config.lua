@@ -40,22 +40,6 @@ M.ensure_installed = {
         "stylua",
         "prettier",
     },
-    mason_lspconfig = {
-        "bashls",
-        "cssls",
-        "clangd",
-        "emmet_language_server",
-        "html",
-        "intelephense",
-        "jsonls",
-        "lua_ls",
-        "marksman",
-        "omnisharp",
-        "powershell_es",
-        "svelte",
-        "tailwindcss",
-        "taplo",
-    },
     parsers = {
         "bash",
         "c",
@@ -98,7 +82,6 @@ M.servers = {
     emmet_language_server = require "core.lsp.servers.emmet_language_server",
     -- sqls = require 'core.lsp.servers.sqls',
     tailwindcss = {},
-    -- tsserver = require "core.lsp.servers.tsserver",
 }
 
 M.formatters = {
