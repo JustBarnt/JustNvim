@@ -96,7 +96,7 @@ M.servers = {
     clangd = require "core.lsp.servers.clangd",
     powershell_es = require "core.lsp.servers.powershell_es",
     emmet_language_server = require "core.lsp.servers.emmet_language_server",
-    sqls = require 'core.lsp.servers.sqls',
+    -- sqls = require 'core.lsp.servers.sqls',
     tailwindcss = {},
     -- tsserver = require "core.lsp.servers.tsserver",
 }
