@@ -7,6 +7,15 @@ local exist, config = pcall(require, "user.config")
 local cmds = exist and type(config) == "table" and config.autocmds or {}
 local clear = { clear = true }
 
+if enabled(cmds, "plain_comments") then
+    cmd("BufEnter", {
+        pattern = "*",
+        desc = "Removes styling from comments",
+        group = augroup("plain_comments", clear),
+        command = "hi Comment gui=none"
+    })
+end
+
 -- if enabled(cmds, "dashboard_start") then
 --     cmd('VimEnter', {
 --         pattern = "*",

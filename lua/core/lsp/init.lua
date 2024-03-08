@@ -68,8 +68,15 @@ function M.Start_LSP()
                 })
             end
 
-            if client.name == "sqls" then
-                require("sqls").on_attach(client, event.buf)
+            -- if client and client.name == "sqls" then
+            --     require("sqls").on_attach(client, event.buf)
+            -- end
+
+            -- Disables "No information available" warning from lsp when using 'Hover'
+            if client and client.server_capabilities.hoverProvider then
+                vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
+                    silent = true
+                })
             end
         end,
     })

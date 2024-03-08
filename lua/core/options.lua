@@ -71,5 +71,5 @@ vim_opts({
 local exist, config = pcall(require, "user.config")
 local opts = exist and type(config) == "table" and config.user_options or {}
 -- Disables styles applied to comments
-vim.cmd.hi 'Comment gui=none'
+
 vim_opts(opts)
