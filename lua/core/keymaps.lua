@@ -63,6 +63,22 @@ M.Default = function()
     map("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move Selected lines down", noremap = false })
     map("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move Selected lines up", noremap = false })
 
+    map("n", "<M-j>", function()
+        if vim.opt.diff:get() then
+            vim.cmd [[normal! ]c]]
+        else
+            vim.cmd [[m .+1<CR>==]]
+        end
+    end, { desc = "Move Line Down"})
+
+    map("n", "<M-k>", function()
+        if vim.opt.diff:get() then
+            vim.cmd [[normal! [c]]
+        else
+            vim.cmd [[m .-2<CR>==]]
+        end
+    end, { desc = "Move Line Down"})
+
     -- Show Lazy UI
     map("n", "<leader>L", ":Lazy<CR>", { desc = "Show Lazy " })
 
