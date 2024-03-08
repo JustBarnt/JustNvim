@@ -40,10 +40,10 @@ local config = {
         { name = "nvim_lsp", priority = 1000 },
         { name = "nvim_lua", priority = 750 },
         { name = "cmp-dbee", priority = 750 },
+        { name = "luasnip", priority = 1000 },
         { name = "path", priority = 500, keyword_pattern = "/" },
         { name = "buffer", keyword_length = 5, priority = 250 },
     }, {
-        { name = "luasnip", priority = 1000 },
         { name = "nerdfont", priority = 750, keyword_pattern = ":nf" },
     }, {
         { name = "neorg" },
