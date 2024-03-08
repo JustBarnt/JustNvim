@@ -38,8 +38,6 @@ function M.select_find_command()
         find_command = vim.fn.executable == 1 and { "fd", "--strip-cwd-prefix", "--type", "f" } or nil,
     }
 
-    vim.notify = require("notify")
-
     if vim.fn.glob(vim.fn.getcwd() .. "/.svelte-kit"):match('%.svelte%-kit') ~= nil then
         return rg_command
     else
