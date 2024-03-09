@@ -33,8 +33,6 @@ local config = {
         end, { "i", "s" }),
         -- Temp Maps
         ["<CR>"] = cmp.mapping(cmp.mapping.confirm({ behavior = cmp.SelectBehavior.Replace, select = true }), { "i" }),
-        ["Up>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-        ["Down>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
     }),
     sources = cmp.config.sources({
         { name = "nvim_lsp", priority = 1000 },
