@@ -19,9 +19,9 @@ return {
             local luasnip = require "luasnip"
             local lspkind = require "lspkind"
             -- Distro Related Helpers
-            local comparators = require "core.completion.cmp-comparators"
-            local mappings = require "core.completion.cmp-mappings"
-            local sources = require "core.completion.cmp-sources"
+            local comparators = require "core.plugins.completion.cmp-comparators"
+            local mappings = require "core.plugins.completion.cmp-mappings"
+            local sources = require "core.plugins.completion.cmp-sources"
             -- Luasnip Setup
             luasnip.config.setup({})
 

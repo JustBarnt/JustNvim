@@ -42,10 +42,30 @@ return {
         opts = function()
             local actions = require "telescope.actions"
             return {
-                defaults = {
-                    initial_mode = "insert",
+                extensions = {
+                    themes = {
+                        require("telescope.themes").get_dropdown({
+                            layout_config = {
+                                width = 120,
+                                height = 60,
+                            },
+                        }),
+                        enable_live_preview = true,
+                        persist = {
+                            enabled = true,
+                            path = vim.fn.stdpath("config") .. "/lua/core/colorscheme.lua"
+                        }
+                    },
+                    cmdline = {
+                        picker = {
+                            initial_mode = "normal",
+                            layout_config = {
+                                width = 60,
+                                height = 10,
+                            },
+                        },
+                    },
                 },
-                extensions = {},
                 pickers = {
                     buffers = {
                         initial_mode = "normal",
@@ -58,17 +78,17 @@ return {
                                 ["d"] = actions.delete_buffer,
                             },
                         },
-                    }                   find_files = require("core.utils").select_find_command(), --vim.fn.executable == 1 and { "fd", "--strip-cwd-prefix", "--type", "f" } or nil,
+                    },
+                    find_files = require("core.utils").select_find_command(), --vim.fn.executable == 1 and { "fd", "--strip-cwd-prefix", "--type", "f" } or nil,
                 },
             }
         end,
         config = function(_, opts)
             local telescope = require "telescope"
-            local exists, user_config = pcall(require, "user.config")
-            local config = exists and type(user_config) == "table" and user_config.telescope or {}
-            local telescope_config = vim.tbl_deep_extend("force", opts, config)
+            local user_config = require "user.config"
+            local config = vim.tbl_deep_extend("force", opts, user_config.telescope or {})
 
-            telescope.setup(telescope_config)
+            telescope.setup(config)
             telescope.load_extension "themes"
             telescope.load_extension "cmdline"
             telescope.load_extension "luasnip"

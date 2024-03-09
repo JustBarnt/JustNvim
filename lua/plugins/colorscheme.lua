@@ -5,7 +5,7 @@ return {
         priority = 10000,
         lazy = false,
         opts = function()
-            local pallets = require "user.theme-colors"
+            --[[local pallets = require "user.theme-colors"
             local opts = {
                 -- dim_inactive_windows = true,
                 bold_vert_split = true,
@@ -47,7 +47,7 @@ return {
                 },
             }
 
-            return opts
+            return opts]]--
         end,
     },
     {
