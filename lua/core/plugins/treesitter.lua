@@ -120,11 +120,10 @@ return {
         },
         config = function(_, opts)
             local ts = require "nvim-treesitter.configs"
-            local exists, user_config = pcall(require, "user.config")
-            local config = exists and type(user_config) == "table" and user_config.treesitter or {}
-            local ts_config = vim.tbl_deep_extend("force", opts, config)
+            local user_config = require 'user.config'
+            local config = vim.tbl_deep_extend("force", opts, user_config.treesitter or {})
 
-            ts.setup(ts_config)
+            ts.setup(config)
         end,
     },
 }

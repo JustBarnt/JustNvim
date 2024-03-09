@@ -26,4 +26,10 @@ return {
         Operator = "󰆕",
         TypeParameter = "󰅲",
     },
+    diagnostics = {
+        error = "",
+        warn = "",
+        hint = "󰌶",
+        info = ""
+    },
 }
