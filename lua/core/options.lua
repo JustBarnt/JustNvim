@@ -1,14 +1,5 @@
 local vim_opts = require("core.utils").vim_options
 
--- Assumes you are on windows with python installed in you appdata folder (default) install path
--- local home_path = os.getenv("HOMEPATH")
--- vim.g.python3_host_prog = "C:" .. home_path .. "/AppData/Local/Programs/Python/Python3/python.exe"
-
-vim.filetype.add({
-    extension = {
-        postcss = "css",
-    },
-})
 vim.opt.shortmess = {
     a = true,
     c = true, -- Do not show completion messages
@@ -70,6 +61,4 @@ vim_opts({
 
 local exist, config = pcall(require, "user.config")
 local opts = exist and type(config) == "table" and config.user_options or {}
--- Disables styles applied to comments
-
 vim_opts(opts)

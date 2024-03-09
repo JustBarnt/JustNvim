@@ -34,62 +34,6 @@ M.autocmds = {
     show_message_float = true,
 }
 
---Overwrite default installed formatters, lsps, parsers
-M.ensure_installed = {
-    conform = {
-        "stylua",
-        "prettier",
-    },
-    parsers = {
-        "bash",
-        "c",
-        "cmake",
-        "cpp",
-        "c_sharp",
-        "go",
-        "html",
-        "javascript",
-        "json",
-        "jsonc",
-        "lua",
-        "markdown",
-        "markdown_inline",
-        "php",
-        "regex",
-        "svelte",
-        "sql",
-        "toml",
-        "tsx",
-        "typescript",
-        "vim",
-        "vimdoc",
-        "xml",
-    },
-}
-
-M.servers = {
-    bashls = {},
-    html = {},
-    svelte = {},
-    gopls = {},
-    cssls = {},
-    omnisharp = require "core.lsp.servers.omnisharp",
-    lua_ls = require "core.lsp.servers.lua_ls",
-    intelephense = require "core.lsp.servers.intelephense",
-    jsonls = require "core.lsp.servers.jsonls",
-    clangd = require "core.lsp.servers.clangd",
-    powershell_es = require "core.lsp.servers.powershell_es",
-    emmet_language_server = require "core.lsp.servers.emmet_language_server",
-    -- sqls = require 'core.lsp.servers.sqls',
-    tailwindcss = {},
-}
-
-M.formatters = {
-    lua = { "stylua" },
-    javascript = { "prettier" },
-    typescript = { "prettier" },
-}
-
 M.harpoon = {
     settings = {
         save_on_toggle = true,
@@ -101,130 +45,13 @@ M.neoscroll = {
     respect_scrolloff = true,
 }
 
-M.treesitter = {
-    Highlight = {
-        enable = true,
+M.ensure_installed = { }
+M.servers = { }
+M.formatters = { }
 
-        -- TODO: Create Queries for Svelte the highlight/indent queries for special blocks don't seem to match
-        -- NOTE: May need to enable for Svelte to get it to respect Svelte Special blocks
-        -- NOTE: https://github.com/Himujjal/tree-sitter-svelte?tab=readme-ov-file#for-neovim-peeps
-        additional_vim_regex_highlighting = false,
-    },
+---@class  TSConfig
+M.treesitter = {}
 
-    Refactor = {
-        highlight_definitions = {
-            enable = true,
-            disable = { "xml" },
-            clear_on_cursor_move = true,
-        },
-
-        highlight_current_scope = { enable = false },
-
-        smart_rename = {
-            enable = true,
-            keymaps = {
-                smart_rename = "<leader>cR",
-            },
-        },
-
-        navigation = false,
-
-        incremental_selection = {
-            enable = true,
-        },
-    },
-
-    Textobjects = {
-        move = {
-            enable = true,
-            set_jumps = true,
-
-            goto_next_start = {
-                ["]p"] = "@parameter.inner",
-                ["]m"] = "@function.outer",
-                ["]]"] = "@class.outer",
-            },
-            goto_next_end = {
-                ["]M"] = "@function.outer",
-                ["]["] = "@class.outer",
-            },
-            goto_previous_start = {
-                ["[p"] = "@parameter.inner",
-                ["[m"] = "@function.outer",
-                ["[["] = "@class.outer",
-            },
-            goto_previous_end = {
-                ["[M"] = "@function.outer",
-                ["[]"] = "@class.outer",
-            },
-        },
-
-        select = {
-            enable = true,
-
-            -- Jump forward automatically like targets.vim
-            lookahead = true,
-
-            keymaps = {
-                ["af"] = "@function.outer",
-                ["if"] = "@function.inner",
-
-                ["ac"] = "@conditional.outer",
-                ["ic"] = "@conditional.inner",
-
-                ["aa"] = "@parameter.outer",
-                ["ia"] = "@parameter.inner",
-
-                ["av"] = "@variable.outer",
-                ["iv"] = "@variable.inner",
-            },
-        },
-    },
-}
-
-M.telescope = {
-    defaults = {
-        initial_mode = "insert",
-    },
-    extensions = {
-        themes = {
-            require("telescope.themes").get_dropdown({
-                layout_config = {
-                    width = 120,
-                    height = 60,
-                },
-            }),
-            enable_live_preview = true,
-            persist = {
-                enabled = true,
-                path = vim.fn.stdpath("config") .. "/lua/core/colorscheme.lua"
-            }
-        },
-        cmdline = {
-            picker = {
-                initial_mode = "normal",
-                layout_config = {
-                    width = 60,
-                    height = 10,
-                },
-            },
-        },
-    },
-    pickers = {
-        buffers = {
-            initial_mode = "normal",
-            mappings = {
-                i = {
-                    ["<c-d>"] = actions.delete_buffer + actions.move_to_top,
-                    ["<c-q>"] = actions.close,
-                },
-                n = {
-                    ["d"] = actions.delete_buffer,
-                },
-            },
-        },
-        find_files = require("core.utils").select_find_command(), --vim.fn.executable == 1 and { "fd", "--strip-cwd-prefix", "--type", "f" } or nil,
-    },
-}
+M.telescope = {}
 
 return M

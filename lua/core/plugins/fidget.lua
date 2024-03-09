@@ -3,3 +3,4 @@ return {
     --NOTE: Move opts to user config
     opts = { },
 }
+

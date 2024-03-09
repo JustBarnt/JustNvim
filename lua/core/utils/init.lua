@@ -1,7 +1,9 @@
 local api = vim.api
 local M = {}
 
-local vim_options = function(options)
+--- Applies all values to `vim.[scope][setting]`
+---@param options table A Table of options to pass to it
+function M.vim_options(options)
     if options ~= nil then
         for scope, table in pairs(options) do
             for setting, value in pairs(table) do
@@ -11,8 +13,8 @@ local vim_options = function(options)
     end
 end
 
--- Telescope Find non sveltekit dir
---find_command = vim.fn.executable == 1 and { "fd", "--strip-cwd-prefix", "--type", "f" } or nil,
+--- Sets the Telescope find_files picker to RipGrep on windows if
+--- the user is on windows
 function M.select_find_command()
     local rg_command = {
         initial_mode = "insert",
@@ -38,14 +40,19 @@ function M.select_find_command()
         find_command = vim.fn.executable == 1 and { "fd", "--strip-cwd-prefix", "--type", "f" } or nil,
     }
 
-    if vim.fn.glob(vim.fn.getcwd() .. "/.svelte-kit"):match('%.svelte%-kit') ~= nil then
+    if vim.fn.glob(vim.fn.getcwd() .. "/.svelte-kit"):match "%.svelte%-kit" ~= nil then
         return rg_command
     else
         return fd_command
     end
 end
 
-local map = function(mode, lhs, rhs, opts)
+--- Wrapper for `vim.keymap.set`
+---@param mode string Mode the keymap can work in
+---@param lhs string The left hand side AKA: Key combination to activate
+---@param rhs string|function The right hand side AKA: The action to invoke
+---@param opts table A table of options the `vim.keymap.set` supports
+function M.map(mode, lhs, rhs, opts)
     local options = { noremap = true, silent = true }
     if opts then
         options = vim.tbl_extend("force", options, opts)
@@ -53,11 +60,18 @@ local map = function(mode, lhs, rhs, opts)
     vim.keymap.set(mode, lhs, rhs, options)
 end
 
-local enabled = function(group, opt)
+--- Returns true if the group either doesn't exist in the table of the value is true
+--- Simulates opt-out functionality (TODO: Make Opt-IN instead)
+---@param group table A key to a table of available modules to opt in or out of
+---@param opt string Augroup or plugin to disable
+---@return boolean
+function M.enabled(group, opt)
     return group == nil or group[opt] == nil or group[opt] == true
 end
 
-local autocmd = function(args)
+--- Simpler autocmd function call
+---@param args table A table of args matching the `vim.api.nvim_create_autocmd` signature
+function M.autocmd(args)
     local event = args[1]
     local group = args[2]
     local callback = args[3]
@@ -71,21 +85,5 @@ local autocmd = function(args)
         once = args.once,
     })
 end
-
-local lsp_hover_debug = function()
-    local clients = vim.lsp.get_active_clients()
-
-    for _, client in ipairs(clients) do
-        vim.cmd [[redir >> lsp_log.txt]]
-        vim.inspect(client)
-        local result, err = vim.lsp.buf_request_sync(0, "textDocument/hover", vim.lsp.util.make_position_params(), 1000)
-        vim.inspect(result)
-    end
-end
-
-M.vim_options = vim_options
-M.map = map
-M.enabled = enabled
-M.autocmd = autocmd
-
 return M
+

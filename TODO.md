@@ -1,3 +1,10 @@
+# Tests
+- [ ] Treesitter configs
+- [ ] Telescope configs
+
+# TODO AFTER 2.0
+- [ ] Make Neodev and Neoconf opt-in
+
 # TODO
 - [ ] Load `Core` as its own set of plugins before the other plugins
 - [x] Better CMP configuration

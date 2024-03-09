@@ -4,6 +4,7 @@ vim.g.maplocalleader = " "
 
 if not vim.g.vscode then
     require "core"
+    require "core.lazy"
     if vim.g.loaded_undotree then
         vim.g.undotree_WindowLayout = 2
 

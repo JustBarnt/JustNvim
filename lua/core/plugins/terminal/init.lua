@@ -1,5 +1,4 @@
-local map = require 'core.utils'.map
-local toggleterm = require "toggleterm"
+local M = {}
 local Terminal = require "toggleterm.terminal".Terminal
 
 local lazygit = Terminal:new({
@@ -15,15 +14,13 @@ local lazygit = Terminal:new({
         vim.api.nvim_buf_set_keymap(term.bufnr, 'n', 'q', "<cmd>close<cr>", { noremap = true, silent = true })
     end,
 
-    on_close = function(term)
+    on_close = function(_)
         vim.cmd("startinsert!")
     end,
 })
 
-local function lazygit_toggle()
+function M.lazygit_toggle()
     lazygit:toggle()
 end
 
-toggleterm.setup({})
-
-map('n', '<leader>lg', lazygit_toggle, { desc = "Toggle LazyGit" })
+return M
