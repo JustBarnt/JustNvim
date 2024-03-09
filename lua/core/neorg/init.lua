@@ -39,7 +39,7 @@ neorg.setup({
             config = {
                 workspaces = {
                     work = "~/CommSys/Work",
-                    personal = "~/bwilliams/personal",
+                    personal = "~/personal",
                 },
             },
         },

@@ -1,11 +1,12 @@
-local compare = require("core.completion.comparators").compare
-local icons = require("user.icons").cmp
 local cmp = require "cmp"
-local types = require "cmp.types"
 local luasnip = require "luasnip"
-luasnip.config.setup({})
+local lspkind = require 'lspkind'
 
---Follow this for setting up auto doxygen like snippets: https://github.com/NormalNvim/NormalNvim/blob/main/lua/plugins/4-dev.lua#L88C10-L88C18
+local comparators = require "core.completion.cmp-comparators"
+local mappings = require "core.completion.cmp-mappings"
+local sources = require("core.completion.cmp-sources")
+
+luasnip.config.setup({})
 
 ---@class cmp.ConfigSchema
 local config = {
@@ -15,37 +16,13 @@ local config = {
         end,
     },
     completion = { completeopt = "menu,menuone,noinsert" },
-    mapping = cmp.mapping.preset.insert({
-        -- Navigating
-        ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-        ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-        ["<C-y>"] = cmp.mapping.confirm({ select = true }),
-        ["<C-Space>"] = cmp.mapping.complete({}),
-        ["<C-l>"] = cmp.mapping(function()
-            if luasnip.expand_or_locally_jumpable() then
-                luasnip.expand_or_jump()
-            end
-        end, { "i", "s" }),
-        ["<C-h>"] = cmp.mapping(function()
-            if luasnip.locally_jumpable(-1) then
-                luasnip.jump(-1)
-            end
-        end, { "i", "s" }),
-        -- Temp Maps
-        ["<CR>"] = cmp.mapping(cmp.mapping.confirm({ behavior = cmp.SelectBehavior.Replace, select = true }), { "i" }),
-    }),
-    sources = cmp.config.sources({
-        { name = "nvim_lsp", priority = 1000 },
-        { name = "nvim_lua", priority = 750 },
-        { name = "cmp-dbee", priority = 750 },
-        { name = "luasnip", priority = 1000 },
-        { name = "path", priority = 500, keyword_pattern = "/" },
-        { name = "buffer", keyword_length = 5, priority = 250 },
-    }, {
-        { name = "nerdfont", priority = 750, keyword_pattern = ":nf" },
-    }, {
-        { name = "neorg" },
-    }),
+    preselect = cmp.PreselectMode.None,
+    performance = {
+        max_view_entries = 15,
+    },
+    mapping = mappings.insert(cmp),
+    sources = sources.editor(),
+    comparators = comparators.compare(cmp),
     experimental = {
         ghost_text = true,
     },
@@ -59,7 +36,7 @@ local config = {
     formatting = {
         fields = { "kind", "abbr", "menu" },
         format = function(entry, vim_item)
-            local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 25 })(entry, vim_item)
+            local kind = lspkind.cmp_format({ mode = "symbol_text", maxwidth = 25 })(entry, vim_item)
             local strings = vim.split(kind.kind, "%s", { trimempty = true })
             kind.kind = " " .. (strings[1] or "") .. " "
             kind.menu = "    (" .. (strings[2] or "") .. ")"
@@ -74,17 +51,13 @@ cmp.setup(config)
 -- Setup autocompletion for search
 cmp.setup.cmdline({ "/", "?" }, {
     mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({
-        { name = "buffer" },
-    }),
+    sources = sources.search(),
 })
 
 -- Setup autocompletion for cmdline
 cmp.setup.cmdline(":", {
     mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({
-        { name = "cmdline" },
-    }),
+    sources = sources.cmdline(),
 })
 
 -- Customization for Pmenu

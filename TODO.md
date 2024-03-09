@@ -1,10 +1,11 @@
 # TODO
+- [ ] Load `Core` as its own set of plugins before the other plugins
+- [x] Better CMP configuration
 - [ ] Add a [health](https://github.com/nvim-lua/kickstart.nvim/blob/master/lua/kickstart/health.lua) command 
 - [ ] nvim-spectre
 - [ ] DAP setup
     - [ ] C/C#
     - [ ] JS/TS
-- [ ] Setup Nvim-CMP to match kickstart
 - [ ] Install cheat.nvim (cheat.sh) plugin
 - [ ] Automatically open Oil when last buffer closes instead of an Empty buffer
 - [ ] Setup help-doc
