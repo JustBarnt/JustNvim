@@ -13,6 +13,14 @@ function M.vim_options(options)
     end
 end
 
+--- Returns the users plugin spec from `user.config` or an empty table if it is not defined in the `user.config`
+---@param plugin_name string the name of the plugin to search for in `user.config`
+---@param opts table the default opts used by the plugin
+function M.create_spec(plugin_name, opts)
+    local user_config = require('user.config') or {}
+    return vim.tbl_deep_extend("force", opts, user_config.opt_in.plugins[plugin_name] or {})
+end
+
 --- Sets the Telescope find_files picker to RipGrep on windows if
 --- the user is on windows
 function M.select_find_command()

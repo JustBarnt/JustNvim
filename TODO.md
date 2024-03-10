@@ -3,7 +3,8 @@
 - [ ] Telescope configs
 
 # TODO AFTER 2.0
-- [ ] Make Neodev and Neoconf opt-in
+- [x] Make Neodev and Neoconf the only opt-out
+- [ ] Refactor `plugins`
 - [ ] Work on making `plugins` all opt-in
 
 # TODO

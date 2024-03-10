@@ -20,10 +20,30 @@ M.treesitter = {}
 ---@field extensions table
 M.telescope = {}
 
----@type {[string]:boolean}
-M.plugins = {
-    ["neodev"] = true,
-    ["neoconf"] = true,
+---@class JustNvimOptIns
+---@field plugins {[string]: boolean|table}
+---@field user_commands {[string]: boolean}
+---@field autocmds {[string]: boolean}
+M.opt_in = {
+    plugins = {
+        ["neodev"] = true,
+        ["neoconf"] = true,
+    },
+    user_commands = {
+        ["quit_all"] = true,
+        ["format"] = true,
+        ["telescope_highlight_tags"] = true,
+    },
+    autocmds = {
+        ["disable_auto_comment"] = false,
+        ["dashboard_start"] = true,
+        ["help_in_float"] = true,
+        ["highlight_yank"] = true,
+        ["cursor_line"] = true,
+        ["cursor_line_control"] = true,
+        ["trailing_whitespace"] = false,
+        ["show_message_float"] = true,
+    }
 }
 
 ---@class JustNvimUserOptions
@@ -36,25 +56,6 @@ M.user_options = {
     opt = {},
     bo = {},
     wo = {},
-}
-
----@type {[string]: boolean}
-M.user_commands = {
-    ["quit_all"] = true,
-    ["format"] = true,
-    ["telescope_highlight_tags"] = true,
-}
-
----@type {[string]: boolean}
-M.autocmds = {
-    ["disable_auto_comment"] = false,
-    ["dashboard_start"] = true,
-    ["help_in_float"] = true,
-    ["highlight_yank"] = true,
-    ["cursor_line"] = true,
-    ["cursor_line_control"] = true,
-    ["trailing_whitespace"] = false,
-    ["show_message_float"] = true,
 }
 
 return M
