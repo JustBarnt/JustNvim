@@ -1,49 +1,62 @@
 local create_spec = require("core.utils").create_spec
+local enabled = require("core.utils").enabled
 
 return {
+    -- ccc
+    {
+        "uga-rosa/ccc.nvim",
+        cmd = { "CccPick", "CccConvert" },
+        keys = {
+            { "<leader>cp", "<CMD>CccPick<CR>", desc = "Open Color Picker" },
+            { "<leader>cc", "<CMD>CccConvert<CR>", desc = "Convert Color Under Cursor" },
+        },
+        opts = {
+            highlighter = {
+                auto_enable = false,
+                lsp = false,
+            },
+        },
+        config = function(_, opts)
+            require("ccc").setup(create_spec("ccc", opts))
+        end,
+    },
     -- comment
     {
         "numToStr/Comment.nvim",
-        keys ={
-            { "gc", mode = { 'n', 'v' }, desc = "Toggle Comment Line Wise"},
-            { "gb", mode = { 'n', 'v' }, desc = "Toggle Comment Block Wise"}
+        keys = {
+            { "gc", mode = { "n", "v" }, desc = "Toggle Comment Line Wise" },
+            { "gb", mode = { "n", "v" }, desc = "Toggle Comment Block Wise" },
         },
         opts = function()
-            local commentstring_avail, comment_string = pcall(require, "ts_context_commentstring.integrations.comment_nvim")
-            return commentstring_avail and comment_string and { pre_hook = comment_string.create_pre_hook } or {}
+            local commentstring_avail, comment_string =
+                pcall(require, "ts_context_commentstring.integrations.comment_nvim")
+            return commentstring_avail and comment_string and { pre_hook = comment_string.create_pre_hook() } or {}
         end,
         config = function(_, opts)
-            require("Comment").setup(create_spec('Comment', opts))
+            require("Comment").setup(create_spec("Comment", opts))
         end,
     },
     -- indent-blankline
     {
         "lukas-reineke/indent-blankline.nvim",
-        config = function()
-            local hooks = require "ibl.hooks"
-            local scope = "focus"
-            local indent = "passive"
-
-            hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-                vim.api.nvim_set_hl(0, "focus", { fg = "#C4A7E7" })
-                vim.api.nvim_set_hl(0, "passive", { fg = "#41425e" })
-            end)
-
-            require("ibl").setup({
-                scope = { highlight = scope },
-                indent = { highlight = indent },
-                exclude = {
-                    filetypes = {
-                        "help",
-                        "dashboard",
-                        "Trouble",
-                        "trouble",
-                        "lazy",
-                        "mason",
-                        "oil",
-                    },
+        event = "BufEnter",
+        main = "ibl",
+        enabled = enabled("opt_in", "indent-blankline"),
+        opts = {
+            exclude = {
+                filetypes = {
+                    "help",
+                    "dashboard",
+                    "Trouble",
+                    "trouble",
+                    "lazy",
+                    "mason",
+                    "oil",
                 },
-            })
+            },
+        },
+        config = function(_, opts)
+            require("ibl").setup(create_spec("indent-blankline", opts))
         end,
     },
     -- neogen
@@ -52,38 +65,54 @@ return {
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
         },
-        config = function()
-            --NOTE: Move into config files
-            local map = require("core.utils").map
+        keys = function()
             local neogen = require "neogen"
-
-            neogen.setup({
-                snippet_engine = "luasnip",
-            })
-
-            map("n", "<leader>tf", function()
-                neogen.generate({ type = "func" })
-            end, { desc = "Generate Docs: Function" })
-
-            map("n", "<leader>tt", function()
-                neogen.generate({ type = "type" })
-            end, { desc = "Generate Docs: Type" })
-
-            map("n", "<leader>tc", function()
-                neogen.generate({ type = "class" })
-            end, { desc = "Generate Docs: Class" })
+            return {
+                {
+                    "<leader>tf",
+                    function()
+                        neogen.generate({ type = "func" })
+                    end,
+                    desc = "Generate Docs: Function",
+                },
+                {
+                    "<leader>tt",
+                    function()
+                        neogen.generate({ type = "type" })
+                    end,
+                    desc = "Generate Docs: Type",
+                },
+                {
+                    "<leader>tc",
+                    function()
+                        neogen.generate({ type = "class" })
+                    end,
+                    desc = "Generate Docs: Class",
+                },
+                {
+                    "<leader>ts",
+                    function()
+                        neogen.generate({ snippet_engine = "luasnip" })
+                    end,
+                    desc = "Generate Docs from Snippet",
+                },
+            }
+        end,
+        opts = {
+            snippet_engine = "luasnip",
+        },
+        config = function(_, opts)
+            require("neogen").setup(create_spec("neogen", opts))
         end,
     },
     -- dbee
     {
-        -- "kndndrj/nvim-dbee",
         "justbarnt/nvim-dbee",
+        cmd = { "DbeeOpen" },
         dependencies = { "muniftanjim/nui.nvim" },
-        config = function()
+        opts = function()
             local sources = require "dbee.sources"
-            local dbee = require "dbee"
-            local edit = require "dbee.ui.editor.init"
-            dbee.setup({
+            return {
                 sources = {
                     sources.FileSource:new(vim.fn.stdpath "cache" .. "/dbee/persistance.json"),
                 },
@@ -93,14 +122,42 @@ return {
                         { key = "<C-e>", mode = "n", action = "run_file" },
                     },
                 },
-            })
+            }
+        end,
+        config = function(_, opts)
+            require("dbee").setup(create_spec("dbee", opts))
         end,
     },
     -- nvim-autopairs
     {
         "windwp/nvim-autopairs",
         event = "InsertEnter",
-        opts = {},
+        opts = {
+            fast_wrap = {},
+        },
+        config = function(_, opts)
+            local cmp_autopairs = require "nvim-autopairs.completion.cmp"
+            local handlers = require "nvim-autopairs.completion.handlers"
+            local cmp = require "cmp"
+            cmp.event:on(
+                "confirm_done",
+                cmp_autopairs.on_confirm_done({
+                    filetypes = {
+                        ["*"] = {
+                            ["("] = {
+                                kind = {
+                                    cmp.lsp.CompletionItemKind.Function,
+                                    cmp.lsp.CompletionItemKind.Method,
+                                },
+                                handler = handlers["*"],
+                            },
+                        },
+                    },
+                })
+            )
+
+            require("nvim-autopairs").setup(create_spec("nvim-autopairs", opts))
+        end,
     },
     -- nvim-surround
     {
@@ -112,30 +169,48 @@ return {
     -- trouble
     {
         "folke/trouble.nvim",
+        event = "BufEnter",
+        cmd = { "Trouble", "TroubleClose", "TroubleToggle", "TroubleRefresh" },
         dependencies = { "nvim-tree/nvim-web-devicons" },
-        config = function()
-            local map = require("core.utils").map
-            local trouble = require "trouble"
-            local config = require("user.plugins.trouble").config
-
-            trouble.setup(config)
-
-            --Keymaps
-            map("n", "<leader>xx", function()
-                require("trouble").toggle()
-            end, { desc = "Trouble Toggle" })
-            map("n", "<leader>xw", function()
-                require("trouble").toggle "workspace_diagnostics"
-            end, { desc = "Trouble Workspace Diagnostics" })
-            map("n", "<leader>xd", function()
-                require("trouble").toggle "document_diagnostics"
-            end, { desc = "Trouble Document Diagnostics" })
-            map("n", "<leader>xq", function()
-                require("trouble").toggle "quickfix"
-            end, { desc = "Trouble Quick Fix" })
-            map("n", "<leader>xl", function()
-                require("trouble").toggle "loclist"
-            end, { desc = "Trouble Local List" })
+        keys = {
+            { "<leader>xx", "<CMD>Trouble<CR>", desc = "Trouble Toggle" },
+            { "<leader>xw", "<CMD>Trouble workspace_diagnostics<CR>", desc = "Trouble Workspace Diagnostics" },
+            { "<leader>xd", "<CMD>Trouble document_diagnostics<CR>", desc = "Trouble Document Diagnostics" },
+            { "<leader>xq", "<CMD>Trouble quickfix<CR>", desc = "Trouble Quick Fix" },
+            { "<leader>xl", "<CMD>Trouble loclist<CR>", desc = "Trouble Local List" },
+        },
+        opts = {
+            position = "right", -- position of the list can be: bottom, top, left, right
+            width = 80, -- width of the list when position is left or right
+            mode = "workspace_diagnostics", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
+            action_keys = { -- key mappings for actions in the trouble list
+                -- map to {} to remove a mapping, for example:
+                -- close = {},
+                close = "q", -- close the list
+                cancel = "<esc>", -- cancel the preview and get back to your last window / buffer / cursor
+                refresh = "r", -- manually refresh
+                jump = { "<cr>", "<tab>", "<2-leftmouse>" }, -- jump to the diagnostic or open / close folds
+                open_split = { "<c-x>" }, -- open buffer in new split
+                open_vsplit = { "<c-v>" }, -- open buffer in new vsplit
+                open_tab = { "<c-t>" }, -- open buffer in new tab
+                jump_close = { "o" }, -- jump to the diagnostic and close the list
+                toggle_mode = "m", -- toggle between "workspace" and "document" diagnostics mode
+                switch_severity = "s", -- switch "diagnostics" severity filter level to HINT / INFO / WARN / ERROR
+                toggle_preview = "P", -- toggle auto_preview
+                hover = "K", -- opens a small popup with the full multiline message
+                preview = "p", -- preview the diagnostic location
+                open_code_href = "c", -- if present, open a URI with more information about the diagnostic error
+                close_folds = { "zM", "zm" }, -- close all folds
+                open_folds = { "zR", "zr" }, -- open all folds
+                toggle_fold = { "zA", "za" }, -- toggle fold of current file
+                previous = "k", -- previous item
+                next = "j", -- next item
+                help = "?", -- help menu
+            },
+            win_config = { border = "solid" }, -- window configuration for floating windows. See |nvim_open_win()|.
+        },
+        config = function(_, opts)
+            require("trouble").setup(create_spec("trouble", opts))
         end,
     },
     -- ts-error-translator
@@ -145,6 +220,6 @@ return {
     },
     -- vim-sleuth
     {
-        "tpope/vim-sleuth"
-    }
+        "tpope/vim-sleuth",
+    },
 }

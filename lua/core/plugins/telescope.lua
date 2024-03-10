@@ -54,8 +54,15 @@ return {
         end,
         opts = function()
             local actions = require "telescope.actions"
+            local hasTrouble = vim.F.npcall(require, "trouble")
+            local trouble_telescope = require("core.plugins.telescope_extensions.trouble")
+            local defaults = {}
+
+            if hasTrouble then  vim.tbl_deep_extend("force", defaults, trouble_telescope) end
+
             return {
                 extensions = {
+                    defaults = defaults,
                     themes = {
                         require("telescope.themes").get_dropdown({
                             layout_config = {

@@ -37,7 +37,7 @@ return {
                 performance = {
                     max_view_entries = 15,
                 },
-                mapping = mappings.insert(cmp),
+                mapping = mappings.insert(cmp, luasnip),
                 sources = sources.editor(),
                 comparators = comparators.compare(cmp),
                 experimental = {

@@ -14,24 +14,26 @@ function M.insert(cmp, luasnip)
         ["<TAB>"] = cmp.mapping.abort(),
 
         -- Confirm Selection
-        ["<C-y>"] = cmp.mapping(cmp.mapping.confirm({behavior = cmp.SelectBehavior.Replace , select = true }), { "i" }),
+        ["<C-y>"] = cmp.mapping(cmp.mapping.confirm({ behavior = cmp.SelectBehavior.Replace, select = true }), { "i" }),
 
         -- Invoke Completion Menu
         ["<C-Space>"] = cmp.mapping.complete({}),
 
         -- Jump to Next and Previous Snippet expansions
-        ["<C-l>"] = cmp.mapping(function()
-            if luasnip.expand_or_locally_jumpable() then
+        ["<C-l>"] = cmp.mapping(function(fallback)
+            if luasnip and luasnip.expand_or_locally_jumpable() then
                 luasnip.expand_or_jump()
+            else
+                fallback()
             end
         end, { "i", "s" }),
-        ["<C-h>"] = cmp.mapping(function()
-            if luasnip.locally_jumpable(-1) then
+        ["<C-h>"] = cmp.mapping(function(fallback)
+            if luasnip and luasnip.locally_jumpable(-1) then
                 luasnip.jump(-1)
+            else
+                fallback()
             end
-        end, { "i", "s" }),
-
-        -- Select Completion Item
+        end, { "i", "s" }), -- Select Completion Item
         ["<CR>"] = cmp.mapping(cmp.mapping.confirm({ behavior = cmp.SelectBehavior.Replace, select = true }), { "i" }),
     })
 end
