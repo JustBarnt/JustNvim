@@ -20,54 +20,38 @@ end
 
 -- Appending lazy to our runtime, for lazy magic
 vim.opt.rtp:prepend(lazypath)
+local lazy = require "lazy"
 
 -- Setting up lazy specs
-require("lazy").setup({
-    { import = "core.plugins" }, -- Import our core plugins first: Treesitter, lsp, etc.
-    { import = "plugins" }, -- The the rest of our plugin
-    { import = "user.plugins" }, -- Plugins you add
-}, {
-    dev = {
-        path = "~/nvim-plugins/",
-        fallback = true,
+lazy.setup({
+    spec = {
+        { import = "core.plugins" },
+        { import = "plugins" },
+        -- { import = "user.plugins" },
     },
-    change_detection = {
-        notify = false,
-    },
-    ui = {
-        icons = {
-            cmd = " ",
-            config = "",
-            event = "",
-            ft = " ",
-            init = " ",
-            import = " ",
-            keys = " ",
-            lazy = "󰒲 ",
-            loaded = "●",
-            not_loaded = "○",
-            plugin = " ",
-            runtime = " ",
-            require = "󰢱 ",
-            source = " ",
-            start = "",
-            task = "✔ ",
-            list = {
-                "●",
-                "➜",
-                "★",
-                "‒",
-            },
+    defaults = {
+        dev = {
+            path = "~/nvim-plugins/",
+            fallback = true,
         },
-    },
-    performance = {
-        rtp = {
-            disable_plugins = {
-                "matchit",
-                "matchparan",
-                "netrwPlugin",
-                "zipPlugin",
+        change_detection = {
+            notify = false,
+        },
+        performance = {
+            rtp = {
+                disable_plugins = {
+                    "matchit",
+                    "matchparan",
+                    "netrwPlugin",
+                    "zipPlugin",
+                },
             },
         },
     },
 })
+
+if vim.fn.findfile("./lua/colorscheme.lua") ~= "" then
+    require 'lua.colorscheme'
+else
+    vim.notify_once("No Colorscheme file found, call `:Telescope themes` to set one", vim.log.levels.INFO)
+end

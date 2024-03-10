@@ -12,20 +12,8 @@ return {
         cmd = { "Telescope", "TodoTelescope", "TelescopeHighlights" },
         keys = function()
             local builtin = require "telescope.builtin"
-            local show_keys = builtin.keymaps({ show_plug = false })
-            local fzfind = builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-                winblend = 10,
-                previewer = false,
-            }))
-
-            local grep = builtin.live_grep({
-                grep_open_files = true,
-                prompt_title = "Live Grep in Open Files",
-            })
-
             return {
                 { "<leader>fh", builtin.help_tags, desc = "Find Help Tags" },
-                { "<leader>fk", show_keys, desc = "Find Keymaps" },
                 { "<leader>ff", builtin.find_files, desc = "Find Files" },
                 { "<leader>fs", builtin.builtin, desc = "Find Telescope Builtins" },
                 { "<leader>fw", builtin.grep_string, desc = "Find Word in File " },
@@ -35,8 +23,33 @@ return {
                 { "<leader>fo", builtin.oldfiles, desc = "Find Oldfiles" },
                 { "<leader>ft", "<CMD>Telescope themes<CR>", desc = "Find Themes" },
                 { "<leader><leader>", builtin.buffers, desc = "Find Buffers" },
-                { "<leader>/", fzfind, desc = "[/] Fuzzy Search Current Buffer" },
-                { "<leader>f/", grep, desc = "Find in Open files" },
+                {
+                    "<leader>fk",
+                    function()
+                        builtin.keymaps({ show_plug = false })
+                    end,
+                    desc = "Find Keymaps",
+                },
+                {
+                    "<leader>/",
+                    function()
+                        builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
+                            winblend = 10,
+                            previewer = false,
+                        }))
+                    end,
+                    desc = "[/] Fuzzy Search Current Buffer",
+                },
+                {
+                    "<leader>f/",
+                    function()
+                        builtin.live_grep({
+                            grep_open_files = true,
+                            prompt_title = "Live Grep in Open Files",
+                        })
+                    end,
+                    desc = "Find in Open files",
+                },
             }
         end,
         opts = function()
@@ -53,8 +66,8 @@ return {
                         enable_live_preview = true,
                         persist = {
                             enabled = true,
-                            path = vim.fn.stdpath("config") .. "/lua/core/colorscheme.lua"
-                        }
+                            path = vim.fn.stdpath "config" .. "/lua/colorscheme.lua",
+                        },
                     },
                     cmdline = {
                         picker = {

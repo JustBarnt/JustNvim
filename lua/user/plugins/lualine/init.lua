@@ -1,6 +1,5 @@
 local M = {}
 local components = require "user.plugins.lualine.lualine_components"
-local moon = require("user.theme-colors").moon
 
 M.config = {
     options = {
@@ -31,32 +30,27 @@ M.config = {
             {
                 "branch",
                 icon = "",
-                color = { fg = moon.base, bg = moon.love },
                 separator = { right = "" },
             },
             {
                 "diff",
-                color = { fg = moon.base, bg = moon.highlight_high },
                 separator = { right = "" },
             },
             {
                 "diagnostics",
                 sources = { "nvim_lsp", "nvim_diagnostic" },
                 sections = { "error", "warn", "info" },
-                color = { fg = moon.base, bg = moon.highlight_med },
                 separator = { right = "" },
                 always_visible = true,
             },
             {
                 components.harpoon_component,
-                color = { fg = moon.text, bg = moon.highlight_low },
                 separator = { right = "" },
             },
         },
         lualine_c = {
             {
                 "searchcount",
-                color = { fg = moon.text, bg = moon.iris },
                 separator = { right = "" },
             },
         },
@@ -65,7 +59,6 @@ M.config = {
                 "datetime",
                 icon = "",
                 style = "%H:%M",
-                color = { fg = moon.text, bg = moon.highlight_med },
                 separator = { left = "" },
             },
         },
@@ -73,7 +66,6 @@ M.config = {
             {
                 "filetype",
                 colored = false,
-                color = { fg = moon.text, bg = moon.highlight_high },
                 separator = { left = "" },
             },
         },
@@ -81,7 +73,6 @@ M.config = {
             {
                 "location",
                 icon = "",
-                color = { fg = moon.base, bg = moon.love },
                 separator = { left = "" },
             },
             {

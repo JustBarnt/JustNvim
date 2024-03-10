@@ -85,5 +85,10 @@ function M.autocmd(args)
         once = args.once,
     })
 end
+
+function M.create_lua_library()
+    local data_path = vim.fn.stdpath('data')
+end
+
 return M
 

@@ -1,6 +1,6 @@
 return {
     "nvim-neorg/neorg",
-    lazy = true,
+    lazy = false,
     build = ":Neorg sync-parsers",
     tag = "v7.0.0",
     dependencies = { "nvim-lua/plenary.nvim" },
@@ -8,7 +8,7 @@ return {
         load = {
             ["core.defaults"] = {},
             ["core.itero"] = {},
-            ["core.ui.calendar"] = vim.fn.has "nvim-0.10.0-dev" and {} or nil,
+            -- ["core.ui.calendar"] = vim.fn.has "nvim-0.10.0-dev" and {} or nil,
             ["core.concealer"] = {
                 config = {
                     icon_preset = "diamond",

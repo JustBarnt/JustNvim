@@ -1,7 +1,6 @@
 return {
     {
         "nvim-treesitter/nvim-treesitter",
-        event = "VeryLazy",
         build = ":TSUpdate",
         dependencies = {
             "nvim-treesitter/nvim-treesitter-refactor",
@@ -68,9 +67,6 @@ return {
                     enable = true,
                 },
             },
-            context_commentstring = require("ts_context_commentstring").setup({
-                enable_autocmd = false,
-            }),
             textobjects = {
                 move = {
                     enable = true,
@@ -121,6 +117,10 @@ return {
         config = function(_, opts)
             local ts = require "nvim-treesitter.configs"
             local user_config = require 'user.config'
+            opts.context_commentstring = require("ts_context_commentstring").setup({
+                enable_autocmd = false,
+            })
+
             local config = vim.tbl_deep_extend("force", opts, user_config.treesitter or {})
 
             ts.setup(config)

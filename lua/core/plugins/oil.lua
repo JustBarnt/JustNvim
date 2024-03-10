@@ -3,21 +3,13 @@ return {
         "stevearc/oil.nvim",
         -- Optional dependencies
         dependencies = { "nvim-tree/nvim-web-devicons" },
-        cmd = "Oil",
-        keys = function()
-            local oil = require "oil"
-            return {
-                { "<leader>de", oil.toggle_float, desc = "Open Directory in Float" },
-                { "<leader>do", oil.open, desc = "Open Directory" },
-            }
-        end,
         opts = {
             default_file_explorer = true,
             columns = {
                 "icon",
                 "size",
                 "permissions",
-                "mtime"
+                "mtime",
             },
             skip_confirm_for_simple_edits = true,
             experimental_watch_for_changes = true,
@@ -41,8 +33,7 @@ return {
                 show_hidden = true,
                 is_always_hidden = function(name)
                     local hide = false
-                    local exclude =
-                        { ".git", "node_modules", "build", ".svelte-kit" }
+                    local exclude = { ".git", "node_modules", "build", ".svelte-kit" }
                     for i = 1, #exclude do
                         if name == exclude[i] then
                             hide = true
@@ -55,8 +46,13 @@ return {
         },
         config = function(_, opts)
             local oil = require "oil"
+            local map = require("core.utils").map
             local user_config = require "user.config"
             local config = vim.tbl_deep_extend("force", opts, user_config.oil or {})
+
+            map("n", "<leader>de", oil.toggle_float, { desc = "Open Directory in Float" })
+            map("n", "<leader>do", oil.open, { desc = "Open Directory" })
+
             oil.setup(config)
         end,
     },

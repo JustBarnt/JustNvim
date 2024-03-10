@@ -14,12 +14,12 @@ M.servers = {
     gopls = {},
     cssls = {},
     omnisharp = {},
-    lua_ls = require "core.plugin.lsp.servers.lua_ls",
-    intelephense = require "core.plugin.lsp.servers.intelephense",
-    jsonls = require "core.plugin.lsp.servers.jsonls",
-    clangd = require "core.plugin.lsp.servers.clangd",
-    powershell_es = require "core.plugin.lsp.servers.powershell_es",
-    emmet_language_server = require "core.plugin.lsp.servers.emmet_language_server",
+    lua_ls = require "core.plugins.lsp.servers.lua_ls",
+    intelephense = require "core.plugins.lsp.servers.intelephense",
+    jsonls = require "core.plugins.lsp.servers.jsonls",
+    clangd = require "core.plugins.lsp.servers.clangd",
+    powershell_es = require "core.plugins.lsp.servers.powershell_es",
+    emmet_language_server = require "core.plugins.lsp.servers.emmet_language_server",
     tailwindcss = {},
 }
 

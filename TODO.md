@@ -4,9 +4,10 @@
 
 # TODO AFTER 2.0
 - [ ] Make Neodev and Neoconf opt-in
+- [ ] Work on making `plugins` all opt-in
 
 # TODO
-- [ ] Load `Core` as its own set of plugins before the other plugins
+- [x] Load `Core` as its own set of plugins before the other plugins
 - [x] Better CMP configuration
 - [ ] Add a [health](https://github.com/nvim-lua/kickstart.nvim/blob/master/lua/kickstart/health.lua) command 
 - [ ] nvim-spectre

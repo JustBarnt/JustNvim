@@ -1,16 +1,39 @@
+local enabled = require('core.utils').enabled
+local user_config = require('user.config')
+
+
 return {
     {
         "neovim/nvim-lspconfig",
         event = "BufEnter",
         dependencies = {
-            "folke/neodev.nvim",
-            "folke/neoconf.nvim",
+            { "folke/neodev.nvim", enabled = enabled(user_config.plugins or {}, 'neodev') },
+            { "folke/neoconf.nvim", enabled = enabled(user_config.plugins or {}, 'neoconf') },
         },
         config = function()
+            local neodev = vim.F.npcall(require, 'neodev')
+            local neoconf = vim.F.npcall(require, 'neoconf')
             local defaults = require "core.plugins.lsp.default-config"
-            local user_config = require 'user.config'
-            local on_attach = require "core.plugins.lsp.on_attach"
+            local user_config = require "user.config"
+            local on_attach = require("core.plugins.lsp.on_attach").on_attach
             local ensure_installed = vim.tbl_keys(defaults.servers)
+
+
+            if neodev then
+                neodev.setup({
+                    library = {
+                        enabled = true,
+                        runtime = vim.env.RUNTIME,
+                        plugins = vim.fn.stdpath "data" .. "/lazy/",
+                    },
+                    lspconfig = true,
+                    pathStrict = true,
+                })
+            end
+
+            if neoconf then
+                neoconf.setup({})
+            end
 
             vim.api.nvim_create_autocmd("LspAttach", {
                 group = vim.api.nvim_create_augroup("user-lsp-attach", { clear = true }),
@@ -37,17 +60,17 @@ return {
                             settings = server.settings,
                             filetypes = server.filetypes,
                             root_dir = server.root_dir,
-                            capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+                            capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {}),
                         })
                     end,
-                }
+                },
             })
 
             require("typescript-tools").setup({})
 
             require("conform").setup({
                 notify_on_error = false,
-                formatters_by_ft = defaults.formatters_by_ft
+                formatters_by_ft = defaults.formatters_by_ft,
             })
         end,
     },

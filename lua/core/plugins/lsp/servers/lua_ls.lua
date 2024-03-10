@@ -11,23 +11,15 @@ return {
             workspace = {
                 checkThirdParty = false,
             },
-            telemetry = { enable = false },
             completion = {
-                workspaceWord = true,
-                callSnippet = "Both",
-            },
-            hint = {
-                enable = true,
-            },
-            hover = {
-                expandAlias = false,
+                callSnippet = "Replace",
             },
             diagnostics = {
                 disable = {
                     "incomplete-signature-doc",
                     "missing-fields",
                 },
-                global = {
+                globals = {
                     "vim",
                 },
                 unusedLocalExclude = { "_*" },

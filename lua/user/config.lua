@@ -1,61 +1,60 @@
+-- TODO: Create a separate class in a file that can just be imported instead of all of it being defined here
 local M = {}
 
---- CORE SETTINGS ---
--- LSP Settings
-M.ensure_installed = { }
-M.servers = { }
-M.formatters = { }
+---@type string[]
+M.ensure_installed = {}
 
----@class  TSConfig
+---@type { [string]: string}
+M.servers = {}
+
+---@class Formatters
+---@field formatters_by_ft table<string, string>
+M.formatters = { formatters_by_ft = {} }
+
+---@class TSConfig
 M.treesitter = {}
 
+---@class TelescopeConfig
+---@field defaults table
+---@field pickers table
+---@field extensions table
 M.telescope = {}
 
+---@type {[string]:boolean}
+M.plugins = {
+    ["neodev"] = true,
+    ["neoconf"] = true,
+}
 
+---@class JustNvimUserOptions
+---@field opt vim.opt
+---@field bo vim.bo
+---@field wo vim.wo
 
--- User options for Neovim
+---@type JustNvimUserOptions
 M.user_options = {
-    opt = {
-        -- Editor / Command options
-        number = true,
-        relativenumber = true,
-        scrolloff = 10, -- Amount of lines below curor
-        pumblend = 17,
-    },
+    opt = {},
+    bo = {},
+    wo = {},
 }
 
--- User Commands to opt into
+---@type {[string]: boolean}
 M.user_commands = {
-    quit_all = true,
-    format = true,
-    telescope_highlight_tags = true,
+    ["quit_all"] = true,
+    ["format"] = true,
+    ["telescope_highlight_tags"] = true,
 }
 
--- Auto commands to opt into
+---@type {[string]: boolean}
 M.autocmds = {
-    --TODO: Add keybind that disables and enables this
-    disable_auto_comment = false,
-    dashboard_start = true,
-    help_in_float = true,
-    highlight_yank = true,
-    cursor_line = true,
-    cursor_line_control = true,
-    trailing_whitespace = false,
-    show_message_float = true,
-}
-
---- PLUGIN SETTINGS ---
-
-M.harpoon = {
-    settings = {
-        save_on_toggle = true,
-        sync_on_ui_close = true,
-    },
-}
-
-
-M.neoscroll = {
-    respect_scrolloff = true,
+    ["disable_auto_comment"] = false,
+    ["dashboard_start"] = true,
+    ["help_in_float"] = true,
+    ["highlight_yank"] = true,
+    ["cursor_line"] = true,
+    ["cursor_line_control"] = true,
+    ["trailing_whitespace"] = false,
+    ["show_message_float"] = true,
 }
 
 return M

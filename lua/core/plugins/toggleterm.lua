@@ -3,18 +3,19 @@ return {
         "akinsho/toggleterm.nvim",
         tag = "v2.10.0",
         cmd = "ToggleTerm",
+        opts = {},
         keys = function()
-            local lazygit = require 'core.plugins.terminal.init'.lazygit_toggle
-
+            local lazyterm = require "core.utils.terminal"
             return {
-                {"<leader>lg", lazygit, desc = "Toggle Lazygit" }
+                {"<leader>lg", lazyterm.lazygit_toggle, { desc = "Toggle Lazygit" }}
             }
         end,
-        opts = {},
         config = function(_, opts)
-            local toggleterm = require('toggleterm')
+            local map = require("core.utils").map
+            local toggleterm = require "toggleterm"
 
+            -- map("n", "<leader>lg", lazyterm.lazygit_toggle, { desc = "Toggle Lazygit" })
             toggleterm.setup(opts)
         end,
     },
-} 
+}

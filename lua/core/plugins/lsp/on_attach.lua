@@ -7,7 +7,7 @@ function M.on_attach(event)
 
     map("n", "K", vim.lsp.buf.hover, { buffer = event.buf, desc = "Peek Definition" })
     map("n", "gd", function()
-        vim.lsp.buf.definition({ reuse_win = true, on_list = require("core.lsp.handlers").on_list })
+        vim.lsp.buf.definition({ reuse_win = true, on_list = require("core.plugins.lsp.handlers").on_list })
         require("detour").Detour()
     end, { buffer = event.buf, desc = "Go-To Definition" })
     map("n", "gr", builtin.lsp_references, { buffer = event.buf, desc = "Symbol References" })
