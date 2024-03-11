@@ -27,7 +27,7 @@ return {
     -- corn
     {
         "RaafatTurki/corn.nvim",
-        event = 'BufReadPre',
+        event = "BufReadPre",
         opts = {
             scope = "line",
             border_style = "rounded",
@@ -43,6 +43,65 @@ return {
             map("n", "<leader>cd", "<CMD>Corn toggle", { desc = "Toggle Corner Diagnostics " })
             map("n", "<leader>cs", "<CMD>Corn scope_cycle", { desc = "Cycle Corner Diagnostics Scope" })
             require("corn").setup(create_spec("corn", opts))
+        end,
+    },
+    -- global note
+    {
+        "backdround/global-note.nvim",
+        cmd = { "GlobalNote" },
+        keys = {
+            { "<leader>gn", "<CMD>GlobalNote<CR>", desc = "Opens Global Notepad" },
+        },
+        opts = {
+            -- Filename to use for default note (preset).
+            -- string or fun(): string
+            filename = "global.norg",
+
+            -- Directory to keep default note (preset).
+            -- string or fun(): string
+            directory = vim.fn.stdpath "data" .. "/global-note/",
+
+            -- Floating window title.
+            -- string or fun(): string
+            title = "Todo: " .. os.date "%Y/%m/%d",
+
+            -- Ex command name.
+            -- string
+            command_name = "GlobalNote",
+
+            -- A nvim_open_win config to show float window.
+            -- table or fun(): table
+            window_config = function()
+                local window_height = vim.api.nvim_list_uis()[1].height
+                local window_width = vim.api.nvim_list_uis()[1].width
+                return {
+                    relative = "editor",
+                    border = "single",
+                    title = "Note",
+                    title_pos = "center",
+                    width = math.floor(0.7 * window_width),
+                    height = math.floor(0.85 * window_height),
+                    row = math.floor(0.05 * window_height),
+                    col = math.floor(0.15 * window_width),
+                }
+            end,
+
+            -- It's called after the window creation.
+            -- fun(buffer_id: number, window_id: number)
+            post_open = function(_, _) end,
+
+            -- Whether to use autosave. Autosave saves buffer on closing window
+            -- or exiting Neovim.
+            -- boolean
+            autosave = true,
+
+            -- Additional presets to create other global, project local, file local
+            -- and other notes.
+            -- { [name]: table } - tables there have the same fields as the current table.
+            additional_presets = {},
+        },
+        config = function(_, opts)
+            require("global-note").setup(create_spec("global-note", opts))
         end,
     },
     -- harpoon
