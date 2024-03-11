@@ -5,7 +5,7 @@ local user_config = require('user.config')
 return {
     {
         "neovim/nvim-lspconfig",
-        event = "BufEnter",
+        event = "BufReadPre",
         dependencies = {
             { "folke/neodev.nvim", enabled = enabled(user_config.plugins or {}, 'neodev') },
             { "folke/neoconf.nvim", enabled = enabled(user_config.plugins or {}, 'neoconf') },
@@ -14,7 +14,6 @@ return {
             local neodev = vim.F.npcall(require, 'neodev')
             local neoconf = vim.F.npcall(require, 'neoconf')
             local defaults = require "core.plugins.lsp.default-config"
-            local user_config = require "user.config"
             local on_attach = require("core.plugins.lsp.on_attach").on_attach
             local ensure_installed = vim.tbl_keys(defaults.servers)
 
@@ -76,7 +75,7 @@ return {
     },
     {
         "williamboman/mason.nvim",
-        event = "BufEnter",
+        event = "BufReadPre",
         cmd = {
             "Mason",
             "MasonInstall",

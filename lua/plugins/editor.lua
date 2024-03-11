@@ -4,6 +4,7 @@ return {
     -- bigfile
     {
         "lunarvim/bigfile.nvim",
+        event = "BufReadPre",
         opts = {
             pattern = { ".log", ".xml", ".txt" },
         },
@@ -26,6 +27,7 @@ return {
     -- corn
     {
         "RaafatTurki/corn.nvim",
+        event = 'BufReadPre',
         opts = {
             scope = "line",
             border_style = "rounded",

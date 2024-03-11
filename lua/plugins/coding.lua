@@ -39,7 +39,7 @@ return {
     -- indent-blankline
     {
         "lukas-reineke/indent-blankline.nvim",
-        event = "BufEnter",
+        event = "BufReadPre",
         main = "ibl",
         enabled = enabled("opt_in", "indent-blankline"),
         opts = {
@@ -163,7 +163,7 @@ return {
     {
         "kylechui/nvim-surround",
         version = "*",
-        event = "VeryLazy",
+        event = "BufEnter",
         opts = {},
     },
     -- trouble
@@ -216,6 +216,8 @@ return {
     -- ts-error-translator
     {
         "dmmulroy/ts-error-translator.nvim",
+        ft = {"ts", "svelte"},
+        event = "BufEnter",
         opts = {},
     },
     -- vim-sleuth
