@@ -50,8 +50,8 @@ lazy.setup({
     },
 })
 
-if vim.fn.findfile("./lua/colorscheme.lua") ~= "" then
-    require 'lua.colorscheme'
+if vim.fn.findfile(vim.fn.stdpath "config" .. "/lua/colorscheme.lua") ~= "" then
+    require "colorscheme"
 else
     vim.notify_once("No Colorscheme file found, call `:Telescope themes` to set one", vim.log.levels.INFO)
 end
