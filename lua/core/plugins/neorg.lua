@@ -24,6 +24,7 @@ return {
             ["core.completion"] = {
                 config = {
                     engine = "nvim-cmp",
+                    name = "[Neorg]"
                 },
             },
             ["core.integrations.treesitter"] = {
@@ -44,6 +45,8 @@ return {
                         work = "~/CommSys/Work",
                         personal = "~/personal",
                     },
+                    autodetect = true,
+                    autochdir = true,
                 },
             },
             ["core.esupports.metagen"] = {

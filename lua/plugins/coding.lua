@@ -36,6 +36,18 @@ return {
             require("Comment").setup(create_spec("Comment", opts))
         end,
     },
+    -- inc-rename
+    {
+        "smjonas/inc-rename.nvim",
+        command = "IncRename",
+        opts = {
+            hl_group = "Substitute",
+            input_buffer_type = "dressing",
+        },
+        config = function(_, opts)
+            require("inc_rename").setup(create_spec("inc-rename", opts))
+        end,
+    },
     -- indent-blankline
     {
         "lukas-reineke/indent-blankline.nvim",
@@ -193,7 +205,7 @@ return {
     -- ts-error-translator
     {
         "dmmulroy/ts-error-translator.nvim",
-        ft = {"ts", "svelte"},
+        ft = { "ts", "svelte" },
         event = "BufEnter",
         opts = {},
     },
