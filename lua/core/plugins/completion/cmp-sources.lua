@@ -15,16 +15,15 @@ function M.editor()
     return {
         {
             name = "nvim_lsp",
-            priority = 1000,
             entry_filter = hide_text_entries,
             group_index = 1,
         },
-        { name = "nvim_lua", priority = 750, entry_filter = hide_text_entries, group_index = 1 },
-        { name = "luasnip", priority = 500, group_index = 1 },
+        { name = "nvim_lua", entry_filter = hide_text_entries, group_index = 1 },
+        { name = "luasnip", group_index = 1 },
+        { name = "neorg", group_index = 1 },
         { name = "nerdfont", group_index = 2 },
-        { name = "neorg", group_index = 2 },
-        { name = "cmp-dbee", group_index = 3 },
         { name = "path", group_index = 3 },
+        { name = "buffer", group_index = 3}
     }
 end
 
