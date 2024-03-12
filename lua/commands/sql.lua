@@ -4,6 +4,7 @@ local api = vim.api
 
 -- Just use harlequin --config 
 -- Check if a config exists and if it doesn't run harlequin --config
+-- https://github.com/tconbeer/harlequin/releases/tag/v1.16.0
 
 local createInputs = function(fields)
     local inputs = {}
