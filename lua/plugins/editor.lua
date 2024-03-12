@@ -48,7 +48,6 @@ return {
                     size = { height = 0.4 },
                 },
             },
-            right = {},
         },
     },
     -- global note
