@@ -105,29 +105,6 @@ return {
             require("neogen").setup(create_spec("neogen", opts))
         end,
     },
-    -- dbee
-    {
-        "justbarnt/nvim-dbee",
-        cmd = { "DbeeOpen" },
-        dependencies = { "muniftanjim/nui.nvim" },
-        opts = function()
-            local sources = require "dbee.sources"
-            return {
-                sources = {
-                    sources.FileSource:new(vim.fn.stdpath "cache" .. "/dbee/persistance.json"),
-                },
-                editor = {
-                    mappings = {
-                        { key = "<C-e>", mode = "v", action = "run_selection" },
-                        { key = "<C-e>", mode = "n", action = "run_file" },
-                    },
-                },
-            }
-        end,
-        config = function(_, opts)
-            require("dbee").setup(create_spec("dbee", opts))
-        end,
-    },
     -- nvim-autopairs
     {
         "windwp/nvim-autopairs",
