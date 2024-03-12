@@ -3,15 +3,14 @@ return {
         "hrsh7th/nvim-cmp",
         event = "InsertEnter",
         dependencies = {
-            { "hrsh7th/cmp-nvim-lsp", event = "LspAttach" },
-            { "hrsh7th/cmp-nvim-lua", event = "BufReadPre", ft = "lua" },
-            { "hrsh7th/cmp-cmdline", event = "CmdlineEnter" },
-            { "MattiasMTS/cmp-dbee", ft = "sql" },
-            { "saadparwaiz1/cmp_luasnip", event = "InsertEnter" },
-            { "hrsh7th/cmp-path", event = "InsertEnter" },
-            { "hrsh7th/cmp-buffer", event = "InsertEnter" },
-            { "chrisgrieser/cmp-nerdfont", event = "InsertEnter" },
-            { "onsails/lspkind-nvim", event = "InsertEnter" },
+            { "hrsh7th/cmp-nvim-lsp" },
+            { "hrsh7th/cmp-nvim-lua" },
+            { "hrsh7th/cmp-cmdline" },
+            { "saadparwaiz1/cmp_luasnip" },
+            { "hrsh7th/cmp-path" },
+            { "hrsh7th/cmp-buffer" },
+            { "chrisgrieser/cmp-nerdfont" },
+            { "onsails/lspkind-nvim" },
         },
         config = function()
             -- Getting required imports from plugins
