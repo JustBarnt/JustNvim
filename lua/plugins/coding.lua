@@ -169,8 +169,8 @@ return {
             { "<leader>xl", "<CMD>Trouble loclist<CR>", desc = "Trouble Local List" },
         },
         opts = {
-            position = "right", -- position of the list can be: bottom, top, left, right
-            width = 80, -- width of the list when position is left or right
+            -- position = "right", -- position of the list can be: bottom, top, left, right
+            -- width = 80, -- width of the list when position is left or right
             mode = "workspace_diagnostics", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
             action_keys = { -- key mappings for actions in the trouble list
                 -- map to {} to remove a mapping, for example:

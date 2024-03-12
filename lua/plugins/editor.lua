@@ -24,26 +24,32 @@ return {
             map("n", "<leader>mb", "<CMD>ShowMessageFloat<CR>", { desc = "Show Scratch Message Buffer" })
         end,
     },
-    -- corn
+    --edgy
     {
-        "RaafatTurki/corn.nvim",
-        event = "BufReadPre",
-        opts = {
-            scope = "line",
-            border_style = "rounded",
-            blacklisted_modes = { "v", "V", "c" },
-            blacklisted_severities = { vim.diagnostic.severity.HINT },
-            on_toggle = function(_) end,
-            vim.diagnostic.config({ virtual_text = not vim.diagnostic.config().virtual_text }),
-        },
-        config = function(_, opts)
-            local map = require("core.utils").map
-            vim.diagnostic.config({ virtual_text = false })
-
-            map("n", "<leader>cd", "<CMD>Corn toggle", { desc = "Toggle Corner Diagnostics " })
-            map("n", "<leader>cs", "<CMD>Corn scope_cycle", { desc = "Cycle Corner Diagnostics Scope" })
-            require("corn").setup(create_spec("corn", opts))
+        "folke/edgy.nvim",
+        event = "VeryLazy",
+        init = function()
+            vim.opt.laststatus = 3
+            vim.opt.splitkeep = "screen"
         end,
+        opts = {
+            bottom = {
+                -- toggleterm / lazyterm at the bottom with a height of 40% of the screen
+                {
+                    ft = "toggleterm",
+                    size = { height = 0.4 },
+                    -- exclude floating windows
+                    filter = function(buf, win)
+                        return vim.api.nvim_win_get_config(win).relative == ""
+                    end,
+                },
+                {
+                    ft = "Trouble",
+                    size = { height = 0.4 },
+                },
+            },
+            right = {},
+        },
     },
     -- global note
     {

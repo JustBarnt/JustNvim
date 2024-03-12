@@ -29,6 +29,7 @@ vim_opts({
         smartcase = true,
         hidden = false,
         equalalways = false,
+        splitkeep = "screen",
         splitright = true,
         splitbelow = true,
         updatetime = 250,
