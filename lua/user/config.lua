@@ -22,17 +22,18 @@ M.telescope = {}
 
 ---@class JustNvimOptIns
 ---@field plugins {[string]: boolean|table}
----@field user_commands {[string]: boolean}
+---@field commands {[string]: boolean}
 ---@field autocmds {[string]: boolean}
 M.opt_in = {
     plugins = {
         ["neodev"] = true,
         ["neoconf"] = true,
     },
-    user_commands = {
+    commands = {
         ["quit_all"] = true,
         ["format"] = true,
         ["telescope_highlight_tags"] = true,
+        ["harlequin"] = true
     },
     autocmds = {
         ["disable_auto_comment"] = false,
