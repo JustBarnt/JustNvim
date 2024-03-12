@@ -2,6 +2,9 @@
 local enabled = require("core.utils").enabled
 local api = vim.api
 
+-- Just use harlequin --config 
+-- Check if a config exists and if it doesn't run harlequin --config
+
 local createInputs = function(fields)
     local inputs = {}
     for prompt, _ in pairs(fields) do
