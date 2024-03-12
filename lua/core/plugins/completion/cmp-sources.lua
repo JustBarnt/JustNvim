@@ -19,6 +19,7 @@ function M.editor()
             group_index = 1,
         },
         { name = "nvim_lua", entry_filter = hide_text_entries, group_index = 1 },
+        { name = "vim-dadbod-completion", group_index = 1},
         { name = "luasnip", group_index = 1 },
         { name = "neorg", group_index = 1 },
         { name = "nerdfont", group_index = 2 },
