@@ -12,6 +12,7 @@ M.Default = function()
 
     -- Prevent macro keybinds
     map("n", "Q", "<NOP>")
+    map("n", "q", "<NOP>")
     map("n", "q", function()
         -- Closes a floating window
         local win_id = vim.api.nvim_get_current_win()
@@ -21,7 +22,7 @@ M.Default = function()
         elseif #vim.api.nvim_list_wins() >= 2 and vim.api.nvim_get_current_win() ~= vim.api.nvim_list_wins()[1] then
             vim.api.nvim_win_close(win_id, false)
         end
-    end, { desc = "Close Float/Window", noremap = false })
+    end, { desc = "Close Float/Window", noremap = true })
 
     -- Disable use of Arrow Keys: use (HJKL)
     map("n", "<Left>", "<NOP>")
