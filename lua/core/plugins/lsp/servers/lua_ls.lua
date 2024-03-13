@@ -12,8 +12,11 @@ return {
                 checkThirdParty = false,
             },
             completion = {
-                callSnippet = "Replace",
+                workspaceWord = true,
+                callSnippet = "Both",
             },
+            hint = { enable = true },
+            hover = { expandAlias = true },
             diagnostics = {
                 disable = {
                     "incomplete-signature-doc",

@@ -50,10 +50,10 @@ return {
             local user_config = require "user.config"
             local config = vim.tbl_deep_extend("force", opts, user_config.oil or {})
 
-            map("n", "<leader>de", oil.toggle_float, { desc = "Open Directory in Float" })
-            map("n", "<leader>do", oil.open, { desc = "Open Directory" })
+            -- map("n", "<leader>de", oil.toggle_float, { desc = "Open Directory in Float" })
+            -- map("n", "<leader>do", oil.open, { desc = "Open Directory" })
 
-            oil.setup(config)
+            -- oil.setup(config)
         end,
     },
 }

@@ -48,6 +48,16 @@ return {
                     size = { height = 0.4 },
                 },
             },
+            -- right = {
+            --     {
+            --         ft = "minifiles",
+            --         size = { height = 0.4 },
+            --         -- open = "lua MiniFiles.open()",
+            --         filter = function(buf, win)
+            --             return require("core.utils.minifiles").create_mini_files_split(buf, "vertical")
+            --         end,
+            --     }
+            -- }
         },
     },
     -- global note
@@ -221,7 +231,7 @@ return {
     -- todo-comments
     {
         "folke/todo-comments.nvim",
-        cmd = { "TodoTrouble", "TodoQuickFix", "TodoTelescope", "TodoLocList" },
+        event = "BufEnter",
         dependencies = {
             "nvim-lua/plenary.nvim",
         },

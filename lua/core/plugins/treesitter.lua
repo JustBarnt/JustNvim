@@ -1,3 +1,4 @@
+local utils = require "core.utils"
 return {
     {
         "nvim-treesitter/nvim-treesitter",
@@ -117,14 +118,10 @@ return {
         },
         config = function(_, opts)
             local ts = require "nvim-treesitter.configs"
-            local user_config = require 'user.config'
-            opts.context_commentstring = require("ts_context_commentstring").setup({
-                enable_autocmd = false,
-            })
+            local parsers = require("nvim-treesitter.parsers").get_parser_configs()
 
-            local config = vim.tbl_deep_extend("force", opts, user_config.treesitter or {})
-
-            ts.setup(config)
+            ts.setup(utils.create_spec("nvim-treesitter", opts))
+            -- vim.treesitter.language.register("html", "svelte")
         end,
     },
 }

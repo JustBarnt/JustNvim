@@ -59,7 +59,7 @@ end
 ---@param mode string Mode the keymap can work in
 ---@param lhs string The left hand side AKA: Key combination to activate
 ---@param rhs string|function The right hand side AKA: The action to invoke
----@param opts table A table of options the `vim.keymap.set` supports
+---@param opts? table A table of options the `vim.keymap.set` supports
 function M.map(mode, lhs, rhs, opts)
     local options = { noremap = true, silent = true }
     if opts then
@@ -92,10 +92,6 @@ function M.autocmd(args)
         end,
         once = args.once,
     })
-end
-
-function M.create_lua_library()
-    local data_path = vim.fn.stdpath('data')
 end
 
 return M

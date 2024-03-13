@@ -5,7 +5,7 @@ local M = {}
 
 local types = require "cmp.types"
 local hide_text_entries = function(entry, _)
-    return types.lsp.CompletionItemKind[entry:get_kind()] ~= "Snippet"
+    return types.lsp.CompletionItemKind[entry:get_kind()] ~= "Text"
 end
 
 -- These control the order of completion items fed into the menus

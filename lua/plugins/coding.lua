@@ -48,29 +48,6 @@ return {
             require("inc_rename").setup(create_spec("inc-rename", opts))
         end,
     },
-    -- indent-blankline
-    {
-        "lukas-reineke/indent-blankline.nvim",
-        event = "BufReadPre",
-        main = "ibl",
-        enabled = enabled("opt_in", "indent-blankline"),
-        opts = {
-            exclude = {
-                filetypes = {
-                    "help",
-                    "dashboard",
-                    "Trouble",
-                    "trouble",
-                    "lazy",
-                    "mason",
-                    "oil",
-                },
-            },
-        },
-        config = function(_, opts)
-            require("ibl").setup(create_spec("indent-blankline", opts))
-        end,
-    },
     -- neogen
     {
         "danymat/neogen",
@@ -116,44 +93,6 @@ return {
         config = function(_, opts)
             require("neogen").setup(create_spec("neogen", opts))
         end,
-    },
-    -- nvim-autopairs
-    {
-        "windwp/nvim-autopairs",
-        event = "InsertEnter",
-        opts = {
-            fast_wrap = {},
-        },
-        config = function(_, opts)
-            local cmp_autopairs = require "nvim-autopairs.completion.cmp"
-            local handlers = require "nvim-autopairs.completion.handlers"
-            local cmp = require "cmp"
-            cmp.event:on(
-                "confirm_done",
-                cmp_autopairs.on_confirm_done({
-                    filetypes = {
-                        ["*"] = {
-                            ["("] = {
-                                kind = {
-                                    cmp.lsp.CompletionItemKind.Function,
-                                    cmp.lsp.CompletionItemKind.Method,
-                                },
-                                handler = handlers["*"],
-                            },
-                        },
-                    },
-                })
-            )
-
-            require("nvim-autopairs").setup(create_spec("nvim-autopairs", opts))
-        end,
-    },
-    -- nvim-surround
-    {
-        "kylechui/nvim-surround",
-        version = "*",
-        event = "BufEnter",
-        opts = {},
     },
     -- trouble
     {

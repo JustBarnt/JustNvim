@@ -1,22 +1,43 @@
 local augroup = vim.api.nvim_create_augroup
 local cmd = vim.api.nvim_create_autocmd
-local enabled = require("core.utils").enabled
+local utils = require "core.utils"
 
 -- TODO: Add check for user config to disable certain items
 local exist, config = pcall(require, "user.config")
 local cmds = exist and type(config) == "table" and config.autocmds or {}
 local clear = { clear = true }
 
-if enabled(cmds, "plain_comments") then
+vim.api.nvim_create_autocmd("ColorScheme", {
+    desc = "Updates Lualine theme if applicable",
+    ---@diagnostic disable-next-line: unused-local
+    callback = function(event)
+        local color = vim.g.colors_name
+        local success, theme = pcall(require, "lualine.themes." .. color)
+        local lualine_config = require("lualine.config").get_config()
+        local updated_config = { options = { theme = success and color or "auto" } }
+
+        require("lualine.config").apply_configuration(vim.tbl_deep_extend("force", lualine_config, updated_config))
+    end,
+})
+
+vim.api.nvim_create_autocmd("User", {
+    pattern = "MiniFilesBufferCreate",
+    callback = function(args)
+        local buf_id = args.data.buf_id
+        utils.map("n", "g.", require("core.utils.minifiles").toggle_hidden_files, { buffer = buf_id })
+    end,
+})
+
+if utils.enabled(cmds, "plain_comments") then
     cmd("BufEnter", {
         pattern = "*",
         desc = "Removes styling from comments",
         group = augroup("plain_comments", clear),
-        command = "hi Comment gui=none"
+        command = "hi Comment gui=none",
     })
 end
 
--- if enabled(cmds, "dashboard_start") then
+-- if utils.enabled(cmds, "dashboard_start") then
 --     cmd('VimEnter', {
 --         pattern = "*",
 --         desc = "Toggles Dashboard",
@@ -25,13 +46,13 @@ end
 --             if vim.o.filetype == 'oil' then
 --                 require('oil').close()
 --             end
---             
+--
 --             vim.cmd[[:Dashboard]]
 --         end,
 --     })
--- end 
+-- end
 
-if enabled(cmds, "disable_auto_comment") then
+if utils.enabled(cmds, "disable_auto_comment") then
     cmd("BufEnter", {
         desc = "Disables create an commented new line when going to a new line",
         group = augroup("disable_auto_comment", clear),
@@ -39,7 +60,7 @@ if enabled(cmds, "disable_auto_comment") then
     })
 end
 
-if enabled(cmds, "highlight_yank") then
+if utils.enabled(cmds, "highlight_yank") then
     cmd("TextYankPost", {
         desc = "Highlights text selection when yanking",
         group = augroup("highlight_yank", clear),
@@ -49,7 +70,7 @@ if enabled(cmds, "highlight_yank") then
     })
 end
 
-if enabled(cmds, "help_in_float") then
+if utils.enabled(cmds, "help_in_float") then
     cmd("BufWinEnter", {
         pattern = "*",
         callback = function(event)
@@ -58,7 +79,7 @@ if enabled(cmds, "help_in_float") then
 
             if file_path:match "/doc/" ~= nil then
                 -- Only run if the filetype is a help file
-                if filetype == "help" or filetype == "markdown" or filetype == 'norg' then
+                if filetype == "help" or filetype == "markdown" or filetype == "norg" then
                     -- Get the newly opened help window
                     -- and attempt to open a Detour() float
                     local help_win = vim.api.nvim_get_current_win()
@@ -75,7 +96,7 @@ if enabled(cmds, "help_in_float") then
     })
 end
 
-if enabled(cmds, "cursor_line") then
+if utils.enabled(cmds, "cursor_line") then
     cmd({ "InsertEnter", "WinEnter" }, {
         desc = "Shows cursor when entering the editor window",
         group = augroup("cursor_line", clear),
@@ -91,7 +112,7 @@ if enabled(cmds, "cursor_line") then
     })
 end
 
--- if enabled(cmds, "trailing_whitespace") then
+-- if utils.enabled(cmds, "trailing_whitespace") then
 --     print "We triming whitespace boisss"
 --     cmd({ "BufWritePre" }, {
 --         desc = "Clears trailing whitespace on save",
@@ -101,7 +122,7 @@ end
 --     })
 -- end
 
-if enabled(cmds, "cursor_line_control") then
+if utils.enabled(cmds, "cursor_line_control") then
     vim.opt.cursorline = true
     local set_cursorline = function(event, value, pattern)
         cmd(event, {
@@ -119,7 +140,7 @@ if enabled(cmds, "cursor_line_control") then
 end
 
 --[[
-if enabled(cmds, "format_on_save") then
+if utils.enabled(cmds, "format_on_save") then
     cmd({ "BufWritePre" }, {
         desc = "Formats buffer on save",
         group = augroup("format_on_save", clear),
