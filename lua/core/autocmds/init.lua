@@ -1,11 +1,22 @@
 local augroup = vim.api.nvim_create_augroup
 local cmd = vim.api.nvim_create_autocmd
 local utils = require "core.utils"
+local minifiles = require "core.utils.minifiles"
 
 -- TODO: Add check for user config to disable certain items
 local exist, config = pcall(require, "user.config")
 local cmds = exist and type(config) == "table" and config.autocmds or {}
 local clear = { clear = true }
+
+vim.api.nvim_create_autocmd("User", {
+    pattern = "MiniFilesBufferCreate",
+    callback = function(args)
+        local buf_id = args.data.buf_id
+        -- Tweak keys to your liking
+        minifiles.map_split(buf_id, "gs", "Open File hsplit")
+        minifiles.map_split(buf_id, "gv", "Open File vsplit")
+    end,
+})
 
 vim.api.nvim_create_autocmd("ColorScheme", {
     desc = "Updates Lualine theme if applicable",
