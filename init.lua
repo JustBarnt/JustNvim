@@ -7,6 +7,7 @@ if vim.fn.has("win32") then
     ---@diagnostic disable-next-line: duplicate-set-field
     vim.fn.fnameescape = function(...)
         local result = ori_fnameescape(...)
+        vim.print(vim.inspect(...))
         return result:gsub("\\", "/")
     end
 end
