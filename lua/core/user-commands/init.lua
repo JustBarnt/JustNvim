@@ -3,6 +3,11 @@ local exist, config = pcall(require, "user.config")
 local commands = exist and type(config) == "table" and config.user_commands or {}
 local enabled = require("core.utils").enabled
 
+vim.api.nvim_create_user_command("OpenOil", function()
+    vim.cmd("vsplit | wincmd l")
+    vim.cmd[[Oil]]
+end, { bang = false })
+
 if enabled(commands, "quit_all") then
     vim.api.nvim_create_user_command("Q", function()
         vim.cmd [[:qall!]]
