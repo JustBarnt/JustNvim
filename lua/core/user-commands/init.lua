@@ -1,7 +1,7 @@
-local map = require('core.utils').map
+local map = require('utils').map
 local exist, config = pcall(require, "user.config")
 local commands = exist and type(config) == "table" and config.user_commands or {}
-local enabled = require("core.utils").enabled
+local enabled = require("utils").enabled
 
 vim.api.nvim_create_user_command("OpenOil", function()
     vim.cmd("vsplit | wincmd l")

@@ -1,7 +1,7 @@
 local augroup = vim.api.nvim_create_augroup
 local cmd = vim.api.nvim_create_autocmd
-local utils = require "core.utils"
-local minifiles = require "core.utils.minifiles"
+local utils = require "utils"
+local minifiles = require "utils.minifiles"
 
 -- TODO: Add check for user config to disable certain items
 local exist, config = pcall(require, "user.config")
@@ -35,7 +35,7 @@ vim.api.nvim_create_autocmd("User", {
     pattern = "MiniFilesBufferCreate",
     callback = function(args)
         local buf_id = args.data.buf_id
-        utils.map("n", "g.", require("core.utils.minifiles").toggle_hidden_files, { buffer = buf_id })
+        utils.map("n", "g.", require("utils.minifiles").toggle_hidden_files, { buffer = buf_id })
     end,
 })
 

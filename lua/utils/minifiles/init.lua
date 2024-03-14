@@ -1,5 +1,5 @@
 local M = {}
-local utils = require "core.utils"
+local utils = require "utils"
 local show_hidden = false
 
 function M.filter_show()

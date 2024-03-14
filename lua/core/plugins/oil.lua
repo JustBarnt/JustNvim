@@ -46,7 +46,7 @@ return {
         },
         config = function(_, opts)
             local oil = require "oil"
-            local map = require("core.utils").map
+            local map = require("utils").map
             local user_config = require "user.config"
             local config = vim.tbl_deep_extend("force", opts, user_config.oil or {})
 

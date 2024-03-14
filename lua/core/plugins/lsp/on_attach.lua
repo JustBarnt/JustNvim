@@ -1,7 +1,7 @@
 local M = {}
 
 function M.on_attach(event)
-    local map = require("core.utils").map
+    local map = require("utils").map
     local builtin = require "telescope.builtin"
     require "core.plugins.lsp.handlers"
 

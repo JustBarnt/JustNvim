@@ -1,5 +1,5 @@
-local create_spec = require("core.utils").create_spec
-local enabled = require("core.utils").enabled
+local create_spec = require("utils").create_spec
+local enabled = require("utils").enabled
 
 return {
     -- ccc

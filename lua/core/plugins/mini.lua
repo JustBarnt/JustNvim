@@ -1,5 +1,5 @@
-local utils = require "core.utils"
-local mini_utils = require "core.utils.minifiles"
+local utils = require "utils"
+local mini_utils = require "utils.minifiles"
 
 return {
     -- mini.ai

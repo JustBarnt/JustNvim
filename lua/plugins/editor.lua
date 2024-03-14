@@ -1,4 +1,4 @@
-local create_spec = require("core.utils").create_spec
+local create_spec = require("utils").create_spec
 
 return {
     -- bigfile
@@ -18,7 +18,7 @@ return {
         event = "CmdlineEnter",
         opts = {},
         config = function(_, opts)
-            local map = require("core.utils").map
+            local map = require("utils").map
 
             require("bmessages").setup(create_spec("bmessages", opts))
             map("n", "<leader>mb", "<CMD>ShowMessageFloat<CR>", { desc = "Show Scratch Message Buffer" })
@@ -50,11 +50,15 @@ return {
             },
             right = {
                 {
-                    ft = "oil",
+                    title = "File Explorer",
+                    ft = "neo-tree",
+                    pinned = true,
+                    filter = function(buf)
+                        return vim.b[buf].neo_tree_source == "filesystem"
+                    end,
                     size = { height = 0.4 },
-                    open = "OpenOil",
                 }
-            }
+            },
         },
     },
     -- global note
@@ -130,7 +134,7 @@ return {
             },
         },
         config = function(_, opts)
-            local map = require("core.utils").map
+            local map = require("utils").map
             local harpoon = require "harpoon"
 
             harpoon:setup(create_spec("harpoon", opts))

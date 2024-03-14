@@ -5,13 +5,13 @@ return {
         cmd = "ToggleTerm",
         opts = {},
         keys = function()
-            local lazyterm = require "core.utils.terminal"
+            local lazyterm = require "utils.terminal"
             return {
                 {"<leader>lg", lazyterm.lazygit_toggle, { desc = "Toggle Lazygit" }}
             }
         end,
         config = function(_, opts)
-            local map = require("core.utils").map
+            local map = require("utils").map
             local toggleterm = require "toggleterm"
 
             -- map("n", "<leader>lg", lazyterm.lazygit_toggle, { desc = "Toggle Lazygit" })

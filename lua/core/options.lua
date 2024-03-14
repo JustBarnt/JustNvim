@@ -1,4 +1,4 @@
-local vim_opts = require("core.utils").vim_options
+local vim_opts = require("utils").vim_options
 
 vim.opt.shortmess = {
     a = true,
@@ -28,7 +28,7 @@ vim_opts({
         showmatch = true,
         ignorecase = true,
         smartcase = true,
-        hidden = false,
+        hidden = true,
         equalalways = false,
         splitkeep = "screen",
         splitright = true,

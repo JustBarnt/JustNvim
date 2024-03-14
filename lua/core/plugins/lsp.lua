@@ -1,6 +1,5 @@
-local enabled = require('core.utils').enabled
+local enabled = require('utils').enabled
 local user_config = require('user.config')
-
 
 return {
     {

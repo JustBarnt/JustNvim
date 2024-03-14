@@ -16,13 +16,24 @@ return {
                 { "<leader>fh", builtin.help_tags, desc = "Find Help Tags" },
                 { "<leader>ff", builtin.find_files, desc = "Find Files" },
                 { "<leader>fs", builtin.builtin, desc = "Find Telescope Builtins" },
-                { "<leader>fw", builtin.grep_string, desc = "Find Word in File " },
-                { "<leader>fg", builtin.live_grep, desc = "Find by Grep" },
+                { "<leader>fg", builtin.live_grep, desc = "Find Word in File " },
                 { "<leader>fd", builtin.diagnostics, desc = "Find Diagnostics" },
                 { "<leader>fr", builtin.resume, desc = "Find Resume last Telescope Session" },
                 { "<leader>fo", builtin.oldfiles, desc = "Find Oldfiles" },
                 { "<leader>ft", "<CMD>Telescope themes<CR>", desc = "Find Themes" },
                 { "<leader><leader>", builtin.buffers, desc = "Find Buffers" },
+                {
+                    "<leader>fw",
+                    function()
+                        vim.ui.input({ prompt = "Grep > " }, function(value)
+                            builtin.grep_string({
+                                use_regex = true,
+                                search = value,
+                            })
+                        end)
+                    end,
+                    desc = "Find by Grep",
+                },
                 {
                     "<leader>fk",
                     function()
@@ -54,15 +65,23 @@ return {
         end,
         opts = function()
             local actions = require "telescope.actions"
-            local hasTrouble = vim.F.npcall(require, "trouble")
-            local trouble_telescope = require("core.plugins.telescope_extensions.trouble")
-            local defaults = {}
-
-            if hasTrouble then  vim.tbl_deep_extend("force", defaults, trouble_telescope) end
+            local status, trouble = pcall(require, "trouble.providers.telescope")
+            local extras = require "utils.telescope"
 
             return {
+                defaults = {
+                    mappings = {
+                        i = {
+                            ["<c-t>"] = status and trouble.open_with_trouble or actions.nop,
+                            ["<C-q>"] = extras.fzf_multi_select,
+                        },
+                        n = {
+                            ["<C-q>"] = extras.fzf_multi_select,
+                            ["<c-t>"] = status and trouble.open_with_trouble or actions.nop,
+                        },
+                    },
+                },
                 extensions = {
-                    defaults = defaults,
                     themes = {
                         require("telescope.themes").get_dropdown({
                             layout_config = {
@@ -92,14 +111,13 @@ return {
                         mappings = {
                             i = {
                                 ["<c-d>"] = actions.delete_buffer,
-                                ["<c-q>"] = actions.close,
                             },
                             n = {
                                 ["d"] = actions.delete_buffer,
                             },
                         },
                     },
-                    find_files = require("core.utils").select_find_command(), --vim.fn.executable == 1 and { "fd", "--strip-cwd-prefix", "--type", "f" } or nil,
+                    find_files = require("utils").select_find_command(), --vim.fn.executable == 1 and { "fd", "--strip-cwd-prefix", "--type", "f" } or nil,
                 },
             }
         end,
