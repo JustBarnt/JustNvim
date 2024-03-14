@@ -65,6 +65,7 @@ return {
             -- Setup autocompletion for LSP and others
             -- Setup autocompletion for search cmdline
             cmp.setup(config)
+            cmp.setup.filetype("xml", { enabled = false })
             cmp.setup.cmdline({ "/", "?" }, { mapping = cmp.mapping.preset.cmdline(), sources = sources.search() })
             cmp.setup.cmdline(":", { mapping = cmp.mapping.preset.cmdline(), sources = sources.cmdline() })
         end,
