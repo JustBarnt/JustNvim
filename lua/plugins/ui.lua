@@ -35,6 +35,21 @@ return {
             require("tokyonight").setup(utils.create_spec("tokyonight", opts))
         end,
     },
+    -- Kanagawa
+    {
+        "rebelot/kanagawa.nvim",
+        priority = 10000,
+        lazy = false,
+        opts = {
+            overrides = function(colors)
+                local overrides = require "core.ui.kanagawa"
+                return vim.tbl_deep_extend("force", {}, overrides.borderless_float(colors), overrides.borderless_telescope(colors))
+            end,
+        },
+        config = function(_, opts)
+            require("kanagawa").setup(utils.create_spec("kanagawa", opts))
+        end
+    },
     --UI Altering
     -- Detour
     {

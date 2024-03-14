@@ -23,7 +23,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
     ---@diagnostic disable-next-line: unused-local
     callback = function(event)
         local color = vim.g.colors_name
-        local success, theme = pcall(require, "lualine.themes." .. color)
+        local success, _ = pcall(require, "lualine.themes." .. color)
         local lualine_config = require("lualine.config").get_config()
         local updated_config = { options = { theme = success and color or "auto" } }
 
