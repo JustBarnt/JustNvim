@@ -3,8 +3,11 @@ local create_spec = require("utils").create_spec
 return {
     -- bmessages
     {
-        "ariel-frischer/bmessages.nvim",
+        "justbarnt/bmessages.nvim",
         event = "CmdlineEnter",
+        keys = {
+            { "<leader>mt", "<CMD>Bmessages<CR>", desc = "Toggle Messages Buffer" },
+        },
         opts = {},
         config = function(_, opts)
             local map = require("utils").map
@@ -36,8 +39,12 @@ return {
                     ft = "Trouble",
                     size = { height = 0.4 },
                 },
+                {
+                    ft = "bmessages",
+                    size = { height = 0.4 },
+                },
             },
-            right = {
+            left = {
                 {
                     title = "File Explorer",
                     ft = "neo-tree",
@@ -46,7 +53,7 @@ return {
                         return vim.b[buf].neo_tree_source == "filesystem"
                     end,
                     size = { height = 0.4 },
-                }
+                },
             },
         },
     },

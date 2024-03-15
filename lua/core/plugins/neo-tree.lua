@@ -3,6 +3,8 @@ local utils = require "utils"
 return {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v3.x",
+    event = "VeryLazy",
+    cmd = {"Neotree"},
     dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
@@ -25,6 +27,9 @@ return {
                 require("window-picker").setup(utils.create_spec("window-picker", opts))
             end,
         },
+    },
+    keys = {
+        {'<leader>ex', "<CMD>Neotree<CR>", desc = "Open File Explorer"}
     },
     opts = {
         close_if_last_window = true,
