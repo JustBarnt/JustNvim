@@ -1,3 +1,5 @@
+local utils = require "utils"
+
 return {
     {
         "nvim-telescope/telescope.nvim",
@@ -123,10 +125,8 @@ return {
         end,
         config = function(_, opts)
             local telescope = require "telescope"
-            local user_config = require "user.config"
-            local config = vim.tbl_deep_extend("force", opts, user_config.telescope or {})
 
-            telescope.setup(config)
+            telescope.setup(utils.create_spec("telescope", opts))
             telescope.load_extension "themes"
             telescope.load_extension "cmdline"
             telescope.load_extension "luasnip"

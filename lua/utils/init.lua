@@ -13,6 +13,22 @@ function M.vim_options(options)
     end
 end
 
+
+--- Returns true if the buffer is large than X size
+---@param bufnr integer The buffer to check
+---@param size integer The max size allowed in bytes
+---@return boolean
+function M.is_large_buffer(bufnr, size)
+    local is_large_buf = false
+    local max_filesize = size * 1024
+    local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(bufnr))
+    if ok and stats and stats.size > max_filesize then
+        is_large_buf = true
+    end
+
+    return is_large_buf
+end
+
 --- Returns the users plugin spec from `user.config` or an empty table if it is not defined in the `user.config`
 ---@param plugin_name string the name of the plugin to search for in `user.config`
 ---@param opts table the default opts used by the plugin

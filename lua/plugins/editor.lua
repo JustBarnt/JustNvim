@@ -1,17 +1,6 @@
 local create_spec = require("utils").create_spec
 
 return {
-    -- bigfile
-    {
-        "lunarvim/bigfile.nvim",
-        event = "BufReadPre",
-        opts = {
-            pattern = { ".log", ".xml", ".txt" },
-        },
-        config = function(_, opts)
-            require("bigfile").setup(create_spec("bigfile", opts))
-        end,
-    },
     -- bmessages
     {
         "ariel-frischer/bmessages.nvim",

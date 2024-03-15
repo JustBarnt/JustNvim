@@ -1,4 +1,5 @@
-local utils = require "utils"
+local utils = require 'utils'
+
 return {
     {
         "nvim-treesitter/nvim-treesitter",
@@ -36,7 +37,7 @@ return {
                 "xml",
             },
             indent = {
-                enable = true,
+                enable = false,
             },
             highlight = {
                 enable = true,
@@ -118,10 +119,7 @@ return {
         },
         config = function(_, opts)
             local ts = require "nvim-treesitter.configs"
-            local parsers = require("nvim-treesitter.parsers").get_parser_configs()
-
             ts.setup(utils.create_spec("nvim-treesitter", opts))
-            -- vim.treesitter.language.register("html", "svelte")
         end,
     },
 }
