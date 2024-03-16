@@ -1,9 +1,10 @@
-local create_spec = require("utils").create_spec
+local utils = require "utils"
 
 return {
     -- bmessages
     {
         "justbarnt/bmessages.nvim",
+        enabled = utils.enabled("plugins", "bmessages"),
         event = "CmdlineEnter",
         keys = {
             { "<leader>mt", "<CMD>Bmessages<CR>", desc = "Toggle Messages Buffer" },
@@ -12,55 +13,14 @@ return {
         config = function(_, opts)
             local map = require("utils").map
 
-            require("bmessages").setup(create_spec("bmessages", opts))
+            require("bmessages").setup(utils.create_spec("bmessages", opts))
             map("n", "<leader>mb", "<CMD>ShowMessageFloat<CR>", { desc = "Show Scratch Message Buffer" })
         end,
-    },
-    --edgy
-    {
-        "folke/edgy.nvim",
-        event = "VeryLazy",
-        init = function()
-            vim.opt.laststatus = 3
-            vim.opt.splitkeep = "screen"
-        end,
-        opts = {
-            bottom = {
-                -- toggleterm / lazyterm at the bottom with a height of 40% of the screen
-                {
-                    ft = "toggleterm",
-                    size = { height = 0.4 },
-                    -- exclude floating windows
-                    filter = function(buf, win)
-                        return vim.api.nvim_win_get_config(win).relative == ""
-                    end,
-                },
-                {
-                    ft = "Trouble",
-                    size = { height = 0.4 },
-                },
-                {
-                    ft = "bmessages",
-                    size = { height = 0.4 },
-                },
-                { ft = "qf", title = "QuickFix"}
-            },
-            left = {
-                {
-                    title = "File Explorer",
-                    ft = "neo-tree",
-                    pinned = true,
-                    filter = function(buf)
-                        return vim.b[buf].neo_tree_source == "filesystem"
-                    end,
-                    size = { height = 0.4 },
-                },
-            },
-        },
     },
     -- global note
     {
         "backdround/global-note.nvim",
+        enabled = utils.enabled("plugins", "global-note"),
         cmd = { "GlobalNote" },
         keys = {
             { "<leader>gn", "<CMD>GlobalNote<CR>", desc = "Opens Global Notepad" },
@@ -114,12 +74,13 @@ return {
             additional_presets = {},
         },
         config = function(_, opts)
-            require("global-note").setup(create_spec("global-note", opts))
+            require("global-note").setup(utils.create_spec("global-note", opts))
         end,
     },
     -- harpoon
     {
         "theprimeagen/harpoon",
+        enabled = utils.enabled("plugins", "harpoon"),
         branch = "harpoon2",
         dependencies = {
             "nvim-lua/plenary.nvim",
@@ -134,7 +95,7 @@ return {
             local map = require("utils").map
             local harpoon = require "harpoon"
 
-            harpoon:setup(create_spec("harpoon", opts))
+            harpoon:setup(utils.create_spec("harpoon", opts))
 
             -- Keys
             map("n", "<leader>ha", function()
@@ -158,14 +119,16 @@ return {
     -- neoscroll
     {
         "karb94/neoscroll.nvim",
+        enabled = utils.enabled("plugins", "neoscroll"),
         opts = {},
         config = function(_, opts)
-            require("neoscroll").setup(create_spec("neoscroll", opts))
+            require("neoscroll").setup(utils.create_spec("neoscroll", opts))
         end,
     },
     -- nvim-highlight-colors
     {
         "brenoprata10/nvim-highlight-colors",
+        enabled = utils.enabled("plugins", "nvim-highlight-colors"),
         event = "BufReadPre",
         opts = {
             render = "virtual",
@@ -173,12 +136,13 @@ return {
             enabled_tailwind = true,
         },
         config = function(_, opts)
-            require("nvim-highlight-colors").setup(create_spec("nvim-highlight-colors", opts))
+            require("nvim-highlight-colors").setup(utils.create_spec("nvim-highlight-colors", opts))
         end,
     },
     -- pomodoro
     {
         "epwalsh/pomo.nvim",
+        enabled = utils.enabled("plugins", "pomo"),
         version = "v0.4.3",
         lazy = true,
         cmd = { "TimerStart", "TimerRepeat" },
@@ -194,12 +158,13 @@ return {
             },
         },
         config = function(_, opts)
-            require("pomo").setup(create_spec("pomo", opts))
+            require("pomo").setup(utils.create_spec("pomo", opts))
         end,
     },
     -- projects
     {
         "LintaoAmons/cd-project.nvim",
+        enabled = utils.enabled("plugins", "cd-project"),
         opts = {
             -- this json file is acting like a database to update and read the projects in real time.
             -- So because it's just a json file, you can edit directly to add more paths you want manually
@@ -223,12 +188,13 @@ return {
             },
         },
         config = function(_, opts)
-            require("cd-project").setup(create_spec("cd-project", opts))
+            require("cd-project").setup(utils.create_spec("cd-project", opts))
         end,
     },
     -- todo-comments
     {
         "folke/todo-comments.nvim",
+        enabled = utils.enabled("plugins", "todo-comments"),
         event = "BufEnter",
         dependencies = {
             "nvim-lua/plenary.nvim",
@@ -238,12 +204,13 @@ return {
         },
         opts = {},
         config = function(_, opts)
-            require("todo-comments").setup(create_spec("todo-comments", opts))
+            require("todo-comments").setup(utils.create_spec("todo-comments", opts))
         end,
     },
     -- vim
     {
         "theprimeagen/vim-apm",
+        enabled = utils.enabled("plugins", "vim-apm"),
         keys = {
             {
                 "<leader>apm",
@@ -259,7 +226,7 @@ return {
             },
         },
         config = function(_, opts)
-            require("vim-apm"):setup(create_spec("vim-apm", opts))
+            require("vim-apm"):setup(utils.create_spec("vim-apm", opts))
         end,
     },
 }

@@ -94,7 +94,15 @@ function M.enabled(group_name, opt)
     local opt_ins = exists and type(user_config) == "table" and user_config["opt_in"] or {}
     local group = opt_ins[group_name] or {}
 
-    return not group == nil or not group[opt] == nil or group[opt] == false
+    return not group == nil or not group[opt] == nil or not group[opt] == false
+end
+
+function M.disabled(group_name, opt)
+    local exists, user_config = pcall(require, "user.config")
+    local opt_ins = exists and type(user_config) == "table" and user_config["opt_in"] or {}
+    local group = opt_ins[group_name] or {}
+
+    return not group == nil or not group[opt] == nil or not group[opt] == false
 end
 
 --- Simpler autocmd function call

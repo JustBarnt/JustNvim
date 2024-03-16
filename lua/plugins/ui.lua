@@ -68,11 +68,13 @@ return {
     -- Detour
     {
         "carbon-steel/detour.nvim",
+        enabled = utils.enabled("plugins", 'detour')
     },
     
     -- gitsigns
     {
         "lewis6991/gitsigns.nvim",
+        enabled = utils.enabled("plugins", "gitsigns"),
         event = "BufEnter",
         opts = {
             signs = {
@@ -91,6 +93,7 @@ return {
     -- lualine
     {
         "nvim-lualine/lualine.nvim",
+        enabled = utils.enabled("plugins", "lualine"),
         event = "ColorScheme",
         opts = function()
             local components = require "components.lualine_components"
@@ -185,6 +188,7 @@ return {
     -- nerdy
     {
         "2kabhishek/nerdy.nvim",
+        enabled = utils.enabled("plugins", "nerdy"),
         dependencies = {
             "stevearc/dressing.nvim",
             "nvim-telescope/telescope.nvim",

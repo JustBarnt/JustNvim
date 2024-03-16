@@ -23,6 +23,7 @@ return {
     -- comment
     {
         "numToStr/Comment.nvim",
+        enabled = utils.enabled("plugins", "Comment"),
         keys = {
             { "gc", mode = { "n", "v" }, desc = "Toggle Comment Line Wise" },
             { "gb", mode = { "n", "v" }, desc = "Toggle Comment Block Wise" },
@@ -39,6 +40,7 @@ return {
     -- inc-rename
     {
         "smjonas/inc-rename.nvim",
+        enabled = utils.enabled("plugins", "inc-rename"),
         command = "IncRename",
         opts = {
             hl_group = "Substitute",
@@ -51,6 +53,7 @@ return {
     -- neogen
     {
         "danymat/neogen",
+        enabled = utils.enabled("plugins", "neogen"),
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
         },
@@ -98,19 +101,21 @@ return {
     {
         {
             "siawkz/nvim-cheatsh",
+            enabled = utils.enabled("plugins", "nvim-cheatsh"),
             cmd = { "Cheat", "CheatClose", "CheatList" },
             opts = {},
             keys = {
-                { "<leader>cs", '<CMD>CheatList<CR>', desc = "Search Cheat Sheets" }
+                { "<leader>cs", "<CMD>CheatList<CR>", desc = "Search Cheat Sheets" },
             },
             config = function(_, opts)
                 require("nvim-cheatsh").setup(utils.create_spec("nvim-cheatsh", opts))
-            end
+            end,
         },
     },
     -- trouble
     {
         "folke/trouble.nvim",
+        enabled = utils.enabled("plugins", "trouble"),
         event = "BufEnter",
         cmd = { "Trouble", "TroubleClose", "TroubleToggle", "TroubleRefresh" },
         dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -158,6 +163,7 @@ return {
     -- ts-error-translator
     {
         "dmmulroy/ts-error-translator.nvim",
+        enabled = utils.enabled("plugins", "ts-error-translator"),
         ft = { "ts", "svelte" },
         event = "BufEnter",
         opts = {},
@@ -165,5 +171,6 @@ return {
     -- vim-sleuth
     {
         "tpope/vim-sleuth",
+        enabled = utils.enabled("plugins", "vim-sleuth"),
     },
 }

@@ -25,18 +25,22 @@ M.plugins = {}
 M.opt_in = {
     plugins = {
         --- Disabled need opted into
-        ["cd-project"] = true,
-        ["mini.jump"] = false,
-        ["neoscroll"] = false,
-        ["nvim-highlight-colors"] = false,
-        ["pomo"] = false,
-        ["ccc"] = false,
-        ["global-note"] = false,
-        ["neogen"] = false,
-        ["nerdy"] = false,
-        ["vim-apm"] = false,
+        ["neodev"] = true,
+        ["neoconf"] = true,
+        ["mini.files"] = true,
+        ["mini.align"] = true,
+        ["mini.cursorword"] = true,
+        ["mini.indentscope"] = true,
+        ["mini.misc"] = true,
+        ["mini.move"] = true,
+        ["mini.operators"] = true,
+        ["mini.pairs"] = true,
+        ["mini.splitjoin"] = true,
+        ["mini.surround"] = true,
     },
-    commands = {},
+    commands = {
+        ["format"] = true,
+    },
     autocmds = {
         ["trailing_whitespace_on_save"] = false,
         ["format_on_save"] = false,
