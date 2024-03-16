@@ -8,24 +8,32 @@ return {
         dependencies = {
             "nvim-tree/nvim-web-devicons",
             "nvim-lua/plenary.nvim",
-            "justbarnt/telescope-cmdline.nvim",
+            {
+                "nvim-telescope/telescope-frecency.nvim",
+                enabled = vim.fn.executable "sqlite3",
+            },
             "andrew-george/telescope-themes",
         },
         cmd = { "Telescope", "TodoTelescope", "TelescopeHighlights" },
         keys = function()
             local builtin = require "telescope.builtin"
+            local legendary = require "legendary"
+            local filters = require "legendary.filters"
+
             return {
-                { "<leader>fh", builtin.help_tags, desc = "Find Help Tags" },
-                { "<leader>ff", builtin.find_files, desc = "Find Files" },
-                { "<leader>fs", builtin.builtin, desc = "Find Telescope Builtins" },
-                { "<leader>fg", builtin.live_grep, desc = "Find Word in File " },
-                { "<leader>fd", builtin.diagnostics, desc = "Find Diagnostics" },
-                { "<leader>fr", builtin.resume, desc = "Find Resume last Telescope Session" },
-                { "<leader>fo", builtin.oldfiles, desc = "Find Oldfiles" },
-                { "<leader>ft", "<CMD>Telescope themes<CR>", desc = "Find Themes" },
-                { "<leader><leader>", builtin.buffers, desc = "Find Buffers" },
+                { "<leader>sr", "<CMD>Telescope frecency workspace=CWD<CR>", desc = "Search Recent Telescopes"},
+                { "<leader>sh", builtin.help_tags, desc = "Search Help Tags" },
+                { "<leader>sf", builtin.find_files, desc = "Search Files" },
+                { "<leader>ss", builtin.builtin, desc = "Search Telescope Builtins" },
+                { "<leader>sg", builtin.live_grep, desc = "Search Word in File " },
+                { "<leader>sd", builtin.diagnostics, desc = "Search Diagnostics" },
+                { "<leader>so", builtin.oldfiles, desc = "Search Oldfiles" },
+                { "<leader>st", "<CMD>Telescope themes<CR>", desc = "Search Themes" },
+                { "<leader><leader>", builtin.buffers, desc = "Search Buffers" },
+                { "<leader>sk", "<CMD>LegendaryKeymaps<CR>" , desc = "Search Keymaps", },
+                { "<leader>sc", "<CMD>LegendaryCommands<CR>" , desc = "Search Commands", },
                 {
-                    "<leader>fw",
+                    "<leader>sw",
                     function()
                         vim.ui.input({ prompt = "Grep > " }, function(value)
                             builtin.grep_string({
@@ -34,14 +42,7 @@ return {
                             })
                         end)
                     end,
-                    desc = "Find by Grep",
-                },
-                {
-                    "<leader>fk",
-                    function()
-                        builtin.keymaps({ show_plug = false })
-                    end,
-                    desc = "Find Keymaps",
+                    desc = "Search by Grep",
                 },
                 {
                     "<leader>/",
@@ -54,14 +55,14 @@ return {
                     desc = "[/] Fuzzy Search Current Buffer",
                 },
                 {
-                    "<leader>f/",
+                    "<leader>s/",
                     function()
                         builtin.live_grep({
                             grep_open_files = true,
                             prompt_title = "Live Grep in Open Files",
                         })
                     end,
-                    desc = "Find in Open files",
+                    desc = "Search in Open files",
                 },
             }
         end,
@@ -128,8 +129,8 @@ return {
 
             telescope.setup(utils.create_spec("telescope", opts))
             telescope.load_extension "themes"
-            telescope.load_extension "cmdline"
             telescope.load_extension "luasnip"
+            telescope.load_extension "frecency"
         end,
     },
 }

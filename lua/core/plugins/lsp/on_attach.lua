@@ -41,6 +41,7 @@ function M.on_attach(event)
     -- Disables "No information available" warning from lsp when using 'Hover'
     if client and client.server_capabilities.hoverProvider then
         vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+            border = "rounded",
             silent = true,
         })
     end

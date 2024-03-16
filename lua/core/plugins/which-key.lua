@@ -1,7 +1,21 @@
 return {
     "folke/which-key.nvim",
     event = "VeryLazy",
-    opts = {}, -- Empty opts means default options
+    opts = {
+        plugins = {
+            marks = false,
+            registers = false,
+            spelling = {
+                enabled = true,
+                suggestions = 5,
+            },
+        },
+        window = {
+            border = "rounded",
+            margin = { 1, 1, 1, 1},
+            padding = { 1, 1, 1, 1 },
+        },
+    }, -- Empty opts means default options
     config = function(_, opts)
         local wk = require "which-key"
 
@@ -42,7 +56,7 @@ return {
             ["<C-w>"] = { "Window" },
             ["g"] = { "Go-To" },
             ["z"] = { "Folds / Center Cursor" },
-            ["z="] = { "Spelling Suggestions" }
+            ["z="] = { "Spelling Suggestions" },
         })
     end,
 }

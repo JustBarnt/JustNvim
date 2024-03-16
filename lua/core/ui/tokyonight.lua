@@ -1,5 +1,11 @@
 local M = {}
 
+function M.borderless_float(hl, c)
+    hl.NormalFloat = { bg = "none" }
+    hl.WhichKeyFloat = { bg = "none" }
+    hl.LazyNormal = { bg = c.bg_dark }
+end
+
 function M.borderless_telescope(hl, c)
     local prompt = "#2d3149"
     hl.TelescopeNormal = {

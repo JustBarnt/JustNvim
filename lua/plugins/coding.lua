@@ -1,5 +1,4 @@
-local create_spec = require("utils").create_spec
-local enabled = require("utils").enabled
+local utils = require "utils"
 
 return {
     -- ccc
@@ -17,7 +16,7 @@ return {
             },
         },
         config = function(_, opts)
-            require("ccc").setup(create_spec("ccc", opts))
+            require("ccc").setup(utils.create_spec("ccc", opts))
         end,
     },
     -- comment
@@ -33,7 +32,7 @@ return {
             return commentstring_avail and comment_string and { pre_hook = comment_string.create_pre_hook() } or {}
         end,
         config = function(_, opts)
-            require("Comment").setup(create_spec("Comment", opts))
+            require("Comment").setup(utils.create_spec("Comment", opts))
         end,
     },
     -- inc-rename
@@ -45,7 +44,7 @@ return {
             input_buffer_type = "dressing",
         },
         config = function(_, opts)
-            require("inc_rename").setup(create_spec("inc-rename", opts))
+            require("inc_rename").setup(utils.create_spec("inc-rename", opts))
         end,
     },
     -- neogen
@@ -91,8 +90,22 @@ return {
             snippet_engine = "luasnip",
         },
         config = function(_, opts)
-            require("neogen").setup(create_spec("neogen", opts))
+            require("neogen").setup(utils.create_spec("neogen", opts))
         end,
+    },
+    -- nvim-cheatsh
+    {
+        {
+            "siawkz/nvim-cheatsh",
+            cmd = { "Cheat", "CheatClose", "CheatList" },
+            opts = {},
+            keys = {
+                { "<leader>cs", '<CMD>CheatList<CR>', desc = "Search Cheat Sheets" }
+            },
+            config = function(_, opts)
+                require("nvim-cheatsh").setup(utils.create_spec("nvim-cheatsh", opts))
+            end
+        },
     },
     -- trouble
     {
@@ -138,7 +151,7 @@ return {
             win_config = { border = "solid" }, -- window configuration for floating windows. See |nvim_open_win()|.
         },
         config = function(_, opts)
-            require("trouble").setup(create_spec("trouble", opts))
+            require("trouble").setup(utils.create_spec("trouble", opts))
         end,
     },
     -- ts-error-translator

@@ -26,8 +26,12 @@ M.telescope = {}
 ---@field autocmds {[string]: boolean}
 M.opt_in = {
     plugins = {
+        --- These are the only opt_out as they provide pivital information for editing your neovim config
+        --- or working with lua
         ["neodev"] = true,
         ["neoconf"] = true,
+
+        --- Opt_in
     },
     commands = {
         ["quit_all"] = true,

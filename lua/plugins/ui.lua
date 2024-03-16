@@ -29,7 +29,16 @@ return {
         priority = 10000,
         lazy = false,
         opts = {
-            on_highlights = require("core.ui.tokyonight").borderless_telescope,
+            styles = {
+                functions = { bold = true },
+                keywords = { bold = true },
+                floats = "transparent",
+            },
+            on_highlights = function(highlights, colors)
+                local tokyonight_overrides = require "core.ui.tokyonight"
+                tokyonight_overrides.borderless_float(highlights, colors)
+                tokyonight_overrides.borderless_telescope(highlights, colors)
+            end,
         },
         config = function(_, opts)
             require("tokyonight").setup(utils.create_spec("tokyonight", opts))
@@ -43,38 +52,24 @@ return {
         opts = {
             overrides = function(colors)
                 local overrides = require "core.ui.kanagawa"
-                return vim.tbl_deep_extend("force", {}, overrides.borderless_float(colors), overrides.borderless_telescope(colors))
+                return vim.tbl_deep_extend(
+                    "force",
+                    {},
+                    overrides.borderless_float(colors),
+                    overrides.borderless_telescope(colors)
+                )
             end,
         },
         config = function(_, opts)
             require("kanagawa").setup(utils.create_spec("kanagawa", opts))
-        end
+        end,
     },
     --UI Altering
     -- Detour
     {
         "carbon-steel/detour.nvim",
     },
-    -- Dressing
-    {
-        "stevearc/dressing.nvim",
-        opts = {
-            input = {
-                title_pos = "center",
-            },
-            select = {
-                backend = {
-                    "telescope",
-                    "nui",
-                    "builtin",
-                },
-                telescope = require("telescope.themes").get_dropdown({ initial_mode = "normal" }),
-            },
-        },
-        config = function(_, opts)
-            require("dressing").setup(utils.create_spec("dressing", opts))
-        end,
-    },
+    
     -- gitsigns
     {
         "lewis6991/gitsigns.nvim",

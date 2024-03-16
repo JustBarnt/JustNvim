@@ -1,8 +1,6 @@
 -- Load Core Settings
 require("core.keymaps").Default()
 require "core.options"
-require "core.autocmds"
-require "core.user-commands"
 
 -- Bootstrap Lazy
 -- Creating our lazy install dir, then creating the git clone call
@@ -55,3 +53,6 @@ if vim.fn.findfile(vim.fn.stdpath "config" .. "/lua/colorscheme.lua") ~= "" then
 else
     vim.notify_once("No Colorscheme file found, call `:Telescope themes` to set one", vim.log.levels.INFO)
 end
+
+require "user.commands"
+require "core.user-commands"

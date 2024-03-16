@@ -2,36 +2,28 @@
 
 ![Lua](https://img.shields.io/badge/Made%20with%20Lua-blueviolet.svg?style=for-the-badge&logo=lua)
 
-My personal Nvim Distro
+# JustNVIM
+This is my creation of an opinated Neovim Distribution.
+
+### Why?
+I created this because I found the other popular Neovim Distributions to similar to IDE's like
+VSCode 
+
+## Pre-requisites
+1. Neovim >= 0.9.5
+2. a `C` compliler for `nvim-treesitter`
+    a. `make` optional, but there are plugins that use `make` such as `telescope-fzf` for fuzzy finding
+3. [Ripgrep](https://github.com/BurntSushi/ripgrep) is required for Telescope grep searching which this Distribution uses as a core feature
+4. [fd](https://github.com/sharkdp/fd) is a cross-platform `find` like program that `Telescope` uses for its 'find_files' functionality to deliver insanely fast file searching
+5. Git >= 2.19.0
+6. Any terminal that supports true color and undercurl.
+    - Ex: kitty (Linux/Mac), wezterm (Linux/Mac/Windows)
+    - WindowsTerminal now supports undercurl as of `1.19`
+
+### Optionals
+1. [Nerd Fonts](https://nerdfonts.com) - All icons used are nerd font specific so without them icons will look similar to what you see in github when looking at icons defined in the repo
+2. [lazygit](https://github.com/jesseduffield/lazygit) - a TUI git application I integrate this inside of [toggleterm](https://github.com/akinsho/toggleterm.nvim) to provide a seemless what to use git without having to leave neovim
+3. [Node](https://nodejs.org) - Required to download several LSP's
+4. `sqlite3` - `telescope-frecency` and `legendary` both use this to recommend files, keys, commands you frequently use without this installed those features are disabled
 
 ## Installing it
-
-Via `git`:
-
-*RECOMENDATION*
-Install via Unix/WSL if would want to take advantage of Neorg.
-Getting the parsers to install on Windows is an absolute nightmare.
-
-```bash
-# Windows
-git clone https://github.com/justbarnt/justnvim ~/AppData/Local/nvim/
-
-# Unix
-git clone https://github.com/justbarnt/justnvim ~/.config/nvim/
-
-```
-### Neorg
-Neorg is a Neovim implementation of OrgMode from Emacs. Using Neorg on windows has a few caveats.
-From my experience it seems the treesitter parser for `.norg` files only successfully builds when I am in a `.norg` file
-and I run `:Neorg sync-parsers`. If I try to run that command outside of `.norg` file the `Norg` parser builds incorrectly.
-> This doesn't appear to be an issue on linux?
-
-### Recommened Windows Packages
-- [llvm, clangd] or gcc and mingw (All Compliler related for Tree-Sitter)
-- fd, ripgrep: fd is blazingly fast `find`, ripgrep is a blazingly fast regex search utility. Telescope utilizes both of these
-
-## Features and structure
-- Todo
-
-### Core structure
-- Todo

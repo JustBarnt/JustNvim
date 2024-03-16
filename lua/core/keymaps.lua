@@ -48,17 +48,11 @@ M.Default = function()
     map({ "n", "t" }, "<C-l>", [[<Cmd>wincmd l<CR>]], { desc = "Move Pane: Right" })
     map('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
-    map({ "n", "t" }, "<S-h>", "[[<Cmd>bp<CR>]]", { desc = "Jump to Previous Buffer" })
-    map({ "n", "t" }, "<S-l>", "[[<Cmd>bn<CR>]]", { desc = "Jump to Next Buffer" })
-
     -- Center when joining lines
     map("n", "J", "mzJ`z")
 
     -- Close Buffer & Close Buffer without saving
     map("n", "<leader>x", ":bd<CR>", { desc = "Close Current Buffer" })
-
-    -- Clear Highlight after searching
-    map("n", "<leader>sc", ':let @/ = ""<CR>', { desc = "Clear Search Highlights" })
 
     -- Show Lazy UI
     map("n", "<leader>L", ":Lazy<CR>", { desc = "Show Lazy " })
