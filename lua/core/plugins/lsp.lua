@@ -1,13 +1,13 @@
 local enabled = require('utils').enabled
-local user_config = require('user.config')
+local exists, user_config = pcall(require, 'user.config')
 
 return {
     {
         "neovim/nvim-lspconfig",
         event = "BufReadPre",
         dependencies = {
-            { "folke/neodev.nvim", enabled = enabled(user_config.plugins or {}, 'neodev') },
-            { "folke/neoconf.nvim", enabled = enabled(user_config.plugins or {}, 'neoconf') },
+            { "folke/neodev.nvim", enabled = enabled("plugins", "neodev") },
+            { "folke/neoconf.nvim", enabled = enabled("plugins", "neoconf") },
         },
         config = function()
             local neodev = vim.F.npcall(require, 'neodev')
@@ -44,9 +44,13 @@ return {
             capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
             require("mason").setup()
+            local user_servers = exists and type(user_config) == "table" and user_config.servers or {}
+            local user_formatters = exists and type(user_config) == "table" and user_config.formatters or {}
+
             vim.list_extend(ensure_installed, defaults.formatters.conform)
-            vim.list_extend(defaults.servers, user_config.servers or {})
-            vim.list_extend(defaults.formatters_by_ft, user_config.formatters_by_ft or {})
+            vim.list_extend(ensure_installed, user_formatters.ensure_installed)
+            vim.list_extend(defaults.servers, user_servers)
+            vim.list_extend(defaults.formatters_by_ft, user_formatters.formatters_by_ft)
 
             require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
             require("mason-lspconfig").setup({

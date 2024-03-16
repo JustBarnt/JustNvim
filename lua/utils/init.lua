@@ -13,7 +13,6 @@ function M.vim_options(options)
     end
 end
 
-
 --- Returns true if the buffer is large than X size
 ---@param bufnr integer The buffer to check
 ---@param size integer The max size allowed in bytes
@@ -33,8 +32,9 @@ end
 ---@param plugin_name string the name of the plugin to search for in `user.config`
 ---@param opts table the default opts used by the plugin
 function M.create_spec(plugin_name, opts)
-    local user_config = require('user.config') or {}
-    return vim.tbl_deep_extend("force", opts, user_config.opt_in.plugins[plugin_name] or {})
+    local exists, user_config = pcall(require, "user.config")
+    local plugins = exists and type(user_config) == "table" and user_config.plugins or {}
+    return vim.tbl_deep_extend("force", opts, plugins[plugin_name] or {})
 end
 
 --- Sets the Telescope find_files picker to RipGrep on windows if
@@ -84,13 +84,17 @@ function M.map(mode, lhs, rhs, opts)
     vim.keymap.set(mode, lhs, rhs, options)
 end
 
---- Returns true if the group either doesn't exist in the table of the value is true
---- Simulates opt-out functionality (TODO: Make Opt-IN instead)
----@param group table A key to a table of available modules to opt in or out of
+--- Controls the opt-in functionality of plugins, commands, and other items
+--- IF the group is not found, or the opt is not found it will not be enabled
+---@param group_name string A key to a table of available modules to opt in or out of
 ---@param opt string Augroup or plugin to disable
 ---@return boolean
-function M.enabled(group, opt)
-    return group == nil or group[opt] == nil or group[opt] == true
+function M.enabled(group_name, opt)
+    local exists, user_config = pcall(require, "user.config")
+    local opt_ins = exists and type(user_config) == "table" and user_config["opt_in"] or {}
+    local group = opt_ins[group_name] or {}
+
+    return not group == nil or not group[opt] == nil or group[opt] == false
 end
 
 --- Simpler autocmd function call
@@ -111,4 +115,3 @@ function M.autocmd(args)
 end
 
 return M
-

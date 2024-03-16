@@ -54,5 +54,7 @@ else
     vim.notify_once("No Colorscheme file found, call `:Telescope themes` to set one", vim.log.levels.INFO)
 end
 
-require "user.commands"
 require "core.user-commands"
+require "core.autocmds"
+require "user.commands"
+require "user.autocmds"

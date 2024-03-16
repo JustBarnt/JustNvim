@@ -27,3 +27,10 @@ VSCode
 4. `sqlite3` - `telescope-frecency` and `legendary` both use this to recommend files, keys, commands you frequently use without this installed those features are disabled
 
 ## Installing it
+
+
+### Configuration
+I designed the configuration to be a majority of opt-in options. Only core functionality, plugins, autocmds, and user commands I feel are important to user experience are opt-out
+
+1. You need to rename `default_config.lua` -> `config.lua`
+2. After that your config will overwrite anything of the items you see defined in the configuration

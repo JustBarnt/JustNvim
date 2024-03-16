@@ -4,6 +4,7 @@ return {
     -- ccc
     {
         "uga-rosa/ccc.nvim",
+        enabled = utils.enabled("plugins", "ccc"),
         cmd = { "CccPick", "CccConvert" },
         keys = {
             { "<leader>cp", "<CMD>CccPick<CR>", desc = "Open Color Picker" },

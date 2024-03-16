@@ -43,6 +43,7 @@ return {
                     ft = "bmessages",
                     size = { height = 0.4 },
                 },
+                { ft = "qf", title = "QuickFix"}
             },
             left = {
                 {
