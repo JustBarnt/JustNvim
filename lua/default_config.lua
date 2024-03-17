@@ -70,7 +70,6 @@ M.opt_in = {
        ["disable_auto_comment"] = true,
        ["highlight_yank"] = true,
        ["help_in_float"] = true,
-       ["trailing_whitespace_on_save"] = false,
        ["format_on_save"] = false,
    },
 }
