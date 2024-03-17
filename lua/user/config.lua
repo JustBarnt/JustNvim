@@ -24,7 +24,8 @@ M.plugins = {}
 ---@field autocmds {[string]: boolean}
 M.opt_in = {
     plugins = {
-        --- Disabled need opted into
+        -- Some plugins, commands, and autocommands are opt-out instead of opt-in
+        -- because I feel like they add value to the User Experience
         ["neodev"] = true,
         ["neoconf"] = true,
         ["mini.files"] = true,
@@ -37,13 +38,40 @@ M.opt_in = {
         ["mini.pairs"] = true,
         ["mini.splitjoin"] = true,
         ["mini.surround"] = true,
+        ["Comment"] = true,
+        ["bmessages"] = true,
+        ["ccc"] = true,
+        ["cd-project"] = true,
+        ["detour"] = true,
+        ["gitsigns"] = true,
+        ["global-note"] = true,
+        ["harpoon"] = true,
+        ["inc-rename"] = true,
+        ["lualine"] = true,
+        ["mini.jump"] = true,
+        ["neogen"] = true,
+        ["neoscroll"] = true,
+        ["nerdy"] = true,
+        ["nvim-cheatsh"] = true,
+        ["nvim-highlight-colors"] = true,
+        ["pomo"] = true,
+        ["todo-comments"] = true,
+        ["trouble"] = true,
+        ["ts-error-translator"] = true,
+        ["vim-apm"] = true,
+        ["vim-sleuth"] = true,
     },
     commands = {
         ["format"] = true,
+        ["show_message_float"] = true,
+        ["quit_all"] = true,
     },
     autocmds = {
-        ["trailing_whitespace_on_save"] = false,
-        ["format_on_save"] = false,
+        ["disable_auto_comment"] = true,
+        ["highlight_yank"] = true,
+        ["help_in_float"] = true,
+        ["trailing_whitespace_on_save"] = true,
+        ["format_on_save"] = true,
     },
 }
 

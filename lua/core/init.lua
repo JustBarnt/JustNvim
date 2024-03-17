@@ -56,5 +56,5 @@ end
 
 require "core.user-commands"
 require "core.autocmds"
-require "user.commands"
-require "user.autocmds"
+require "extras.commands"
+require "extras.autocmds"
