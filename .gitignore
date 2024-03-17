@@ -3,4 +3,3 @@ cd-project.nvim.json
 config.yaml
 .env
 lua/user/*
-!lua/user/default_config.lua
