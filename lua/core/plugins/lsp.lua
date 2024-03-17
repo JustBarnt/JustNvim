@@ -11,7 +11,6 @@ return {
         },
         config = function()
             local dap = require "dap"
-            local dapui = require "dapui"
 
             local defaults = require "core.plugins.lsp.default-config"
             local dap_servers = vim.tbl_keys(defaults.dap_servers)
