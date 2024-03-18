@@ -3,6 +3,7 @@ local M = {}
 M.formatters = {
     conform = {
         "stylua",
+        "prettierd",
         "prettier",
     },
 }
@@ -34,8 +35,9 @@ M.dap_servers = {
 
 M.formatters_by_ft = {
     lua = { "stylua" },
-    javascript = { "prettier" },
-    typescript = { "prettier" },
+    svelte = { "prettierd" },
+    javascript = { { "prettierd", "prettier" } },
+    typescript = { { "prettierd", "prettier" } },
 }
 
 return M
