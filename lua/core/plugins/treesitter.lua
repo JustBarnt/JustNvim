@@ -37,7 +37,7 @@ return {
                 "xml",
             },
             indent = {
-                enable = false,
+                enable = true,
             },
             highlight = {
                 enable = true,
