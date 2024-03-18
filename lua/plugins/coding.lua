@@ -100,10 +100,13 @@ return {
     -- nvim-cheatsh
     {
         {
-            "siawkz/nvim-cheatsh",
+            dir = "~/nvim-plugins/nvim-cheatsh",
+            name = "nvim-cheatsh",
             enabled = utils.enabled("plugins", "nvim-cheatsh"),
             cmd = { "Cheat", "CheatClose", "CheatList" },
-            opts = {},
+            opts = {
+                cheatsh_url = "cht.sh/",
+            },
             keys = {
                 { "<leader>cs", "<CMD>CheatList<CR>", desc = "Search Cheat Sheets" },
             },
