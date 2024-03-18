@@ -38,6 +38,7 @@ M.opt_in = {
        ["mini.pairs"] = true,
        ["mini.splitjoin"] = true,
        ["mini.surround"] = true,
+       ["faster"] = true,
        ["bmessages"] = false,
        ["ccc"] = false,
        ["cd-project"] = false,

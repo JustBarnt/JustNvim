@@ -17,6 +17,15 @@ return {
             map("n", "<leader>mb", "<CMD>ShowMessageFloat<CR>", { desc = "Show Scratch Message Buffer" })
         end,
     },
+    -- faster.nvim
+    {
+        "pteroctopus/faster.nvim",
+        enaled = utils.enabled("plugins", "faster"),
+        opts = {},
+        config = function(_, opts)
+            require("faster").setup(utils.create_spec("faster", opts))
+        end
+    },
     -- global note
     {
         "backdround/global-note.nvim",
