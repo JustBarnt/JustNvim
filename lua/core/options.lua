@@ -11,7 +11,7 @@ vim.opt.shortmess = {
 vim_opts({
     ---@class vim.opt
     opt = {
-        commentstring="",
+        commentstring = "",
         foldenable = false,
         numberwidth = 2,
         relativenumber = true,
@@ -43,7 +43,6 @@ vim_opts({
         wrap = false,
         tabstop = 4,
         shiftwidth = 4,
-        softtabstop = 4,
         expandtab = true,
         breakindent = true,
         belloff = "all",
