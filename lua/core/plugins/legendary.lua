@@ -8,7 +8,6 @@ return {
     dependencies = {
         {
             "kkharji/sqlite.lua",
-            enabled = vim.fn.executable "sqlite3",
         },
     }, -- Follow install instructions per readme: https://github.com/kkharji/sqlite.lua?tab=readme-ov-file#-installation
     cmds = { "Legendary", "LegendaryRepeat" },
@@ -23,10 +22,10 @@ return {
             },
         },
         sort = {
-            frecency = vim.fn.executable "sqlite3" and {
+            frecency = {
                 db_root = string.format("%s/legendary/", vim.fn.stdpath "data"),
                 max_timestamps = 10,
-            } or false,
+            }
         },
     },
 }
