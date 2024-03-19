@@ -53,7 +53,7 @@ vim_opts({
         joinspaces = false,
         list = true,
         listchars = { tab = "» ", trail = "·", nbsp = "␣" },
-        undodir = vim.fn.stdpath "state" .. "\\undotree\\",
+        -- undodir = vim.fn.stdpath "state" .. "\\undotree\\",
         undofile = true,
         signcolumn = "yes",
         colorcolumn = "",

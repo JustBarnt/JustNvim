@@ -6,24 +6,16 @@ return {
         event = "VeryLazy",
         branch = "0.1.x",
         dependencies = {
+            { "nvim-telescope/telescope-frecency.nvim", enabled = vim.fn.executable "sqlite3" },
+            { "piersolenski/telescope-import.nvim", enabled = vim.fn.executable "rg" },
             "nvim-tree/nvim-web-devicons",
             "nvim-lua/plenary.nvim",
-            {
-                "nvim-telescope/telescope-frecency.nvim",
-                enabled = vim.fn.executable "sqlite3",
-            },
             "andrew-george/telescope-themes",
-            {
-                "piersolenski/telescope-import.nvim",
-                enabled = vim.fn.executable "rg",
-            },
+            "debugloop/telescope-undo.nvim",
         },
         cmd = { "Telescope", "TodoTelescope", "TelescopeHighlights" },
         keys = function()
             local builtin = require "telescope.builtin"
-            local legendary = require "legendary"
-            local filters = require "legendary.filters"
-
             return {
                 { "<leader>sr", "<CMD>Telescope frecency workspace=CWD<CR>", desc = "Search Recent Telescopes" },
                 { "<leader>sh", builtin.help_tags, desc = "Search Help Tags" },
@@ -37,6 +29,7 @@ return {
                 { "<leader>sk", "<CMD>LegendaryKeymaps<CR>", desc = "Search Keymaps" },
                 { "<leader>sc", "<CMD>LegendaryCommands<CR>", desc = "Search Commands" },
                 { "<leader>si", "<CMD>Telescope import<CR>", desc = "Search Module Imports" },
+                {"<leader>su", "<CMD>Telescope undo<CR>", desc = "Search UndoTree" },
                 {
                     "<leader>sw",
                     function()
@@ -126,6 +119,9 @@ return {
                             },
                         },
                     },
+                    undo = {
+                        use_delta = false,
+                    },
                 },
                 pickers = {
                     buffers = {
@@ -149,6 +145,7 @@ return {
             telescope.setup(utils.create_spec("telescope", opts))
             telescope.load_extension "themes"
             telescope.load_extension "luasnip"
+            telescope.load_extension "undo"
 
             if vim.fn.executable "sqlite3" then
                 telescope.load_extension "frecency"
