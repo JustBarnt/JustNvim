@@ -100,8 +100,7 @@ return {
     -- nvim-cheatsh
     {
         {
-            dir = "~/nvim-plugins/nvim-cheatsh",
-            name = "nvim-cheatsh",
+            "justbarnt/nvim-cheatsh",
             enabled = utils.enabled("plugins", "nvim-cheatsh"),
             cmd = { "Cheat", "CheatClose", "CheatList" },
             opts = {
