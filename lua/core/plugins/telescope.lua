@@ -13,6 +13,10 @@ return {
                 enabled = vim.fn.executable "sqlite3",
             },
             "andrew-george/telescope-themes",
+            {
+                "piersolenski/telescope-import.nvim",
+                enabled = vim.fn.executable "rg",
+            },
         },
         cmd = { "Telescope", "TodoTelescope", "TelescopeHighlights" },
         keys = function()
@@ -21,7 +25,7 @@ return {
             local filters = require "legendary.filters"
 
             return {
-                { "<leader>sr", "<CMD>Telescope frecency workspace=CWD<CR>", desc = "Search Recent Telescopes"},
+                { "<leader>sr", "<CMD>Telescope frecency workspace=CWD<CR>", desc = "Search Recent Telescopes" },
                 { "<leader>sh", builtin.help_tags, desc = "Search Help Tags" },
                 { "<leader>sf", builtin.find_files, desc = "Search Files" },
                 { "<leader>ss", builtin.builtin, desc = "Search Telescope Builtins" },
@@ -30,8 +34,9 @@ return {
                 { "<leader>so", builtin.oldfiles, desc = "Search Oldfiles" },
                 { "<leader>st", "<CMD>Telescope themes<CR>", desc = "Search Themes" },
                 { "<leader><leader>", builtin.buffers, desc = "Search Buffers" },
-                { "<leader>sk", "<CMD>LegendaryKeymaps<CR>" , desc = "Search Keymaps", },
-                { "<leader>sc", "<CMD>LegendaryCommands<CR>" , desc = "Search Commands", },
+                { "<leader>sk", "<CMD>LegendaryKeymaps<CR>", desc = "Search Keymaps" },
+                { "<leader>sc", "<CMD>LegendaryCommands<CR>", desc = "Search Commands" },
+                { "<leader>si", "<CMD>Telescope import<CR>", desc = "Search Module Imports" },
                 {
                     "<leader>sw",
                     function()
@@ -98,12 +103,12 @@ return {
                             path = vim.fn.stdpath "config" .. "/lua/colorscheme.lua",
                         },
                     },
-                    cmdline = {
-                        picker = {
-                            initial_mode = "normal",
-                            layout_config = {
-                                width = 60,
-                                height = 10,
+                    import = {
+                        custom_languages = {
+                            {
+                                regex = [[\s{4,}?(?:import(?:[\"'\s]*([\w*{}\n, ]+)from\s*)?[\"'\s](.*?)[\"'\s].*)]],
+                                filetypes = { "svelte" },
+                                extensions = { "svelte" },
                             },
                         },
                     },
@@ -130,7 +135,13 @@ return {
             telescope.setup(utils.create_spec("telescope", opts))
             telescope.load_extension "themes"
             telescope.load_extension "luasnip"
-            telescope.load_extension "frecency"
+
+            if vim.fn.executable "sqlite3" then
+                telescope.load_extension "frecency"
+            end
+            if vim.fn.executable "rg" then
+                telescope.load_extension "import"
+            end
         end,
     },
 }
