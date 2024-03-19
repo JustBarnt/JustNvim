@@ -40,6 +40,20 @@ return {
                 {
                     "<leader>sw",
                     function()
+                        builtin.grep_string({ search = vim.fn.expand "<cword>" })
+                    end,
+                    desc = "Search for Word Under Cursor",
+                },
+                {
+                    "<leader>sW",
+                    function()
+                        builtin.grep_string({ search = vim.fn.expand "<cWORD>" })
+                    end,
+                    desc = "Search for Word Under Cursor",
+                },
+                {
+                    "<leader>sp",
+                    function()
                         vim.ui.input({ prompt = "Grep > " }, function(value)
                             builtin.grep_string({
                                 use_regex = true,
