@@ -1,11 +1,17 @@
 local M = {}
 
-M.formatters = {
-    conform = {
+M.conform = {
+    formatters = {
         "stylua",
         "prettierd",
         "prettier",
     },
+    formatters_by_ft = {
+        lua = { "stylua" },
+        svelte = { "prettierd" },
+        javascript = { { "prettierd", "prettier" } },
+        typescript = { { "prettierd", "prettier" } },
+    }
 }
 
 M.servers = {
@@ -23,21 +29,6 @@ M.servers = {
     emmet_language_server = require "core.plugins.lsp.servers.emmet_language_server",
     yamlls = require "core.plugins.lsp.servers.yamlls",
     tailwindcss = {},
-}
-
-M.dap_servers = {
-    coreclr = {},
-    delve = {},
-    js = {},
-    php = {},
-    cppdbg = {},
-}
-
-M.formatters_by_ft = {
-    lua = { "stylua" },
-    svelte = { "prettierd" },
-    javascript = { { "prettierd", "prettier" } },
-    typescript = { { "prettierd", "prettier" } },
 }
 
 return M

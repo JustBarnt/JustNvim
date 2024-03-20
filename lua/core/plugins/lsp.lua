@@ -10,17 +10,10 @@ return {
             { "folke/neoconf.nvim", enabled = enabled("plugins", "neoconf") },
         },
         config = function()
-            local dap = require "dap"
-
             local defaults = require "core.plugins.lsp.default-config"
-            local dap_servers = vim.tbl_keys(defaults.dap_servers)
-            local user_dap_servers = exists and type(user_config) == "table" and user_config.dap or {}
-            local user_servers = exists and type(user_config) == "table" and user_config.servers or {}
-            local user_formatters = exists and type(user_config) == "table" and user_config.formatters or {}
             local neodev = vim.F.npcall(require, "neodev")
             local neoconf = vim.F.npcall(require, "neoconf")
             local on_attach = require("core.plugins.lsp.on_attach").on_attach
-            local ensure_installed = vim.tbl_keys(defaults.servers)
 
             if neodev then
                 neodev.setup({
@@ -51,22 +44,18 @@ return {
 
             require("mason").setup()
 
-            vim.list_extend(ensure_installed, defaults.formatters.conform)
-            vim.list_extend(ensure_installed, user_formatters.ensure_installed)
-            vim.list_extend(defaults.servers, user_servers)
-            vim.list_extend(defaults.formatters_by_ft, user_formatters.formatters_by_ft)
-            vim.list_extend(dap_servers, user_dap_servers)
+            local defaults = require "core.plugins.lsp.default-config"
+            local user_servers = exists and type(user_config) == "table" and user_config.servers or {}
+            local user_formatters = exists and type(user_config) == "table" and user_config.formatters or {}
+            local ensure_installed = vim.tbl_keys(defaults.servers)
+
+            vim.list_extend(ensure_installed, defaults.conform.formatters)
+            -- TODO: NEED TO FIX USERS EXTENDING SERVER LIST AND FORMATTERS
+            -- vim.list_extend(ensure_installed, user_formatters.ensure_installed)
+            -- vim.list_extend(defaults.servers, user_servers)
+            -- vim.list_extend(defaults.formatters_by_ft, user_formatters.formatters_by_ft)
 
             require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
-            require("mason-nvim-dap").setup({
-                automatic_installation = true,
-                handlers = {
-                    function(config)
-                        require("mason-nvim-dap").default_setup(config)
-                    end,
-                },
-                ensure_installed = dap_servers,
-            })
 
             require("mason-lspconfig").setup({
                 handlers = {
@@ -89,28 +78,10 @@ return {
                 notify_on_error = false,
                 formatters_by_ft = defaults.formatters_by_ft,
             })
-
-            dap.adapters["pwa-node"] = {
-                type = "server",
-                host = "localhost",
-                port = "${port}",
-                executable = {
-                    command = "node",
-                    args = { "/path/to/js-debug/src/dapDebugServer.js", "${port}" },
-                },
-            }
         end,
     },
     {
         "williamboman/mason.nvim",
-        cmd = {
-            "Mason",
-            "MasonInstall",
-            "MasonUpdate",
-            "MasonLog",
-            "MasonUninstall",
-            "MasonUninstallAll",
-        },
         dependencies = {
             "williamboman/mason-lspconfig.nvim",
             "WhoIsSethDaniel/mason-tool-installer.nvim",
@@ -121,4 +92,17 @@ return {
         },
     },
     "stevearc/conform.nvim",
+    {
+        "luckasRanarison/tailwind-tools.nvim",
+        ---@type TailwindTools.Option
+        opts = {
+            document_color = {
+                enabled = true,
+                kind = vim.fn.has "nvim-0.10.0-dev" and "inline" or "background"
+            }
+        },
+        config = function(_, opts)
+            require("tailwind-tools").setup(opts)
+        end,
+    }
 }

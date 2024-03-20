@@ -23,7 +23,7 @@ return {
         enabled = utils.enabled("plugins", "deadcolumn"),
         opts = { },
         config = function(_, opts)
-            require('deadcolumn').setup(opts)
+            require('deadcolumn').setup(utils.create_spec("deadcolumn", opts))
         end
     },
     -- faster.nvim

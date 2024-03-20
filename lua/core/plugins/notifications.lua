@@ -8,6 +8,7 @@ return {
         opts = {
             background_colour = "NotifyBackground",
             fps = 60,
+            render = "wrapped-compact",
             stages = "fade",
             timeout = 2500,
         },

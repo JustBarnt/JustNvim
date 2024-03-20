@@ -6,6 +6,7 @@ function M.on_attach(event)
     require "core.plugins.lsp.handlers"
 
     map("n", "K", vim.lsp.buf.hover, { buffer = event.buf, desc = "Peek Definition" })
+    map("n", "<leader>e", vim.diagnostic.open_float, { buffer = event.buf, desc = "Open Diagnostic Message" })
     map("n", "gd", function()
         vim.lsp.buf.definition({ reuse_win = true, on_list = require("core.plugins.lsp.handlers").on_list })
         require("detour").Detour()
