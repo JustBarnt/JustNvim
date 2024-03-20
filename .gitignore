@@ -2,5 +2,5 @@ lazy-lock.json
 cd-project.nvim.json
 config.yaml
 .env
-lua/user
+lua/user/*
 after/

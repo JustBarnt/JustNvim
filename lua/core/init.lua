@@ -25,7 +25,7 @@ lazy.setup({
     spec = {
         { import = "core.plugins" },
         { import = "plugins" },
-        -- { import = "user.plugins" },
+        { import = vim.fs.dirname("user.plugins") and "user.plugins" or "" },
     },
     defaults = {
         dev = {
