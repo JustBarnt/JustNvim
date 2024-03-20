@@ -56,7 +56,7 @@ vim_opts({
         -- undodir = vim.fn.stdpath "state" .. "\\undotree\\",
         undofile = true,
         signcolumn = "yes",
-        colorcolumn = "",
+        colorcolumn = "100",
     },
 })
 

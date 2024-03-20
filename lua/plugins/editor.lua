@@ -17,6 +17,15 @@ return {
             map("n", "<leader>mb", "<CMD>ShowMessageFloat<CR>", { desc = "Show Scratch Message Buffer" })
         end,
     },
+    -- deadcolumn
+    {
+        "Bekaboo/deadcolumn.nvim",
+        enabled = utils.enabled("plugins", "deadcolumn"),
+        opts = { },
+        config = function(_, opts)
+            require('deadcolumn').setup(opts)
+        end
+    },
     -- faster.nvim
     {
         "pteroctopus/faster.nvim",
@@ -24,7 +33,7 @@ return {
         opts = {},
         config = function(_, opts)
             require("faster").setup(utils.create_spec("faster", opts))
-        end
+        end,
     },
     -- global note
     {

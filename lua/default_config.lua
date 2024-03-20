@@ -43,6 +43,7 @@ M.opt_in = {
        ["ccc"] = false,
        ["cd-project"] = false,
        ["Comment"] = false,
+       ["deadcolumn"] = false,
        ["detour"] = false,
        ["gitsigns"] = false,
        ["global-note"] = false,
