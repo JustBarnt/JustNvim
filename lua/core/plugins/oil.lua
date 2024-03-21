@@ -17,9 +17,6 @@ return {
                     local oil = require 'oil'
                     ---@type oil.Entry|nil
                     local entry = oil.get_cursor_entry()
-                    local path = oil.get_current_dir()
-                    ---@diagnostic disable-next-line: need-check-nil
-                    local file_path = path .. entry.name
 
                     if entry and entry.type == "directory" then
                         return oil.select()
@@ -33,15 +30,6 @@ return {
                                 vim.api.nvim_win_close(target_win, true)
                             end
                         end)
-                        -- local target_win = utils.get_window_location("right")
-                        -- local buf = vim.api.nvim_create_buf(true, false)
-                        -- local filetype = entry.name:match("%.([^%.]+)$")
-                        -- local file_contents = vim.fn.readfile(file_path)
-                        --
-                        -- vim.api.nvim_buf_set_lines(buf, 0, -1, false, file_contents)
-                        -- vim.api.nvim_set_option_value("filetype", filetype, { buf = buf })
-                        -- vim.api.nvim_buf_set_name(buf, vim.fs.normalize(path .. entry.name))
-                        -- vim.api.nvim_win_set_buf(target_win, buf)
                     end
                 end,
                 ["<C-v>"] = "actions.select_vsplit",
