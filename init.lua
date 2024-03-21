@@ -2,6 +2,8 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+vim.g.loaded_netrwPlugin = 1
+
 if vim.fn.has "win32" then
     local ori_fnameescape = vim.fn.fnameescape
     ---@diagnostic disable-next-line: duplicate-set-field

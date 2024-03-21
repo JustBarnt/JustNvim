@@ -1,3 +1,5 @@
+local utils = require 'utils'
+
 return {
     "folke/edgy.nvim",
     event = "VeryLazy",
@@ -6,6 +8,9 @@ return {
         vim.opt.splitkeep = "screen"
     end,
     opts = {
+        animate = {
+            enabled = false
+        },
         bottom = {
             -- toggleterm / lazyterm at the bottom with a height of 40% of the screen
             {
@@ -26,16 +31,22 @@ return {
             },
             { ft = "qf", title = "QuickFix" },
         },
+        exit_when_last = true,
+        close_when_all_hidden = true, -- Default value, but setting to false could
+                                      -- could be useful if I keep getting errors
         left = {
             {
+                ft = "oil",
                 title = "File Explorer",
-                ft = "neo-tree",
                 pinned = true,
+                size = { height = 0.3 },
                 filter = function(buf)
-                    return vim.b[buf].neo_tree_source == "filesystem"
+                    return vim.bo[buf].buftype == "acwrite"
                 end,
-                size = { height = 0.4 },
             },
         },
     },
+    config = function(_, opts)
+        require("edgy").setup(utils.create_spec("edgy", opts))
+    end,
 }

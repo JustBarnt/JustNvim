@@ -37,6 +37,33 @@ function M.create_spec(plugin_name, opts)
     return vim.tbl_deep_extend("force", opts, plugins[plugin_name] or {})
 end
 
+
+--- Returns a window id if there is a window in the direction given
+---@param direction string The direction to check for a window
+function M.get_window_location(direction)
+    local current_win = api.nvim_get_current_win()
+
+    local win_info = api.nvim_list_wins()
+    for _, win_id in ipairs(win_info) do
+        ---@class vim.api.keyset.win_config
+        ---@diagnostic disable-next-line: assign-type-mismatch
+        local win_config = api.nvim_win_get_config(win_id)
+        local win_split = win_config.split
+
+        if direction == 'up' and win_split == 'above' then
+            return win_id
+        elseif direction == 'down' and win_split == 'below' then
+            return win_id
+        elseif direction == 'left' and win_split == 'left' then
+            return win_id
+        elseif direction == 'right' and win_split == 'right' then
+            return win_id
+        end
+    end
+
+    return nil
+end
+
 --- Sets the Telescope find_files picker to RipGrep on windows if
 --- the user is on windows
 function M.select_find_command()
