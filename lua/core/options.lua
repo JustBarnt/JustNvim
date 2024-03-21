@@ -12,7 +12,6 @@ vim_opts({
     ---@class vim.opt
     opt = {
         commentstring = "",
-        foldenable = false,
         numberwidth = 2,
         relativenumber = true,
         number = true,

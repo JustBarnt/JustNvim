@@ -59,6 +59,19 @@ M.Default = function()
 
     -- Clear HLSearch
     map("n", "<Esc>", "<CMD>nohlsearch<CR>", { desc = "Clear Search Highlights" })
+
+
+    -- Toggle folded line
+    vim.keymap.set("n", "<leader>zz", function()
+        local cur_line = vim.fn.line(".")
+
+        if vim.fn.foldclosed(cur_line) == -1 then
+            vim.cmd[[foldclose]]
+        else
+            vim.cmd[[foldopen]]
+        end
+
+    end, { desc = "Toggle Fold"})
 end
 
 return M
