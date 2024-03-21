@@ -24,35 +24,6 @@ return {
             require("mini.cursorword").setup(utils.create_spec("mini.cursorword", opts))
         end,
     },
-    -- mini.files (A vim-vinegar file explorer that lets you edit the filesystem like a buffer)
-    {
-        "echasnovski/mini.files",
-        enabled = utils.enabled("plugins", "mini.files"),
-        version = "*",
-        opts = {
-            content = {
-                filter = mini_utils.filter_hide,
-                sort = nil,
-            },
-            mappings = {
-                close = "q",
-                go_in = "l",
-                go_in_plus = "<CR>",
-                go_out = "h",
-                go_out_plus = "-",
-                reset = "<BS>",
-                reveal_cwd = "_",
-                show_help = "g?",
-                synchronize = "=",
-                trim_left = "<",
-                trim_right = ">",
-            },
-        },
-        config = function(_, opts)
-            require("mini.files").setup(utils.create_spec("mini.files", opts))
-            utils.map("n", "<leader>do", MiniFiles.open, { desc = "Open File Explorer" })
-        end,
-    },
     -- mini.indent
     {
         "echasnovski/mini.indentscope",
