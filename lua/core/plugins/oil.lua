@@ -28,8 +28,8 @@ return {
                             local target_win = utils.get_window_location("right")
                             local target_win_buf = vim.api.nvim_win_get_buf(target_win)
                             local buf_content = vim.api.nvim_buf_get_lines(target_win_buf, 0, -1, false )
-                            
-                            if buf_content[1] == "" then
+
+                            if #buf_content == 1 and buf_content[1] == "" then
                                 vim.api.nvim_win_close(target_win, true)
                             end
                         end)
