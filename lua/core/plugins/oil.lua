@@ -2,7 +2,6 @@ local utils = require 'utils'
 return {
     {
         "stevearc/oil.nvim",
-        cmd = "Oil",
         -- Optional dependencies
         dependencies = { "nvim-tree/nvim-web-devicons" },
         opts = {
@@ -68,7 +67,7 @@ return {
             local oil = require "oil"
             local map = require("utils").map
             map("n", "<leader>de", oil.toggle_float, { desc = "Open Directory in Float" })
-            map("n", "<leader>do", "<CMD> vsplit | Oil<CR>", { desc = "Open Directory"})
+            map("n", "<leader>do", "<CMD> topleft 30vsplit | Oil<CR>", { desc = "Open Directory"})
 
             oil.setup(utils.create_spec('oil', opts))
         end,

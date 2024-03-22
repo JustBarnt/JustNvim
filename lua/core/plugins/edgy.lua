@@ -1,4 +1,4 @@
-local utils = require 'utils'
+local utils = require "utils"
 
 return {
     "folke/edgy.nvim",
@@ -9,8 +9,9 @@ return {
     end,
     opts = {
         animate = {
-            enabled = false
+            enabled = false,
         },
+        exit_when_last = true,
         bottom = {
             -- toggleterm / lazyterm at the bottom with a height of 40% of the screen
             {
@@ -31,19 +32,15 @@ return {
             },
             { ft = "qf", title = "QuickFix" },
         },
-        exit_when_last = true,
-        close_when_all_hidden = true, -- Default value, but setting to false could
-                                      -- could be useful if I keep getting errors
         left = {
-            {
-                ft = "oil",
-                title = "File Explorer",
-                pinned = true,
-                size = { height = 0.3 },
-                filter = function(buf)
-                    return vim.bo[buf].buftype == "acwrite"
-                end,
-            },
+            -- {
+            --     ft = "oil",
+            --     title = "File Explorer",
+            --     size = { height = 0.3 },
+            --     filter = function(buf)
+            --         return vim.bo[buf].buftype == "acwrite"
+            --     end,
+            -- },
         },
     },
     config = function(_, opts)

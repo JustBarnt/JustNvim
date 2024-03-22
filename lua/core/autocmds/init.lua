@@ -1,11 +1,11 @@
 local utils = require "utils"
 local minifiles = require "utils.minifiles"
 
-vim.api.nvim_create_autocmd("User", {
-    pattern = "VeryLazy",
-    desc = "Open Oil after VeryLazy so it opens in Edgy defined window",
-    command = [[vsplit | Oil]]
-})
+-- vim.api.nvim_create_autocmd("User", {
+--     pattern = "VeryLazy",
+--     desc = "Open Oil after VeryLazy so it opens in Edgy defined window",
+--     command = [[topleft 30vsplit | Oil]]
+-- })
 
 vim.api.nvim_create_autocmd("BufReadPre", {
     desc = "Disables Several plugins when loading large files",
