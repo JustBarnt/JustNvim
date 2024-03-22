@@ -19,39 +19,45 @@ end
 -- Appending lazy to our runtime, for lazy magic
 vim.opt.rtp:prepend(lazypath)
 local lazy = require "lazy"
-local plugins_spec = { {import = "core.plugins"}, {import = "plugins"} }
-
-if vim.fn.isdirectory("lua/user/plugins") == 1 then
-    table.insert(plugins_spec, {import = "user.plugins"})
-end
-
--- Setting up lazy specs
-lazy.setup({
-    spec = plugins_spec,
-    defaults = {
-        dev = {
-            path = "~/nvim-plugins/",
-            fallback = true,
-        },
-        change_detection = {
-            notify = false,
-        },
-        performance = {
-            rtp = {
-                disable_plugins = {
-                    "gzip",
-                    "matchit",
-                    "matchparen",
-                    "netrwPlugin",
-                    "tarPlugin",
-                    "tohtml",
-                    "tutor",
-                    "zipPlugin",
-                },
+---@class LazySpec
+local plugins_spec = { { import = "core.plugins" }, { import = "plugins" } }
+---@class LazyConfig
+local opts = {
+    dev = {
+        path = "~/nvim-plugins/",
+        fallback = true,
+    },
+    install = {
+        colorscheme = { "tokyonight" },
+    },
+    ui = {
+        border = "rounded",
+    },
+    change_detection = {
+        notify = false,
+    },
+    performance = {
+        rtp = {
+            disable_plugins = {
+                "gzip",
+                "matchit",
+                "matchparen",
+                "netrwPlugin",
+                "tarPlugin",
+                "tohtml",
+                "tutor",
+                "zipPlugin",
             },
         },
     },
-})
+}
+
+if vim.fn.isdirectory "lua/user/plugins" == 1 then
+    table.insert(plugins_spec, { import = "user.plugins" })
+end
+
+-- Setting up lazy specs
+lazy.setup(plugins_spec, opts)
 
 if vim.fn.findfile(vim.fn.stdpath "config" .. "/lua/colorscheme.lua") ~= "" then
     require "colorscheme"

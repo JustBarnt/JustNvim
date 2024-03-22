@@ -2,6 +2,7 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- DISABLE NETRW
 vim.g.loaded_netrwPlugin = 1
 
 if vim.fn.has "win32" then

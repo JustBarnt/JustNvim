@@ -4,7 +4,7 @@ local exists, user_config = pcall(require, "user.config")
 return {
     {
         "neovim/nvim-lspconfig",
-        event = "BufReadPre",
+        -- event = "BufReadPre",
         dependencies = {
             { "folke/neodev.nvim", enabled = enabled("plugins", "neodev") },
             { "folke/neoconf.nvim", enabled = enabled("plugins", "neoconf") },
@@ -76,7 +76,7 @@ return {
 
             require("conform").setup({
                 notify_on_error = false,
-                formatters_by_ft = defaults.formatters_by_ft,
+                formatters_by_ft = defaults.conform.formatters_by_ft,
             })
         end,
     },
