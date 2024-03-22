@@ -21,7 +21,7 @@ vim.opt.rtp:prepend(lazypath)
 local lazy = require "lazy"
 local plugins_spec = { {import = "core.plugins"}, {import = "plugins"} }
 
-if vim.fn.isdirectory("lua/user/plugins") then
+if vim.fn.isdirectory("lua/user/plugins") == 1 then
     table.insert(plugins_spec, {import = "user.plugins"})
 end
 
