@@ -19,14 +19,15 @@ end
 -- Appending lazy to our runtime, for lazy magic
 vim.opt.rtp:prepend(lazypath)
 local lazy = require "lazy"
+local plugins_spec = { {import = "core.plugins"}, {import = "plugins"} }
+
+if vim.fn.isdirectory("lua/user/plugins") then
+    table.insert(plugins_spec, {import = "user.plugins"})
+end
 
 -- Setting up lazy specs
 lazy.setup({
-    spec = {
-        { import = "core.plugins" },
-        { import = "plugins" },
-        { import = vim.fs.dirname("user.plugins") and "user.plugins" or "" },
-    },
+    spec = plugins_spec,
     defaults = {
         dev = {
             path = "~/nvim-plugins/",
