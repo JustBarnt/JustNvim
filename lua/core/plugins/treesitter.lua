@@ -1,4 +1,4 @@
-local utils = require 'core.utils'
+local utils = require "core.utils"
 
 return {
     {
@@ -9,6 +9,7 @@ return {
             "nvim-treesitter/nvim-treesitter-refactor",
             "nvim-treesitter/nvim-treesitter-textobjects",
             "JoosepAlviste/nvim-ts-context-commentstring",
+            "windwp/nvim-ts-autotag",
         },
         opts = {
             ensure_installed = {
@@ -35,6 +36,13 @@ return {
                 "vim",
                 "vimdoc",
                 "xml",
+            },
+            autotag = {
+                enable = true,
+                enable_rename = true,
+                enable_close = true,
+                enable_close_on_slash = true,
+                filetypes = { "html", "xml", "svelte", "php", "ctp" },
             },
             indent = {
                 enable = true,
@@ -119,6 +127,7 @@ return {
         },
         config = function(_, opts)
             local ts = require "nvim-treesitter.configs"
+            vim.treesitter.stop(vim.api.nvim_get_current_buf())
             ts.setup(utils.create_spec("nvim-treesitter", opts))
         end,
     },
