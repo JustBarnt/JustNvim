@@ -8,12 +8,13 @@ return {
         vim.opt.splitkeep = "screen"
     end,
     opts = {
+        ---@type(Edgy.View.Opts|string)[]
+        top = {},
+        ---@type(Edgy.View.Opts|string)[]
         bottom = {
-            -- toggleterm / lazyterm at the bottom with a height of 40% of the screen
             {
                 ft = "toggleterm",
                 size = { height = 0.4 },
-                -- exclude floating windows
                 filter = function(_, win)
                     return vim.api.nvim_win_get_config(win).relative == ""
                 end,
@@ -28,13 +29,16 @@ return {
             },
             { ft = "qf", title = "QuickFix" },
         },
+        ---@type(Edgy.View.Opts|string)[]
         left = {
             {
                 title = "Neo-Tree",
                 ft = "neo-tree",
                 size = { height = 0.5 },
-            }
-        }
+            },
+        },
+        ---@type(Edgy.View.Opts|string)[]
+        right = {},
     },
     config = function(_, opts)
         require("edgy").setup(utils.create_spec("edgy", opts))

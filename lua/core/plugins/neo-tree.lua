@@ -9,6 +9,12 @@ return {
         "MunifTanjim/nui.nvim",
     },
     opts = {
+        sources = {
+            "filesystem",
+            "buffers",
+            "git_status",
+            "document_symbols"
+        },
         open_files_do_not_replace_types = { "terminal", "trouble", "qf", "edgy" },
         use_default_mappings = false,
         use_popups_for_input = false,
@@ -81,14 +87,19 @@ return {
             window = {
                 mappings = {
                     ["-"] = { "navigate_up", desc = "Directory Up" },
-                    ["_"] = { "set_root", desc = "Set Current Directory"  },
-                    ["."] = { "toggle_hidden", desc = "Show Hidden Files"  },
-                    ["o"] = { "show_help", desc = "Show Help" , nowait = false, config = { title = "Order by", prefix_key = "o" } },
-                    ["oc"] = { "order_by_created", desc = "Order By Created" , nowait = false },
-                    ["om"] = { "order_by_modified", desc = "Order By Modified" , nowait = false },
-                    ["on"] = { "order_by_name", desc = "Order By Name" , nowait = false },
-                    ["os"] = { "order_by_size", desc = "Order By Size" , nowait = false },
-                    ["ot"] = { "order_by_type", desc = "Order By Type" , nowait = false },
+                    ["_"] = { "set_root", desc = "Set Current Directory" },
+                    ["."] = { "toggle_hidden", desc = "Show Hidden Files" },
+                    ["o"] = {
+                        "show_help",
+                        desc = "Show Help",
+                        nowait = false,
+                        config = { title = "Order by", prefix_key = "o" },
+                    },
+                    ["oc"] = { "order_by_created", desc = "Order By Created", nowait = false },
+                    ["om"] = { "order_by_modified", desc = "Order By Modified", nowait = false },
+                    ["on"] = { "order_by_name", desc = "Order By Name", nowait = false },
+                    ["os"] = { "order_by_size", desc = "Order By Size", nowait = false },
+                    ["ot"] = { "order_by_type", desc = "Order By Type", nowait = false },
                 },
                 fuzzy_finder_mappings = { -- define keymaps for filter popup window in fuzzy_finder_mode
                     ["<down>"] = "move_cursor_down",
@@ -107,5 +118,6 @@ return {
         vim.fn.sign_define("DiagnosticSignHint", { text = "󰌵", texthl = "DiagnosticSignHint" })
 
         require("neo-tree").setup(utils.create_spec("neo-tree", opts))
+        utils.map("n", "\\", "<CMD>Neotree toggle<CR>", { desc = "Toggle Neotree" })
     end,
 }
