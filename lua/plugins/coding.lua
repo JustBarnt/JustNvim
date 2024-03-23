@@ -1,26 +1,6 @@
 local utils = require "utils"
 
 return {
-    -- ccc
-    {
-        "uga-rosa/ccc.nvim",
-        enabled = utils.enabled("plugins", "ccc"),
-        cmd = { "CccPick", "CccConvert" },
-        keys = {
-            { "<leader>cp", "<CMD>CccPick<CR>", desc = "Open Color Picker" },
-            { "<leader>cc", "<CMD>CccConvert<CR>", desc = "Convert Color Under Cursor" },
-        },
-        opts = {
-            highlighter = {
-                auto_enable = false,
-                lsp = false,
-            },
-        },
-        config = function(_, opts)
-            require("ccc").setup(utils.create_spec("ccc", opts))
-        end,
-    },
-    -- comment
     {
         "numToStr/Comment.nvim",
         enabled = utils.enabled("plugins", "Comment"),
@@ -37,7 +17,6 @@ return {
             require("Comment").setup(utils.create_spec("Comment", opts))
         end,
     },
-    -- inc-rename
     {
         "smjonas/inc-rename.nvim",
         enabled = utils.enabled("plugins", "inc-rename"),
@@ -50,7 +29,6 @@ return {
             require("inc_rename").setup(utils.create_spec("inc-rename", opts))
         end,
     },
-    -- neogen
     {
         "danymat/neogen",
         enabled = utils.enabled("plugins", "neogen"),
@@ -97,7 +75,6 @@ return {
             require("neogen").setup(utils.create_spec("neogen", opts))
         end,
     },
-    -- nvim-cheatsh
     {
         {
             "justbarnt/nvim-cheatsh",
@@ -114,7 +91,6 @@ return {
             end,
         },
     },
-    -- trouble
     {
         "folke/trouble.nvim",
         enabled = utils.enabled("plugins", "trouble"),
@@ -162,17 +138,11 @@ return {
             require("trouble").setup(utils.create_spec("trouble", opts))
         end,
     },
-    -- ts-error-translator
     {
         "dmmulroy/ts-error-translator.nvim",
         enabled = utils.enabled("plugins", "ts-error-translator"),
         ft = { "ts", "svelte" },
         event = "BufEnter",
         opts = {},
-    },
-    -- vim-sleuth
-    {
-        "tpope/vim-sleuth",
-        -- enabled = utils.enabled("plugins", "vim-sleuth"),
     },
 }

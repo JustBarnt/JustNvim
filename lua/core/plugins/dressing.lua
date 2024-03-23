@@ -1,5 +1,4 @@
 local utils = require "utils"
-test = "test"
 
 return {
     "stevearc/dressing.nvim",

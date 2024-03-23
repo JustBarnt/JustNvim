@@ -1,77 +1,28 @@
 local utils = require "utils"
 
 return {
-    -- Themes
-    -- Rose-pine
     {
-        "rose-pine/neovim",
-        name = "rose-pine",
-        priority = 10000,
-        lazy = false,
+        "uga-rosa/ccc.nvim",
+        enabled = utils.enabled("plugins", "ccc"),
+        cmd = { "CccPick", "CccConvert" },
+        keys = {
+            { "<leader>cp", "<CMD>CccPick<CR>", desc = "Open Color Picker" },
+            { "<leader>cc", "<CMD>CccConvert<CR>", desc = "Convert Color Under Cursor" },
+        },
         opts = {
-            bold_vert_split = true,
-            extend_background_behind_borders = false,
-            disable_background = true,
-            enable = {
-                terminal = true,
-                legacy_highlights = true,
-                migrations = true,
+            highlighter = {
+                auto_enable = false,
+                lsp = false,
             },
-            highlight_groups = require("core.ui.rose-pine").borderless_telescope(),
         },
         config = function(_, opts)
-            require("rose-pine").setup(utils.create_spec("rose_pine", opts))
+            require("ccc").setup(utils.create_spec("ccc", opts))
         end,
     },
-    -- Tokyonight
-    {
-        "folke/tokyonight.nvim",
-        priority = 10000,
-        lazy = false,
-        opts = {
-            styles = {
-                functions = { bold = true },
-                keywords = { bold = true },
-                floats = "transparent",
-            },
-            on_highlights = function(highlights, colors)
-                local tokyonight_overrides = require "core.ui.tokyonight"
-                tokyonight_overrides.borderless_float(highlights, colors)
-                tokyonight_overrides.borderless_telescope(highlights, colors)
-            end,
-        },
-        config = function(_, opts)
-            require("tokyonight").setup(utils.create_spec("tokyonight", opts))
-        end,
-    },
-    -- Kanagawa
-    {
-        "rebelot/kanagawa.nvim",
-        priority = 10000,
-        lazy = false,
-        opts = {
-            overrides = function(colors)
-                local overrides = require "core.ui.kanagawa"
-                return vim.tbl_deep_extend(
-                    "force",
-                    {},
-                    overrides.borderless_float(colors),
-                    overrides.borderless_telescope(colors)
-                )
-            end,
-        },
-        config = function(_, opts)
-            require("kanagawa").setup(utils.create_spec("kanagawa", opts))
-        end,
-    },
-    --UI Altering
-    -- Detour
     {
         "carbon-steel/detour.nvim",
-        enabled = utils.enabled("plugins", 'detour')
+        enabled = utils.enabled("plugins", "detour"),
     },
-    
-    -- gitsigns
     {
         "lewis6991/gitsigns.nvim",
         enabled = utils.enabled("plugins", "gitsigns"),
@@ -90,7 +41,6 @@ return {
             require("gitsigns").setup(utils.create_spec("gitsigns", opts))
         end,
     },
-    -- lualine
     {
         "nvim-lualine/lualine.nvim",
         enabled = utils.enabled("plugins", "lualine"),
@@ -99,10 +49,9 @@ return {
             local components = require "components.lualine_components"
             return {
                 options = {
-                    --- @usage 'rose-pine' | 'rose-pine-alt'
+
                     theme = vim.g.colors_name,
                     globalstatus = true,
-                    -- section_separators = { left = '', right = ''},
                 },
                 sections = {
                     lualine_a = {
@@ -185,7 +134,6 @@ return {
             require("lualine").setup(utils.create_spec("lualine", opts))
         end,
     },
-    -- nerdy
     {
         "2kabhishek/nerdy.nvim",
         enabled = utils.enabled("plugins", "nerdy"),
@@ -195,7 +143,6 @@ return {
         },
         cmd = "Nerdy",
     },
-    -- nvim-web-devicons
     {
         "nvim-tree/nvim-web-devicons",
     },

@@ -1,7 +1,6 @@
 local utils = require "utils"
 
 return {
-    -- bmessages
     {
         "justbarnt/bmessages.nvim",
         enabled = utils.enabled("plugins", "bmessages"),
@@ -17,7 +16,6 @@ return {
             map("n", "<leader>mb", "<CMD>ShowMessageFloat<CR>", { desc = "Show Scratch Message Buffer" })
         end,
     },
-    -- deadcolumn
     {
         "Bekaboo/deadcolumn.nvim",
         enabled = utils.enabled("plugins", "deadcolumn"),
@@ -26,7 +24,6 @@ return {
             require('deadcolumn').setup(utils.create_spec("deadcolumn", opts))
         end
     },
-    -- faster.nvim
     {
         "pteroctopus/faster.nvim",
         enaled = utils.enabled("plugins", "faster"),
@@ -35,7 +32,6 @@ return {
             require("faster").setup(utils.create_spec("faster", opts))
         end,
     },
-    -- global note
     {
         "backdround/global-note.nvim",
         enabled = utils.enabled("plugins", "global-note"),
@@ -95,7 +91,6 @@ return {
             require("global-note").setup(utils.create_spec("global-note", opts))
         end,
     },
-    -- harpoon
     {
         "theprimeagen/harpoon",
         enabled = utils.enabled("plugins", "harpoon"),
@@ -134,7 +129,6 @@ return {
             end
         end,
     },
-    -- neoscroll
     {
         "karb94/neoscroll.nvim",
         enabled = utils.enabled("plugins", "neoscroll"),
@@ -143,7 +137,6 @@ return {
             require("neoscroll").setup(utils.create_spec("neoscroll", opts))
         end,
     },
-    -- nvim-highlight-colors
     {
         "brenoprata10/nvim-highlight-colors",
         enabled = utils.enabled("plugins", "nvim-highlight-colors"),
@@ -157,7 +150,6 @@ return {
             require("nvim-highlight-colors").setup(utils.create_spec("nvim-highlight-colors", opts))
         end,
     },
-    -- pomodoro
     {
         "epwalsh/pomo.nvim",
         enabled = utils.enabled("plugins", "pomo"),
@@ -179,7 +171,6 @@ return {
             require("pomo").setup(utils.create_spec("pomo", opts))
         end,
     },
-    -- projects
     {
         "LintaoAmons/cd-project.nvim",
         enabled = utils.enabled("plugins", "cd-project"),
@@ -209,7 +200,6 @@ return {
             require("cd-project").setup(utils.create_spec("cd-project", opts))
         end,
     },
-    -- todo-comments
     {
         "folke/todo-comments.nvim",
         enabled = utils.enabled("plugins", "todo-comments"),
@@ -225,7 +215,6 @@ return {
             require("todo-comments").setup(utils.create_spec("todo-comments", opts))
         end,
     },
-    -- vim
     {
         "theprimeagen/vim-apm",
         enabled = utils.enabled("plugins", "vim-apm"),
