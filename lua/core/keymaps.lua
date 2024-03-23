@@ -46,7 +46,7 @@ M.Default = function()
     map({ "n", "t" }, "<C-j>", [[<Cmd>wincmd j<CR>]], { desc = "Move Pane: Down" })
     map({ "n", "t" }, "<C-k>", [[<Cmd>wincmd k<CR>]], { desc = "Move Pane: Up" })
     map({ "n", "t" }, "<C-l>", [[<Cmd>wincmd l<CR>]], { desc = "Move Pane: Right" })
-    map('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+    map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
     -- Center when joining lines
     map("n", "J", "mzJ`z")
@@ -60,18 +60,19 @@ M.Default = function()
     -- Clear HLSearch
     map("n", "<Esc>", "<CMD>nohlsearch<CR>", { desc = "Clear Search Highlights" })
 
-
     -- Toggle folded line
-    vim.keymap.set("n", "<leader>zz", function()
-        local cur_line = vim.fn.line(".")
+    if vim.opt.foldenable:get() then
+        vim.print("FOLD KEYMAPS")
+        vim.keymap.set("n", "<leader>zz", function()
+            local cur_line = vim.fn.line "."
 
-        if vim.fn.foldclosed(cur_line) == -1 then
-            vim.cmd[[foldclose]]
-        else
-            vim.cmd[[foldopen]]
-        end
-
-    end, { desc = "Toggle Fold"})
+            if vim.fn.foldclosed(cur_line) == -1 then
+                vim.cmd [[foldclose]]
+            else
+                vim.cmd [[foldopen]]
+            end
+        end, { desc = "Toggle Fold" })
+    end
 end
 
 return M

@@ -1,6 +1,6 @@
 -- Load Core Settings
-require("core.keymaps").Default()
 require "core.options"
+require("core.keymaps").Default()
 
 -- Bootstrap Lazy
 -- Creating our lazy install dir, then creating the git clone call
