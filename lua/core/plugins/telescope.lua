@@ -1,4 +1,4 @@
-local utils = require "utils"
+local utils = require "core.utils"
 
 return {
     {
@@ -81,7 +81,7 @@ return {
         opts = function()
             local actions = require "telescope.actions"
             local status, trouble = pcall(require, "trouble.providers.telescope")
-            local extras = require "utils.telescope"
+            local extras = require "core.utils.telescope"
 
             return {
                 defaults = {
@@ -135,7 +135,7 @@ return {
                             },
                         },
                     },
-                    find_files = require("utils").select_find_command(), --vim.fn.executable == 1 and { "fd", "--strip-cwd-prefix", "--type", "f" } or nil,
+                    find_files = require("core.utils").select_find_command(), --vim.fn.executable == 1 and { "fd", "--strip-cwd-prefix", "--type", "f" } or nil,
                 },
             }
         end,

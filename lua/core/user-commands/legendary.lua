@@ -2,7 +2,7 @@ local legendary = require "legendary"
 local filters = require "legendary.filters"
 
 local command = vim.api.nvim_create_user_command
-local map = require("utils").map
+local map = require("core.utils").map
 
 command("LegendaryKeymaps", function()
     legendary.find({

@@ -1,4 +1,4 @@
-local enabled = require("utils").enabled
+local enabled = require("core.utils").enabled
 
 if enabled("commands", "quit_all") then
     vim.api.nvim_create_user_command("Q", function()

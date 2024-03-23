@@ -1,4 +1,4 @@
-local vim_opts = require("utils").vim_options
+local vim_opts = require("core.utils").vim_options
 
 vim.opt.shortmess = {
     a = true,

@@ -1,4 +1,4 @@
-local utils = require "utils"
+local utils = require "core.utils"
 local augroup = vim.api.nvim_create_augroup
 local cmd = vim.api.nvim_create_autocmd
 local clear = { clear = true }

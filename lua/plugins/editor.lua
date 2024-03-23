@@ -1,4 +1,4 @@
-local utils = require "utils"
+local utils = require "core.utils"
 
 return {
     {
@@ -10,10 +10,8 @@ return {
         },
         opts = {},
         config = function(_, opts)
-            local map = require("utils").map
-
             require("bmessages").setup(utils.create_spec("bmessages", opts))
-            map("n", "<leader>mb", "<CMD>ShowMessageFloat<CR>", { desc = "Show Scratch Message Buffer" })
+            utils.map("n", "<leader>mb", "<CMD>ShowMessageFloat<CR>", { desc = "Show Scratch Message Buffer" })
         end,
     },
     {
@@ -105,25 +103,24 @@ return {
             },
         },
         config = function(_, opts)
-            local map = require("utils").map
             local harpoon = require "harpoon"
 
             harpoon:setup(utils.create_spec("harpoon", opts))
 
             -- Keys
-            map("n", "<leader>ha", function()
+            utils.map("n", "<leader>ha", function()
                 harpoon:list():append()
                 local file_name = vim.api.nvim_buf_get_name(0)
                 vim.notify("[Harpoon] Added " .. file_name .. " to list", vim.log.levels.INFO)
             end, { desc = "Harpoon Add" })
 
             -- Toggle a UI popup of or current harpooned items.
-            map("n", "<leader>hl", function()
+            utils.map("n", "<leader>hl", function()
                 harpoon.ui:toggle_quick_menu(harpoon:list())
             end, { desc = "Harpoon Toggle" })
 
             for i = 1, 5 do
-                map("n", string.format("<leader>%s", i), function()
+                utils.map("n", string.format("<leader>%s", i), function()
                     harpoon:list():select(i)
                 end, { desc = "Harpoon jump to file: [" .. i .. "]" })
             end

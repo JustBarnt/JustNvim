@@ -1,4 +1,4 @@
-local enabled = require("utils").enabled
+local enabled = require("core.utils").enabled
 local exists, user_config = pcall(require, "user.config")
 
 return {

@@ -1,6 +1,6 @@
 local diff_Node
 local diff_Name
-local utils = require "utils"
+local utils = require "core.utils"
 
 return {
     "justbarnt/neo-tree.nvim",

@@ -1,4 +1,4 @@
-local utils = require "utils"
+local utils = require "core.utils"
 
 return {
     {
@@ -46,7 +46,7 @@ return {
         enabled = utils.enabled("plugins", "lualine"),
         event = "ColorScheme",
         opts = function()
-            local components = require "components.lualine_components"
+            local components = require "plugins.components.lualine_components"
             return {
                 options = {
 

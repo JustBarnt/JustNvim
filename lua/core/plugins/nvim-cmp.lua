@@ -1,4 +1,4 @@
-local utils = require 'utils'
+local utils = require 'core.utils'
 return {
     {
         "hrsh7th/nvim-cmp",
