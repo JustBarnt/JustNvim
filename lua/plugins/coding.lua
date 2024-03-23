@@ -173,6 +173,6 @@ return {
     -- vim-sleuth
     {
         "tpope/vim-sleuth",
-        enabled = utils.enabled("plugins", "vim-sleuth"),
+        -- enabled = utils.enabled("plugins", "vim-sleuth"),
     },
 }

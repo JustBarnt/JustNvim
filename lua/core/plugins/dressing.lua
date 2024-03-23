@@ -6,6 +6,8 @@ return {
     opts = {
         input = {
             title_pos = "center",
+            relative = "editor",
+
         },
         select = {
             get_config = function(opts)

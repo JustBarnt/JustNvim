@@ -8,10 +8,6 @@ return {
         vim.opt.splitkeep = "screen"
     end,
     opts = {
-        animate = {
-            enabled = false,
-        },
-        exit_when_last = true,
         bottom = {
             -- toggleterm / lazyterm at the bottom with a height of 40% of the screen
             {
@@ -33,15 +29,12 @@ return {
             { ft = "qf", title = "QuickFix" },
         },
         left = {
-            -- {
-            --     ft = "oil",
-            --     title = "File Explorer",
-            --     size = { height = 0.3 },
-            --     filter = function(buf)
-            --         return vim.bo[buf].buftype == "acwrite"
-            --     end,
-            -- },
-        },
+            {
+                title = "Neo-Tree",
+                ft = "neo-tree",
+                size = { height = 0.5 },
+            }
+        }
     },
     config = function(_, opts)
         require("edgy").setup(utils.create_spec("edgy", opts))
