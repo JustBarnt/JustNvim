@@ -13,6 +13,12 @@ function M.vim_options(options)
     end
 end
 
+--- Returns the RGB Color string from a highlight group
+---@param color string
+function M.get_rbg_from_hl(color)
+    return string.format("#%06x", color)
+end
+
 --- Returns true if the buffer is large than X size
 ---@param bufnr integer The buffer to check
 ---@param size integer The max size allowed in bytes

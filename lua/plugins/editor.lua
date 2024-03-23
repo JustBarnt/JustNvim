@@ -17,10 +17,10 @@ return {
     {
         "Bekaboo/deadcolumn.nvim",
         enabled = utils.enabled("plugins", "deadcolumn"),
-        opts = { },
+        opts = {},
         config = function(_, opts)
-            require('deadcolumn').setup(utils.create_spec("deadcolumn", opts))
-        end
+            require("deadcolumn").setup(utils.create_spec("deadcolumn", opts))
+        end,
     },
     {
         "pteroctopus/faster.nvim",
@@ -28,6 +28,29 @@ return {
         opts = {},
         config = function(_, opts)
             require("faster").setup(utils.create_spec("faster", opts))
+        end,
+    },
+    {
+        "folke/flash.nvim",
+        event = "VeryLazy",
+        enabled = utils.enabled("plugins", "flash"),
+        -- stylua: ignore
+        keys = {
+            { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+            { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+            { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+            { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+            { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+        },
+        ---@type Flash.Config
+        opts = {
+            search = {
+                incremental = true,
+                mode = "search",
+            }
+        },
+        config = function(_, opts)
+            require('flash').setup(utils.create_spec("flash", opts))
         end,
     },
     {
@@ -231,6 +254,27 @@ return {
         },
         config = function(_, opts)
             require("vim-apm"):setup(utils.create_spec("vim-apm", opts))
+        end,
+    },
+    {
+        "anuvyklack/windows.nvim",
+        event = "VeryLazy",
+        dependencies = {
+            "anuvyklack/middleclass",
+            "anuvyklack/animation.nvim",
+        },
+        opts = {
+            animation = {
+                fps = 100,
+                duration = 250,
+                easing = "in_out_quad",
+            },
+        },
+        config = function(_, opts)
+            vim.o.winwidth = 10
+            vim.o.winminwidth = 5
+            vim.o.equalalways = false
+            require("windows").setup(utils.create_spec("windows", opts))
         end,
     },
 }

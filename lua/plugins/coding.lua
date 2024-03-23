@@ -1,6 +1,7 @@
 local utils = require "core.utils"
 
 return {
+    
     {
         "numToStr/Comment.nvim",
         enabled = utils.enabled("plugins", "Comment"),
@@ -90,6 +91,21 @@ return {
                 require("nvim-cheatsh").setup(utils.create_spec("nvim-cheatsh", opts))
             end,
         },
+    },
+    {
+        "ray-x/lsp_signature.nvim",
+        event = "VeryLazy",
+        enabled = utils.enabled("plugins", "lsp_signature"),
+        opts = {
+            bind = true,
+            handler_opts = {
+                border = "rounded",
+            },
+            hint_enable = false,
+        },
+        config = function(_, opts)
+            require("lsp_signature").setup(utils.create_spec("lsp_signature", opts))
+        end,
     },
     {
         "folke/trouble.nvim",

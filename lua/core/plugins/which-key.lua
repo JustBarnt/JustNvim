@@ -2,6 +2,9 @@ return {
     "folke/which-key.nvim",
     event = "VeryLazy",
     opts = {
+        triggers_blacklist = {
+            n = { "d", "y" },
+        },
         plugins = {
             marks = false,
             registers = false,
@@ -12,7 +15,7 @@ return {
         },
         window = {
             border = "rounded",
-            margin = { 1, 1, 1, 1},
+            margin = { 1, 1, 1, 1 },
             padding = { 1, 1, 1, 1 },
         },
     }, -- Empty opts means default options

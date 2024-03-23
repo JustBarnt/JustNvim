@@ -32,16 +32,6 @@ return {
         end,
     },
     {
-        "echasnovski/mini.jump",
-        enabled = utils.enabled("plugins", "mini.jump"),
-        event = "BufEnter",
-        version = "*",
-        opts = {},
-        config = function(_, opts)
-            require("mini.jump").setup(utils.create_spec("mini.jump", opts))
-        end,
-    },
-    {
         "echasnovski/mini.misc",
         enabled = utils.enabled("plugins", "mini.misc"),
         event = "BufEnter",
