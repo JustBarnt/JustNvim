@@ -15,6 +15,8 @@
     - [x] C/C#
     - [x] JS/TS
 - [x] Install cheat.nvim (cheat.sh) plugin
+- [ ] Setup proper Treesitter Text Object and keymaps
+- [ ] Setup proper Trouble keymaps for going to next diagnostic
 - [ ] Setup help-doc
 
 

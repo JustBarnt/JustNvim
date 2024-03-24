@@ -1,6 +1,20 @@
 local utils = require "core.utils"
 
+
 return {
+    {
+        "utilyre/barbecue.nvim",
+        event = "BufEnter",
+        name = "barbecue",
+        enabled = utils.enabled("plugins", 'barbecue'),
+        dependencies = {
+            "SmiteshP/nvim-navic"
+        },
+        opts = {},
+        config = function(_, opts)
+            require("barbecue").setup(utils.create_spec("barbecue", opts))
+        end,
+    },
     {
         "uga-rosa/ccc.nvim",
         enabled = utils.enabled("plugins", "ccc"),
@@ -183,4 +197,4 @@ return {
     {
         "nvim-tree/nvim-web-devicons",
     },
-}
+} ---@type LazySpec[]

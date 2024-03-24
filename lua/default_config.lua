@@ -39,6 +39,7 @@ M.opt_in = {
         ["mini.splitjoin"] = true,
         ["mini.surround"] = true,
         ["faster"] = true,
+        ["barbecue"] = true,
         ["flash"] = false,
         ["bmessages"] = false,
         ["ccc"] = false,
