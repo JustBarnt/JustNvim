@@ -2,5 +2,6 @@ lazy-lock.json
 cd-project.nvim.json
 config.yaml
 .env
+!after/ftplugin/qf.lua
 lua/user/*
 after/
