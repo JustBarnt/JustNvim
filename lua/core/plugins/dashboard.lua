@@ -22,7 +22,7 @@ return {
                 config = {
                     header = vim.split(logo, "\n"),
                     center = {
-                        { action = "bd | :lua MiniFiles.open()", desc = " Close Dashboard", icon = " ", key = "x" },
+                        { action = "bd | Neotree toggle", desc = " Close Dashboard", icon = " ", key = "x" },
                         { action = "Telescope find_files", desc = " Find file w/Current Directory", icon = " ", key = "f" },
                         { action = "ene | startinsert", desc = " New file", icon = " ", key = "n" },
                         { action = "Telescope oldfiles only_cwd=true", desc = " Recent files", icon = " ", key = "r" },
