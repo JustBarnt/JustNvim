@@ -1,18 +1,5 @@
 local utils = require "core.utils"
 
-vim.api.nvim_create_autocmd("BufWinEnter", {
-    desc = "Swaps default quickfix window for troubles",
-    callback = function()
-        local ok, trouble = pcall(require, 'trouble')
-        if ok then
-            vim.defer_fn(function()
-                vim.cmd('cclose')
-                trouble.open('quickfix')
-            end, 0)
-        end
-    end,
-})
-
 vim.api.nvim_create_autocmd("BufReadPre", {
     desc = "Disables Several plugins when loading large files",
     callback = function(event)
