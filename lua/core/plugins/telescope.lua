@@ -49,7 +49,6 @@ return {
                     function()
                         vim.ui.input({ prompt = "Grep > " }, function(value)
                             builtin.grep_string({
-                                use_regex = true,
                                 search = value,
                             })
                         end)
