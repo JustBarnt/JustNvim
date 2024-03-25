@@ -61,4 +61,9 @@ return {
             require("kanagawa").setup(utils.create_spec("kanagawa", opts))
         end,
     },
+    {
+        "b0o/lavi.nvim",
+        lazy = false,
+        priority = 10000,
+    }
 }
