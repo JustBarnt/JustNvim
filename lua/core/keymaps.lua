@@ -62,7 +62,6 @@ M.Default = function()
 
     -- Toggle folded line
     if vim.opt.foldenable:get() then
-        vim.print("FOLD KEYMAPS")
         vim.keymap.set("n", "<leader>zz", function()
             local cur_line = vim.fn.line "."
 

@@ -27,7 +27,7 @@ return {
         },
         window = {
             mappings = {
-                ["df"] = { "diff_files", desc = "Diff Two Files" },
+                ["df"] = { "diff_files", desc = "Diff Two Files", nowait = true },
                 ["q"] = { "close_window", desc = "Close Neo-Tree" },
                 ["R"] = { "refresh", desc = "Refresh Neo-Tree Window" },
                 ["?"] = { "show_help", desc = "Show Help" },
