@@ -127,7 +127,6 @@ return {
         },
         config = function(_, opts)
             local ts = require "nvim-treesitter.configs"
-            vim.treesitter.stop(vim.api.nvim_get_current_buf())
             ts.setup(utils.create_spec("nvim-treesitter", opts))
         end,
     },

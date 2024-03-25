@@ -11,7 +11,7 @@ return {
             "SmiteshP/nvim-navic"
         },
         opts = {
-            show_dir_name = false,
+            show_dirname = false,
             attach_navic = false, -- prevent barbecue from attaching navic as it can only attach
                                   -- to one lsp at a time so js projects that have ts, htlm, css, etc.
                                   -- will give a warning
