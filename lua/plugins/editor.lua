@@ -266,8 +266,7 @@ return {
         },
         opts = {
             autowidth = {
-                enable = true,
-                winwidth = 0.65,
+                winwidth = 0.75,
             },
             animation = {
                 fps = 60,
@@ -276,8 +275,6 @@ return {
             },
         },
         config = function(_, opts)
-            -- vim.o.winwidth = 10
-            -- vim.o.winminwidth = 5
             vim.o.equalalways = false
             require("windows").setup(utils.create_spec("windows", opts))
         end,
