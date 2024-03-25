@@ -17,7 +17,7 @@
 ---@class JustNvimFeatures
 ---@field plugins {[string]: boolean} Table containing a key value pair of plugins to disiable
 ---@field commands {[string]: boolean} Table containing a key value pair of commands to disable
----@field autocmds {[string]: boolean]} Table containing a key value pair of autocmds to disable
+---@field autocmds {[string]: boolean} Table containing a key value pair of autocmds to disable
 
 ---@class JustNvimOptions
 ---@field opt vim.opt Vim options
