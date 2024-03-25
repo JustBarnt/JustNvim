@@ -39,6 +39,10 @@ function M.on_attach(event)
         })
     end
 
+    if client and client.server_capabilities["documentSymbolProvider"] then
+        require("nvim-navic").attach(client, event.buf)
+    end
+
     -- Disables "No information available" warning from lsp when using 'Hover'
     if client and client.server_capabilities.hoverProvider then
         vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {

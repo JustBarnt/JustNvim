@@ -10,7 +10,11 @@ return {
         dependencies = {
             "SmiteshP/nvim-navic"
         },
-        opts = {},
+        opts = {
+            attach_navic = false, -- prevent barbecue from attaching navic as it can only attach
+                                  -- to one lsp at a time so js projects that have ts, htlm, css, etc.
+                                  -- will give a warning
+        },
         config = function(_, opts)
             require("barbecue").setup(utils.create_spec("barbecue", opts))
         end,
