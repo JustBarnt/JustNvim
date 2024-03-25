@@ -4,10 +4,12 @@
 ---@field treesitter? TSConfig Configuration table for Treesitter. Accepts options from `nvim-treesitter.configs`
 ---@field telescope? JustNvimTelescope Configuration table for `nvim-telescope`
 ---@field plugins? table<string, table> Configuration table for a plugin.
+---@field features? JustNvimFeatures Configuration tables of plugins, commands, and autocmds to disable or enable
+---@field options? JustNvimOptions Configuration table of Vim options to override
 
 ---@class JustNvimFormatters
 ---@field ensure_installed string[]
----@field formatters_by_ft table<string, conform.FiletypeFormatter>
+---@field formatters_by_ft table<string, string[]|string|string[][]>
 
 ---@class JustNvimTelescope
 ---@field defaults table Default configuration for telescope `:h telescope.defaults`
@@ -21,5 +23,3 @@
 
 ---@class JustNvimOptions
 ---@field opt vim.opt Vim options
----@field bo vim.bo Vim buffer options
----@field wo vim.wo Vim window options
