@@ -9,8 +9,8 @@ return {
     end,
     opts = {
         ---@type(Edgy.View.Opts|string)[]
-        top = {},
-        ---@type(Edgy.View.Opts|string)[]
+        top = {}, 
+        ---@type(edgy.view.opts|string)[]
         bottom = {
             {
                 ft = "toggleterm",

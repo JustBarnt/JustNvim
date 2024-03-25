@@ -265,15 +265,19 @@ return {
             "anuvyklack/animation.nvim",
         },
         opts = {
+            autowidth = {
+                enable = true,
+                winwidth = 0.65,
+            },
             animation = {
-                fps = 100,
+                fps = 60,
                 duration = 250,
                 easing = "in_out_quad",
             },
         },
         config = function(_, opts)
-            vim.o.winwidth = 10
-            vim.o.winminwidth = 5
+            -- vim.o.winwidth = 10
+            -- vim.o.winminwidth = 5
             vim.o.equalalways = false
             require("windows").setup(utils.create_spec("windows", opts))
         end,
