@@ -43,7 +43,6 @@ function M.create_spec(plugin_name, opts)
     return vim.tbl_deep_extend("force", opts, plugins[plugin_name] or {})
 end
 
-
 --- Returns a window id if there is a window in the direction given
 ---@param direction string The direction to check for a window
 function M.get_window_location(direction)
@@ -56,13 +55,13 @@ function M.get_window_location(direction)
         local win_config = api.nvim_win_get_config(win_id)
         local win_split = win_config.split
 
-        if direction == 'up' and win_split == 'above' then
+        if direction == "up" and win_split == "above" then
             return win_id
-        elseif direction == 'down' and win_split == 'below' then
+        elseif direction == "down" and win_split == "below" then
             return win_id
-        elseif direction == 'left' and win_split == 'left' then
+        elseif direction == "left" and win_split == "left" then
             return win_id
-        elseif direction == 'right' and win_split == 'right' then
+        elseif direction == "right" and win_split == "right" then
             return win_id
         end
     end
@@ -118,24 +117,17 @@ function M.map(mode, lhs, rhs, opts)
 end
 
 --- Controls the opt-in functionality of plugins, commands, and other items
---- IF the group is not found, or the opt is not found it will not be enabled
+--- IF the group is not found, or the opt is not found or the opt is found but not false
+--- it will be enabled
 ---@param group_name string A key to a table of available modules to opt in or out of
 ---@param opt string Augroup or plugin to disable
 ---@return boolean
 function M.enabled(group_name, opt)
     local exists, user_config = pcall(require, "user.config")
-    local opt_ins = exists and type(user_config) == "table" and user_config["opt_in"] or {}
-    local group = opt_ins[group_name] or {}
+    local opt_outs = exists and type(user_config) == "table" and user_config["opt_out"] or {}
+    local group = opt_outs[group_name] or {}
 
-    return not group == nil or not group[opt] == nil or not group[opt] == false
-end
-
-function M.disabled(group_name, opt)
-    local exists, user_config = pcall(require, "user.config")
-    local opt_ins = exists and type(user_config) == "table" and user_config["opt_in"] or {}
-    local group = opt_ins[group_name] or {}
-
-    return not group == nil or not group[opt] == nil or not group[opt] == false
+    return group == nil or group[opt] == nil or group[opt] == true
 end
 
 --- Simpler autocmd function call
