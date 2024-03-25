@@ -50,6 +50,9 @@ return {
             local ensure_installed = vim.tbl_keys(defaults.servers)
 
             vim.list_extend(ensure_installed, defaults.conform.formatters)
+            -- Adding manually because we use typescript-tools.nvim and I do not
+            -- want tsserver getting configed because it exists in my lspservers table
+            vim.list_extend(ensure_installed, 'tsserver')
             -- TODO: NEED TO FIX USERS EXTENDING SERVER LIST AND FORMATTERS
             -- vim.list_extend(ensure_installed, user_formatters.ensure_installed)
             -- vim.list_extend(defaults.servers, user_servers)
