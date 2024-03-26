@@ -49,11 +49,7 @@ return {
             },
             highlight = {
                 enable = true,
-
-                -- TODO: Create Queries for Svelte the highlight/indent queries for special blocks don't seem to match
-                -- NOTE: May need to enable for Svelte to get it to respect Svelte Special blocks
-                -- NOTE: https://github.com/Himujjal/tree-sitter-svelte?tab=readme-ov-file#for-neovim-peeps
-                additional_vim_regex_highlighting = false,
+                additional_vim_regex_highlighting = true,
             },
 
             refactor = {
