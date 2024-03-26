@@ -85,7 +85,7 @@ return {
                             ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
                         },
                         n = {
-                            ["<CR>"] = actions.smart_send_to_qflist + actions.open_qflist,
+                            ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
                         },
                     },
                 },
