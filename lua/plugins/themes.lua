@@ -1,4 +1,4 @@
-local utils = require 'core.utils'
+local utils = require "core.utils"
 
 return {
     {
@@ -35,6 +35,8 @@ return {
                 local tokyonight_overrides = require "core.ui.tokyonight"
                 tokyonight_overrides.borderless_float(highlights, colors)
                 tokyonight_overrides.borderless_telescope(highlights, colors)
+                tokyonight_overrides.seamless_neotree(highlights, colors)
+                tokyonight_overrides.seamless_edgy_windows(highlights, colors)
             end,
         },
         config = function(_, opts)
@@ -65,5 +67,5 @@ return {
         "b0o/lavi.nvim",
         lazy = false,
         priority = 10000,
-    }
+    },
 }

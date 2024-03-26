@@ -1,11 +1,10 @@
 -- Load Core Settings
 require "core.options"
-require("core.keymaps").Default()
 
 -- Bootstrap Lazy
 -- Creating our lazy install dir, then creating the git clone call
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
     vim.fn.system({
         "git",
         "clone",
@@ -15,9 +14,8 @@ if not vim.loop.fs_stat(lazypath) then
         lazypath,
     })
 end
-
--- Appending lazy to our runtime, for lazy magic
 vim.opt.rtp:prepend(lazypath)
+
 local lazy = require "lazy"
 ---@class LazySpec
 local plugins_spec = { { import = "core.plugins" }, { import = "plugins" } }
@@ -29,9 +27,6 @@ local opts = {
     },
     install = {
         colorscheme = { "tokyonight" },
-    },
-    ui = {
-        border = "rounded",
     },
     change_detection = {
         notify = false,
@@ -65,6 +60,7 @@ else
     vim.notify_once("No Colorscheme file found, call `:Telescope themes` to set one", vim.log.levels.INFO)
 end
 
+require("core.keymaps").Default()
 require "core.user-commands"
 require "core.autocmds"
 require "extras.commands"
