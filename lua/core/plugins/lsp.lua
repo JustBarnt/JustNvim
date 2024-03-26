@@ -16,16 +16,17 @@ return {
             local on_attach = require("core.plugins.lsp.on_attach").on_attach
 
             if neodev then
-                neodev.setup({
-                    library = {
-                        enabled = true,
-                        runtime = vim.env.RUNTIME,
-                        plugins = vim.fn.stdpath "data" .. "/lazy/",
-                        types = true,
-                    },
-                    lspconfig = true,
-                    pathStrict = true,
-                })
+                neodev.setup()
+                -- neodev.setup({
+                --     library = {
+                --         enabled = true,
+                --         runtime = vim.env.RUNTIME,
+                --         plugins = vim.fn.stdpath "data" .. "/lazy/",
+                --         types = true,
+                --     },
+                --     lspconfig = true,
+                --     pathStrict = true,
+                -- })
             end
 
             if neoconf then
@@ -51,7 +52,7 @@ return {
             vim.list_extend(ensure_installed, defaults.conform.formatters)
             -- Adding manually because we use typescript-tools.nvim and I do not
             -- want tsserver getting configed because it exists in my lspservers table
-            table.insert(ensure_installed, 'tsserver')
+            table.insert(ensure_installed, "tsserver")
             -- TODO: NEED TO FIX USERS EXTENDING SERVER LIST AND FORMATTERS
             -- vim.list_extend(ensure_installed, user_formatters.ensure_installed)
             -- vim.list_extend(defaults.servers, user_servers)
@@ -100,11 +101,11 @@ return {
         opts = {
             document_color = {
                 enabled = true,
-                kind = vim.fn.has "nvim-0.10.0-dev" and "inline" or "background"
-            }
+                kind = vim.fn.has "nvim-0.10.0-dev" and "inline" or "background",
+            },
         },
         config = function(_, opts)
             require("tailwind-tools").setup(opts)
         end,
-    }
+    },
 }
