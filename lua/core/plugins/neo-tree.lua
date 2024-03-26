@@ -13,7 +13,7 @@ return {
             "filesystem",
             "buffers",
             "git_status",
-            "document_symbols"
+            "document_symbols",
         },
         open_files_do_not_replace_types = { "terminal", "trouble", "qf", "edgy" },
         use_default_mappings = false,
@@ -100,6 +100,7 @@ return {
                     ["on"] = { "order_by_name", desc = "Order By Name", nowait = false },
                     ["os"] = { "order_by_size", desc = "Order By Size", nowait = false },
                     ["ot"] = { "order_by_type", desc = "Order By Type", nowait = false },
+                    ["/"] = { "fuzzy_finder", desc = "Search for File" },
                 },
                 fuzzy_finder_mappings = { -- define keymaps for filter popup window in fuzzy_finder_mode
                     ["<down>"] = "move_cursor_down",
