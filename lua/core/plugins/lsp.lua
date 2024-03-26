@@ -17,16 +17,6 @@ return {
 
             if neodev then
                 neodev.setup()
-                -- neodev.setup({
-                --     library = {
-                --         enabled = true,
-                --         runtime = vim.env.RUNTIME,
-                --         plugins = vim.fn.stdpath "data" .. "/lazy/",
-                --         types = true,
-                --     },
-                --     lspconfig = true,
-                --     pathStrict = true,
-                -- })
             end
 
             if neoconf then

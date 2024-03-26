@@ -6,7 +6,6 @@ return {
         input = {
             title_pos = "center",
             relative = "editor",
-
         },
         select = {
             get_config = function(opts)
@@ -24,7 +23,7 @@ return {
                     }
                 else
                     return {
-                        telescope = themes.get_dropdown({})
+                        telescope = themes.get_dropdown({}),
                     }
                 end
             end,

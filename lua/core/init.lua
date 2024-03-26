@@ -18,7 +18,9 @@ vim.opt.rtp:prepend(lazypath)
 
 local lazy = require "lazy"
 ---@class LazySpec
-local plugins_spec = { { import = "core.plugins" }, { import = "plugins" } }
+local plugins_spec = { { import = "core.plugins" }, { import = "plugins" }, {
+    "justinsgithub/wezterm-types",
+} }
 ---@class LazyConfig
 local opts = {
     dev = {

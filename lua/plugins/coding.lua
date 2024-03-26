@@ -1,7 +1,7 @@
 local utils = require "core.utils"
 
 return {
-    
+
     {
         "numToStr/Comment.nvim",
         enabled = utils.enabled("plugins", "Comment"),
