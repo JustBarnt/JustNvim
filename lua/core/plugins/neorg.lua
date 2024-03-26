@@ -2,7 +2,7 @@ return {
     "nvim-neorg/neorg",
     lazy = false,
     build = ":Neorg sync-parsers",
-    -- tag = "v7.0.0",
+    tag = "v7.0.0",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {
         load = {
@@ -24,7 +24,7 @@ return {
             ["core.completion"] = {
                 config = {
                     engine = "nvim-cmp",
-                    name = "[Neorg]"
+                    name = "[Neorg]",
                 },
             },
             ["core.integrations.treesitter"] = {
