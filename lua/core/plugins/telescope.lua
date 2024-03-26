@@ -29,7 +29,7 @@ return {
                 { "<leader>sk", "<CMD>LegendaryKeymaps<CR>", desc = "Search Keymaps" },
                 { "<leader>sc", "<CMD>LegendaryCommands<CR>", desc = "Search Commands" },
                 { "<leader>si", "<CMD>Telescope import<CR>", desc = "Search Module Imports" },
-                {"<leader>su", "<CMD>Telescope undo<CR>", desc = "Search UndoTree" },
+                { "<leader>su", "<CMD>Telescope undo<CR>", desc = "Search UndoTree" },
                 {
                     "<leader>sw",
                     function()
@@ -47,11 +47,9 @@ return {
                 {
                     "<leader>sp",
                     function()
-                        vim.ui.input({ prompt = "Grep > " }, function(value)
-                            builtin.grep_string({
-                                search = value,
-                            })
-                        end)
+                        builtin.grep_string({
+                            search = vim.fn.input({ prompt = "Grep > " }),
+                        })
                     end,
                     desc = "Search by Grep",
                 },
@@ -79,19 +77,15 @@ return {
         end,
         opts = function()
             local actions = require "telescope.actions"
-            local status, trouble = pcall(require, "trouble.providers.telescope")
-            local extras = require "core.utils.telescope"
 
             return {
                 defaults = {
                     mappings = {
                         i = {
-                            ["<c-t>"] = status and trouble.open_with_trouble or actions.nop,
-                            ["<C-q>"] = extras.fzf_multi_select,
+                            ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
                         },
                         n = {
-                            ["<C-q>"] = extras.fzf_multi_select,
-                            ["<c-t>"] = status and trouble.open_with_trouble or actions.nop,
+                            ["<CR>"] = actions.smart_send_to_qflist + actions.open_qflist,
                         },
                     },
                 },
