@@ -1,20 +1,19 @@
 local utils = require "core.utils"
 
-
 return {
     {
         "utilyre/barbecue.nvim",
         event = "BufEnter",
         name = "barbecue",
-        enabled = utils.enabled("plugins", 'barbecue'),
+        enabled = utils.enabled("plugins", "barbecue"),
         dependencies = {
-            "SmiteshP/nvim-navic"
+            "SmiteshP/nvim-navic",
         },
         opts = {
             show_dirname = false,
             attach_navic = false, -- prevent barbecue from attaching navic as it can only attach
-                                  -- to one lsp at a time so js projects that have ts, htlm, css, etc.
-                                  -- will give a warning
+            -- to one lsp at a time so js projects that have ts, htlm, css, etc.
+            -- will give a warning
         },
         config = function(_, opts)
             require("barbecue").setup(utils.create_spec("barbecue", opts))
@@ -108,7 +107,6 @@ return {
                             always_visible = true,
                         },
                         {
-                            components.harpoon_component,
                             separator = { right = "" },
                         },
                     },

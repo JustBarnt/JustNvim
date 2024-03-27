@@ -49,7 +49,6 @@ if utils.enabled("autocmds", "help_in_float") then
 end
 
 if utils.enabled("autocmds", "trailing_whitespace_on_save") then
-    print "We triming whitespace boisss"
     cmd({ "BufWritePre" }, {
         desc = "Clears trailing whitespace on save",
         group = augroup("trailing_whitespace", clear),
