@@ -16,7 +16,7 @@ return {
             local on_attach = require("core.plugins.lsp.on_attach").on_attach
 
             if neodev then
-                neodev.setup()
+                neodev.setup({})
             end
 
             if neoconf then
