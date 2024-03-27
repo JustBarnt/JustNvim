@@ -58,8 +58,7 @@ return {
             local components = require "plugins.components.lualine_components"
             return {
                 options = {
-
-                    theme = vim.g.colors_name,
+                    theme = "auto",
                     globalstatus = true,
                 },
                 sections = {

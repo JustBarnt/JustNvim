@@ -52,16 +52,3 @@ vim.api.nvim_create_autocmd("BufReadPre", {
         end
     end,
 })
-
-vim.api.nvim_create_autocmd("ColorScheme", {
-    desc = "Updates Lualine theme if applicable",
-    ---@diagnostic disable-next-line: unused-local
-    callback = function(event)
-        local color = vim.g.colors_name
-        local success, _ = pcall(require, "lualine.themes." .. color)
-        local lualine_config = require("lualine.config").get_config()
-        local updated_config = { options = { theme = success and color or "auto" } }
-
-        require("lualine.config").apply_configuration(vim.tbl_deep_extend("force", lualine_config, updated_config))
-    end,
-})
