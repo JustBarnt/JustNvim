@@ -62,8 +62,7 @@ else
     vim.notify_once("No Colorscheme file found, call `:Telescope themes` to set one", vim.log.levels.INFO)
 end
 
-require("core.keymaps").Default()
-require "core.user-commands"
+require "core.keymaps"
 require "core.autocmds"
 require "extras.commands"
 require "extras.autocmds"

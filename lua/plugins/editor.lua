@@ -43,14 +43,9 @@ return {
             { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
         },
         ---@type Flash.Config
-        opts = {
-            search = {
-                incremental = true,
-                mode = "search",
-            }
-        },
+        opts = {},
         config = function(_, opts)
-            require('flash').setup(utils.create_spec("flash", opts))
+            require("flash").setup(utils.create_spec("flash", opts))
         end,
     },
     {
