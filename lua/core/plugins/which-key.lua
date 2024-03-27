@@ -14,9 +14,9 @@ return {
             },
         },
         window = {
-            border = "rounded",
-            margin = { 1, 1, 1, 1 },
-            padding = { 1, 1, 1, 1 },
+            border = { "", "▔", "", "", "", " ", "", "" },
+            margin = { 0, 0, 1, 0 },
+            padding = { 0, 0, 0, 0 },
         },
     }, -- Empty opts means default options
     config = function(_, opts)

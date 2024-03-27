@@ -13,6 +13,9 @@ if vim.fn.has "win32" then
     end
 end
 
+-- TODO: Instead of checking if VS Code and only loading keymaps, just create
+--       a vcode lua file that will load only options I want and load and return that instead
+
 if not vim.g.vscode then
     require "core"
 else

@@ -11,11 +11,16 @@ vim.opt.shortmess = {
 vim_opts({
     ---@class vim.opt
     opt = {
+        guicursor = "i:ver20-blinkon1,a:blinkon1",
         commentstring = "",
-        numberwidth = 2,
+        numberwidth = 5,
+        statuscolumn = " %s%=%{v:relnum?v:relnum:v:lnum}%#WinSeparator#  ",
         relativenumber = true,
         number = true,
-        pumblend = 17,
+        pumblend = 0,
+        winblend = 0,
+        pumheight = 10,
+        background = "dark",
         wildmode = "longest:full",
         wildoptions = "pum",
         termguicolors = true,
@@ -51,6 +56,7 @@ vim_opts({
         mouse = "a",
         joinspaces = false,
         list = true,
+        fillchars = { eob = " " },
         listchars = { tab = "» ", trail = "·", nbsp = "␣" },
         foldenable = false,
         undofile = true,

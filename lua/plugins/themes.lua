@@ -3,8 +3,8 @@ local utils = require "core.utils"
 return {
     {
         "rose-pine/neovim",
+        priority = 1000,
         name = "rose-pine",
-        priority = 10000,
         lazy = false,
         opts = {
             bold_vert_split = true,
@@ -23,7 +23,7 @@ return {
     },
     {
         "folke/tokyonight.nvim",
-        priority = 10000,
+        priority = 1000,
         lazy = false,
         opts = {
             styles = {
@@ -31,12 +31,11 @@ return {
                 keywords = { bold = true },
                 floats = "transparent",
             },
-            on_highlights = function(highlights, colors)
-                local tokyonight_overrides = require "core.ui.tokyonight"
-                tokyonight_overrides.borderless_float(highlights, colors)
-                tokyonight_overrides.borderless_telescope(highlights, colors)
-                tokyonight_overrides.ui_blend(highlights, colors)
+            on_highlights = function(hl, c)
+                local highlight_overrides = require "core.ui.tokyonight"
+                highlight_overrides.overrides(hl, c)
             end,
+            on_colors = function(_) end,
         },
         config = function(_, opts)
             require("tokyonight").setup(utils.create_spec("tokyonight", opts))
@@ -45,7 +44,7 @@ return {
 
     {
         "rebelot/kanagawa.nvim",
-        priority = 10000,
+        priority = 1000,
         lazy = false,
         opts = {
             overrides = function(colors)
@@ -64,7 +63,29 @@ return {
     },
     {
         "b0o/lavi.nvim",
+        priority = 1000,
         lazy = false,
-        priority = 10000,
+    },
+    {
+        "marko-cerovac/material.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {
+            contrast = {
+                sidebars = true,
+            },
+        },
+        config = function(_, opts)
+            require("material").setup(utils.create_spec("material", opts))
+        end,
+    },
+    {
+        "AlexvZyl/nordic.nvim",
+        priority = 1000,
+        lazy = false,
+        opts = {},
+        config = function(_, opts)
+            require("nordic").setup(utils.create_spec("nordic", opts))
+        end,
     },
 }
