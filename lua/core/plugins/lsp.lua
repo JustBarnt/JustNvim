@@ -35,7 +35,6 @@ return {
 
             require("mason").setup()
 
-            local defaults = require "core.plugins.lsp.default-config"
             local user_servers = exists and type(user_config) == "table" and user_config.servers or {}
             local user_formatters = exists and type(user_config) == "table" and user_config.formatters or {}
             local ensure_installed = vim.tbl_keys(defaults.servers)

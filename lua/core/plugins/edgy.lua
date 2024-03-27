@@ -9,7 +9,7 @@ return {
     end,
     opts = {
         ---@type(Edgy.View.Opts|string)[]
-        top = {}, 
+        top = {},
         ---@type(edgy.view.opts|string)[]
         bottom = {
             {
@@ -28,12 +28,16 @@ return {
                 size = { height = 0.4 },
             },
             { ft = "qf", title = "QuickFix" },
+            { ft = "spectre_panel", size = { height = 0.4 } },
         },
         ---@type(Edgy.View.Opts|string)[]
         left = {
             {
                 title = "Neo-Tree",
                 ft = "neo-tree",
+                filter = function(buf)
+                    return vim.b[buf].neo_tree_source == "filesystem"
+                end,
                 size = { height = 0.5 },
             },
         },

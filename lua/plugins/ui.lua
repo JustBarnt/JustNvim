@@ -2,21 +2,12 @@ local utils = require "core.utils"
 
 return {
     {
-        "utilyre/barbecue.nvim",
-        event = "BufEnter",
-        name = "barbecue",
-        enabled = utils.enabled("plugins", "barbecue"),
-        dependencies = {
-            "SmiteshP/nvim-navic",
-        },
-        opts = {
-            show_dirname = false,
-            attach_navic = false, -- prevent barbecue from attaching navic as it can only attach
-            -- to one lsp at a time so js projects that have ts, htlm, css, etc.
-            -- will give a warning
-        },
+        "Bekaboo/dropbar.nvim",
+        events = "BufEnter",
+        enabled = utils.enabled("plugins", "dropbar.nvim"),
+        opts = {},
         config = function(_, opts)
-            require("barbecue").setup(utils.create_spec("barbecue", opts))
+            require("dropbar").setup(utils.create_spec("dropbar", opts))
         end,
     },
     {
