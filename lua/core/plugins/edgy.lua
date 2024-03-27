@@ -10,7 +10,7 @@ return {
     opts = {
         ---@type(Edgy.View.Opts|string)[]
         top = {},
-        ---@type(edgy.view.opts|string)[]
+        ---@type(Edgy.View.Opts|string)[]
         bottom = {
             {
                 ft = "toggleterm",
