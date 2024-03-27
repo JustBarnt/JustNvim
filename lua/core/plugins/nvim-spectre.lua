@@ -7,6 +7,24 @@ return {
 
         return has_sed and has_rg
     end,
-    opts = {},
-    config = function(_, opts) end,
+    opts = {
+        replace_engine = {
+            ["sd"] = {
+                cmd = "sd",
+                options = {},
+            },
+        },
+        default = {
+            find = {
+                cmd = "rg",
+                options = { "ignore-case" },
+            },
+            replace = {
+                cmd = vim.fn.executable "sd" and "sd" or vim.fn.executable "sed" and "sed",
+            },
+        },
+    },
+    config = function(_, opts)
+        require("spectre").setup(utils.create_spec("spectre", opts))
+    end,
 }
