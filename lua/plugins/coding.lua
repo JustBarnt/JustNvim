@@ -40,28 +40,7 @@ return {
             local neogen = require "neogen"
             return {
                 {
-                    "<leader>tf",
-                    function()
-                        neogen.generate({ type = "func" })
-                    end,
-                    desc = "Generate Docs: Function",
-                },
-                {
-                    "<leader>tt",
-                    function()
-                        neogen.generate({ type = "type" })
-                    end,
-                    desc = "Generate Docs: Type",
-                },
-                {
-                    "<leader>tc",
-                    function()
-                        neogen.generate({ type = "class" })
-                    end,
-                    desc = "Generate Docs: Class",
-                },
-                {
-                    "<leader>ts",
+                    "<leader>td",
                     function()
                         neogen.generate({ snippet_engine = "luasnip" })
                     end,

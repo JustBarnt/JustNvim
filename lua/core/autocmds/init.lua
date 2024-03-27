@@ -1,5 +1,20 @@
 local utils = require "core.utils"
 
+vim.api.nvim_create_autocmd("TermOpen", {
+    pattern = "*",
+    callback = function()
+        vim.g.minialign_disable = true
+        vim.g.minicursorword_disable = true
+        vim.g.miniindentscope_disable = true
+        vim.g.minimisc_disable = true
+        vim.g.minimove_disable = true
+        vim.g.minioperators_disable = true
+        vim.g.minipairs_disable = true
+        vim.g.minisplitjoin_disable = true
+        vim.g.minisurround_disable = true
+    end,
+})
+
 vim.api.nvim_create_autocmd("BufReadPre", {
     desc = "Disables Several plugins when loading large files",
     callback = function(event)
@@ -25,7 +40,8 @@ vim.api.nvim_create_autocmd("BufReadPre", {
             end
 
             if ts_ok and treesitter then
-                local disabled = "Large Buffer Detected:\nThe follow treesitter modules have been disabled for performance"
+                local disabled =
+                    "Large Buffer Detected:\nThe follow treesitter modules have been disabled for performance"
                 for _, ts_module in ipairs(ts_modules) do
                     treesitter.detach_module(ts_module, event.buf)
                     disabled = disabled .. "\n\t" .. ts_module

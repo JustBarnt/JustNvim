@@ -1,6 +1,31 @@
 -- Load Core Settings
 require "core.options"
 
+-- Bootstrap Neovim to work with poweshell if we are on Windows
+if vim.fn.has "win32" then
+    local powershell_options = {
+        shell = vim.fn.executable "pwsh" == 1 and "pwsh" or "powershell",
+        shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;",
+        shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait",
+        shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode",
+        shellquote = "",
+        shellxquote = "",
+    }
+
+    -- Attempt to load user profile if it exists
+    if
+        vim.fn.executable "pwsh" == 1
+        and vim.fs.find("Microsoft.PowerShell_profile.ps1", { path = "~/Documents/PowerShell" }) ~= {}
+    then
+        powershell_options.shellcmdflag =
+            "-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
+    end
+
+    for option, value in pairs(powershell_options) do
+        vim.opt[option] = value
+    end
+end
+
 -- Bootstrap Lazy
 -- Creating our lazy install dir, then creating the git clone call
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
