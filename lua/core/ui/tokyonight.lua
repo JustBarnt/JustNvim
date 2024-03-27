@@ -2,23 +2,28 @@ local M = {}
 
 ---@param hl Highlights
 ---@param c ColorScheme
-function M.seamless_neotree(hl, c)
+function M.ui_blend(hl, c)
+    --[[Neotree]]
     hl.NeoTreeNormalNC = { bg = c.bg }
     hl.NeoTreeNormal = { bg = c.bg }
     hl.NeoTreeTitleBar = { bg = c.bg }
     hl.NeoTreeVertSplit = { bg = c.bg }
-
-    --[[ Float Groups]]
     hl.NeoTreeFloatNormal = { bg = "none" }
+
+    --[[Edgy]]
+    hl.EdgyNormal = { bg = c.none }
+    hl.EdgyTitle = { bg = c.none }
+    hl.EdgyWinBar = { bg = c.bg }
+
+    --[[Winbar/Statusline]]
+    hl.WinBar = { bg = c.bg }
+    hl.WinBarNC = { bg = c.bg }
+    hl.StatusLine = { bg = c.bg }
 end
 
 ---@param hl Highlights
 ---@param c ColorScheme
-function M.seamless_edgy_windows(hl, c)
-    hl.EdgyNormal = { bg = c.none }
-    hl.EdgyTitle = { bg = c.none }
-    hl.EdgyWinBar = { bg = c.bg }
-end
+function M.seamless_edgy_windows(hl, c) end
 
 ---@param hl Highlights
 ---@param c ColorScheme

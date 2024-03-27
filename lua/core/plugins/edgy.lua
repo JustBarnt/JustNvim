@@ -40,6 +40,12 @@ return {
                 end,
                 size = { height = 0.5 },
             },
+            {
+                ft = "Outline",
+                title = "Document Symbols",
+                pinned = true,
+                open = "OutlineOpen",
+            },
         },
         ---@type(Edgy.View.Opts|string)[]
         right = {},

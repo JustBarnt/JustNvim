@@ -35,8 +35,7 @@ return {
                 local tokyonight_overrides = require "core.ui.tokyonight"
                 tokyonight_overrides.borderless_float(highlights, colors)
                 tokyonight_overrides.borderless_telescope(highlights, colors)
-                tokyonight_overrides.seamless_neotree(highlights, colors)
-                tokyonight_overrides.seamless_edgy_windows(highlights, colors)
+                tokyonight_overrides.ui_blend(highlights, colors)
             end,
         },
         config = function(_, opts)
