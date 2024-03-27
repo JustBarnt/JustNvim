@@ -24,12 +24,6 @@ local edgyterm = Terminal:new({
     hidden = false,
     dir = vim.fn.getcwd(),
     direction = "horizontal",
-    on_open = function(_)
-        vim.cmd "startinsert!"
-    end,
-    on_close = function(_)
-        vim.cmd "startinsert!"
-    end,
 })
 
 function M.edgyterm_toggle()
