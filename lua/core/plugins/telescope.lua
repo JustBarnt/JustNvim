@@ -6,7 +6,6 @@ return {
         event = "VeryLazy",
         branch = "0.1.x",
         dependencies = {
-            { "nvim-telescope/telescope-frecency.nvim", enabled = vim.fn.executable "sqlite3" },
             { "piersolenski/telescope-import.nvim", enabled = vim.fn.executable "rg" },
             "nvim-tree/nvim-web-devicons",
             "nvim-lua/plenary.nvim",
@@ -140,9 +139,6 @@ return {
             telescope.load_extension "luasnip"
             telescope.load_extension "undo"
 
-            if vim.fn.executable "sqlite3" then
-                telescope.load_extension "frecency"
-            end
             if vim.fn.executable "rg" then
                 telescope.load_extension "import"
             end

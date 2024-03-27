@@ -7,13 +7,17 @@ local map = require("core.utils").map
 command("LegendaryKeymaps", function()
     legendary.find({
         filters = { filters.keymaps() },
-        select_prompt = function() return "Keymaps" end,
+        select_prompt = function()
+            return "Keymaps"
+        end,
     })
 end, { bang = false })
 
 command("LegendaryCommands", function()
     legendary.find({
         filters = { filters.commands() },
-        select_prompt = function() return "Commands" end,
+        select_prompt = function()
+            return "Commands"
+        end,
     })
 end, { bang = false })

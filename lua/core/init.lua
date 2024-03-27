@@ -64,5 +64,6 @@ end
 
 require "core.keymaps"
 require "core.autocmds"
+require "core.user-commands"
 require "extras.commands"
 require "extras.autocmds"
