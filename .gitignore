@@ -2,5 +2,6 @@ lazy-lock.json
 cd-project.nvim.json
 config.yaml
 .env
+lua/colorscheme.lua
 lua/user/*
 after

@@ -11,7 +11,6 @@ vim.opt.shortmess = {
 vim_opts({
     ---@class vim.opt
     opt = {
-        guicursor = "i:ver20-blinkon1,a:blinkon1",
         commentstring = "",
         numberwidth = 5,
         statuscolumn = " %s%=%{v:relnum?v:relnum:v:lnum}%#WinSeparator#  ",

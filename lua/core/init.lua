@@ -84,7 +84,11 @@ lazy.setup(plugins_spec, opts)
 if vim.fn.findfile(vim.fn.stdpath "config" .. "/lua/colorscheme.lua") ~= "" then
     require "colorscheme"
 else
-    vim.notify_once("No Colorscheme file found, call `:Telescope themes` to set one", vim.log.levels.INFO)
+    vim.notify_once(
+        "No Colorscheme file found: Defaulting to `tokyonight`, call `:Telescope themes` to set one",
+        vim.log.levels.INFO
+    )
+    vim.cmd [[colorscheme tokyonight-storm]]
 end
 
 require "core.keymaps"
