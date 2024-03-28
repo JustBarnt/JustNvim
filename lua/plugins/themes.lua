@@ -29,7 +29,7 @@ return {
             styles = {
                 functions = { bold = true },
                 keywords = { bold = true },
-                floats = "transparent",
+                -- floats = "transparent",
             },
             on_highlights = function(hl, c)
                 local highlight_overrides = require "core.ui.tokyonight"

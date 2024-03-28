@@ -19,6 +19,8 @@ function M.overrides(hl, c)
     hl.WinBar = { bg = c.bg }
     hl.WinBarNC = { bg = c.bg }
     hl.StatusLine = { bg = c.bg }
+    -- Float
+    hl.FloatBoard = { bg = c.bg_dark }
     -- Flash
     hl.FlashBackdrop = {}
     hl.FlashLabel = { bg = c.bg_dark, fg = c.purple }
